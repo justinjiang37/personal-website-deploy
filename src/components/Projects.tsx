@@ -6,16 +6,10 @@ export default function Projects() {
             <h2 className="text-3xl font-bold mb-8 text-center text-black">Projects</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
                 <ProjectComponents
-                    title="Coursera Deep Learning Specialization (In Progress)"
-                    description="Learning to build and train neural networks, with applications of CNNs in vision and transformers in NLP."
-                    imageUrl="/images/Projects/deeplearning.jpg"
-                    link=""
-                />
-                <ProjectComponents
-                    title="Outpost (In Progress)"
-                    description="A prototype app for college students to share photos and videos through daily themed prompts."
-                    imageUrl="/images/Projects/Outpost.webp"
-                    link=""
+                    title="OSSA - Open Source Software Analyzer (Deploying Soon)"
+                    description="A fullstack application that allows aspiring open source contributors to find the perfect project to work on."
+                    imageUrl="/images/Projects/OSSA.png"
+                    link="https://github.com/justinjiang37/open-source-analyzer"
                 />
                 <ProjectComponents
                     title="BREW | Winner of LaHacks 2025"
