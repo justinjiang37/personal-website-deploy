@@ -155,13 +155,12 @@ nav.scrolled{
 .nav-links a:hover{color:var(--ink)}
 .nav-links a:hover::after{transform:scaleX(1);transform-origin:left}
 .btn-resume{
-  font-family:var(--font-m);font-size:.8rem;font-weight:500;
-  color:var(--ink);text-decoration:none;
-  border:1px solid rgba(255,122,61,.5);border-radius:99px;
-  padding:9px 18px;transition:background .3s,border-color .3s,color .3s,transform .3s var(--ease-pop);
-  background:rgba(255,122,61,.06);
+  font-family:var(--font-m);font-size:.78rem;font-weight:500;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--orange-hi);text-decoration:none;
+  border-bottom:1px solid rgba(255,122,61,.4);padding-bottom:3px;
+  transition:color .25s,border-color .25s;
 }
-.btn-resume:hover{background:var(--orange);color:#16161a;border-color:var(--orange)}
+.btn-resume:hover{color:var(--ink);border-color:var(--ink)}
 @media (max-width:640px){.nav-links li.hide-m{display:none}}
 
 /* ---------- layout primitives ---------- */
@@ -229,29 +228,25 @@ section{padding:clamp(64px,9vh,110px) 0;position:relative}
 }
 .hero-sub strong{color:var(--ink);font-weight:600}
 .hero-cta{
-  display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:38px;
+  display:flex;align-items:center;gap:clamp(20px,3.5vw,36px);flex-wrap:wrap;margin-top:40px;
   animation:fadeup .9s var(--ease-out) .9s both;
 }
-.btn{
-  font-family:var(--font-d);font-weight:600;font-size:.95rem;
-  text-decoration:none;border-radius:99px;padding:15px 30px;
-  display:inline-flex;align-items:center;gap:10px;
-  transition:transform .35s var(--ease-pop),box-shadow .35s,background .3s,color .3s;
-  will-change:transform;
+.lnk{
+  font-family:var(--font-m);font-size:.84rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;position:relative;padding-bottom:4px;
+  border-bottom:1px solid rgba(236,238,242,.18);
+  transition:color .25s;
 }
-.btn-primary{
-  background:var(--orange);color:#16161a;
-  box-shadow:0 6px 28px rgba(255,122,61,.25);
+.lnk::after{
+  content:"";position:absolute;left:0;bottom:-1px;height:1px;width:100%;
+  background:var(--grad);transform:scaleX(0);transform-origin:right;
+  transition:transform .35s var(--ease-out);
 }
-.btn-primary:hover{box-shadow:0 10px 40px rgba(255,122,61,.45)}
-.btn-ghost{color:var(--ink);border:1px solid var(--line);background:rgba(236,238,242,.03)}
-.btn-ghost:hover{border-color:rgba(90,169,255,.55);background:rgba(90,169,255,.08)}
-.hero-socials{display:flex;gap:6px}
-.hero-socials a{
-  color:var(--muted);text-decoration:none;font-family:var(--font-m);font-size:.8rem;
-  padding:10px 12px;border-radius:10px;transition:color .25s,background .25s,transform .3s var(--ease-pop);
-}
-.hero-socials a:hover{color:var(--blue-hi);background:rgba(90,169,255,.08)}
+.lnk:hover{color:var(--ink)}
+.lnk:hover::after{transform:scaleX(1);transform-origin:left}
+.lnk.em{color:var(--orange-hi);border-bottom-color:rgba(255,122,61,.4)}
+.lnk.em:hover{color:var(--ink)}
+button.lnk{background:none;border-top:0;border-left:0;border-right:0;font-weight:400}
 .scroll-hint{
   position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
   font-family:var(--font-m);font-size:.7rem;letter-spacing:.25em;color:var(--faint);
@@ -322,24 +317,18 @@ section{padding:clamp(64px,9vh,110px) 0;position:relative}
 .xp:hover{border-color:rgba(236,238,242,.18);transform:translateY(-3px)}
 .xp:hover::before{opacity:1}
 .xp .when{font-family:var(--font-m);font-size:.78rem;color:var(--faint);padding-top:5px;letter-spacing:.04em}
-.xp .when .now{
-  display:inline-block;margin-top:8px;font-size:.68rem;color:var(--blue-hi);
-  border:1px solid rgba(90,169,255,.35);border-radius:99px;padding:3px 10px;
-  background:rgba(90,169,255,.07);
-}
+.xp .when .now{display:inline-block;margin-top:8px;font-size:.68rem;letter-spacing:.14em;color:var(--blue-hi)}
 .xp h3{font-family:var(--font-d);font-size:1.3rem;font-weight:600;letter-spacing:-.015em;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 .xp h3 .org{color:var(--ink)}
 .xp .role{font-family:var(--font-m);font-size:.8rem;color:var(--muted);margin:4px 0 12px}
 .xp p{color:var(--muted);font-size:.97rem;max-width:62ch}
 .xp p + p{margin-top:8px}
 .xp p b{color:var(--ink);font-weight:600}
-.xp .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.tag{
-  font-family:var(--font-m);font-size:.7rem;color:var(--blue-hi);
-  border:1px solid rgba(90,169,255,.25);background:rgba(90,169,255,.06);
-  padding:4px 11px;border-radius:99px;transition:transform .3s var(--ease-pop),background .25s;
+.meta-line{
+  font-family:var(--font-m);font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--faint);margin-top:18px;
 }
-.xp .tags .tag:hover,.proj .tags .tag:hover{transform:translateY(-3px) scale(1.06);background:rgba(90,169,255,.14)}
+.meta-line b{color:var(--orange);font-weight:400;opacity:.7;padding:0 6px}
 .xp a{color:var(--blue-hi);text-decoration:none;border-bottom:1px dashed rgba(90,169,255,.4)}
 .xp a:hover{color:var(--orange-hi);border-color:rgba(255,122,61,.5)}
 @media (max-width:700px){.xp{grid-template-columns:1fr}.xp .when{padding-top:0}}
@@ -361,10 +350,8 @@ section{padding:clamp(64px,9vh,110px) 0;position:relative}
 }
 .proj:hover::before{opacity:1}
 .proj .award{
-  display:inline-flex;align-items:center;gap:8px;
-  font-family:var(--font-m);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;
-  color:var(--orange-hi);background:rgba(255,122,61,.09);
-  border:1px solid rgba(255,122,61,.3);border-radius:99px;padding:6px 13px;margin-bottom:20px;
+  display:block;font-family:var(--font-m);font-size:.72rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--orange-hi);margin-bottom:18px;
 }
 .proj h3{
   font-family:var(--font-d);font-weight:700;font-size:clamp(1.7rem,3vw,2.2rem);
@@ -373,7 +360,6 @@ section{padding:clamp(64px,9vh,110px) 0;position:relative}
 .proj .sub{font-family:var(--font-m);font-size:.78rem;color:var(--faint);margin-bottom:16px}
 .proj p{color:var(--muted);font-size:.97rem}
 .proj p b{color:var(--ink);font-weight:600}
-.proj .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
 
 /* ---------- skills ---------- */
 .skill-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
@@ -386,20 +372,14 @@ section{padding:clamp(64px,9vh,110px) 0;position:relative}
   font-family:var(--font-m);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;
   color:var(--blue-hi);margin-bottom:16px;display:flex;align-items:center;gap:10px;
 }
-.chips{display:flex;flex-wrap:wrap;gap:9px}
-.chip{
-  font-family:var(--font-d);font-weight:500;font-size:.88rem;color:var(--ink);
-  background:rgba(236,238,242,.05);border:1px solid var(--line);
-  padding:8px 16px;border-radius:12px;user-select:none;
-  transition:transform .3s var(--ease-pop),background .25s,border-color .25s,color .25s;
+.skill-list{list-style:none}
+.skill-list li{
+  font-family:var(--font-d);font-size:1rem;color:var(--muted);
+  padding:9px 2px;border-bottom:1px solid var(--line);
+  transition:color .25s,padding-left .3s var(--ease-out),border-color .25s;
 }
-.chip:hover{
-  transform:translateY(-4px) rotate(-2deg) scale(1.05);
-  background:rgba(255,122,61,.12);border-color:rgba(255,122,61,.5);color:var(--orange-hi);
-}
-.chip:nth-child(even):hover{
-  background:rgba(90,169,255,.12);border-color:rgba(90,169,255,.5);color:var(--blue-hi);transform:translateY(-4px) rotate(2deg) scale(1.05);
-}
+.skill-list li:last-child{border-bottom:0}
+.skill-list li:hover{color:var(--ink);padding-left:10px;border-bottom-color:rgba(255,122,61,.35)}
 
 /* ---------- education ---------- */
 .edu{
@@ -414,13 +394,6 @@ section{padding:clamp(64px,9vh,110px) 0;position:relative}
 .edu .deg{color:var(--muted);margin:8px 0 4px;font-size:1rem}
 .edu .deg b{color:var(--ink)}
 .edu .meta{font-family:var(--font-m);font-size:.78rem;color:var(--faint);margin-bottom:18px}
-.edu .badges{display:flex;flex-wrap:wrap;gap:9px;margin-top:6px}
-.badge{
-  font-family:var(--font-m);font-size:.72rem;color:var(--orange-hi);
-  border:1px solid rgba(255,122,61,.3);background:rgba(255,122,61,.07);
-  padding:5px 12px;border-radius:99px;
-}
-.badge.b{color:var(--blue-hi);border-color:rgba(90,169,255,.3);background:rgba(90,169,255,.07)}
 .edu .course{color:var(--muted);font-size:.92rem;margin-top:18px;max-width:70ch}
 .edu .course b{color:var(--ink);font-weight:600}
 
@@ -456,23 +429,22 @@ section{padding:clamp(64px,9vh,110px) 0;position:relative}
   color:transparent;-webkit-text-stroke:2px rgba(236,238,242,.8);
 }
 .contact .mega .row2 .ltr:hover{color:var(--blue);-webkit-text-stroke:2px var(--blue);transform:translateY(-12px) rotate(5deg)}
-.contact-cta{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap}
-.email-btn{position:relative}
+.contact-cta{display:flex;justify-content:center;align-items:center;gap:clamp(24px,4vw,44px);flex-wrap:wrap}
+.contact-cta .lnk{font-size:.95rem}
+.email-btn{position:relative;text-transform:none;letter-spacing:.04em}
 .email-btn .copied{
-  position:absolute;top:-38px;left:50%;transform:translateX(-50%) translateY(6px);
+  position:absolute;top:-36px;left:50%;transform:translateX(-50%) translateY(6px);
   font-family:var(--font-m);font-size:.72rem;color:#46d68c;
-  background:rgba(70,214,140,.1);border:1px solid rgba(70,214,140,.3);
-  padding:4px 12px;border-radius:99px;opacity:0;pointer-events:none;
+  opacity:0;pointer-events:none;
   transition:opacity .3s,transform .3s var(--ease-pop);white-space:nowrap;
 }
 .email-btn.show .copied{opacity:1;transform:translateX(-50%) translateY(0)}
-.contact-links{display:flex;justify-content:center;gap:8px;margin-top:34px;flex-wrap:wrap}
+.contact-links{display:flex;justify-content:center;gap:26px;margin-top:38px;flex-wrap:wrap}
 .contact-links a{
-  font-family:var(--font-m);font-size:.82rem;color:var(--muted);text-decoration:none;
-  padding:10px 16px;border-radius:12px;border:1px solid transparent;
-  transition:color .25s,border-color .25s,background .25s,transform .3s var(--ease-pop);
+  font-family:var(--font-m);font-size:.78rem;letter-spacing:.08em;color:var(--faint);
+  text-decoration:none;transition:color .25s;
 }
-.contact-links a:hover{color:var(--blue-hi);border-color:rgba(90,169,255,.3);background:rgba(90,169,255,.06);transform:translateY(-3px)}
+.contact-links a:hover{color:var(--blue-hi)}
 
 /* ---------- footer ---------- */
 footer{
@@ -523,7 +495,7 @@ footer .hint{opacity:.7}
     <li class="hide-m"><a href="#experience" data-hover>Experience</a></li>
     <li class="hide-m"><a href="#projects" data-hover>Projects</a></li>
     <li class="hide-m"><a href="#contact" data-hover>Contact</a></li>
-    <li><a class="btn-resume" href="Justin_Jiang_Resume.pdf" target="_blank" data-hover data-magnetic>Résumé ↓</a></li>
+    <li><a class="btn-resume" href="Justin_Jiang_Resume.pdf" target="_blank" data-hover>Résumé ↓</a></li>
   </ul>
 </nav>
 
@@ -545,12 +517,10 @@ footer .hint{opacity:.7}
       <strong>Deloitte</strong>, and <strong>Yale Astrophysics</strong>.
     </p>
     <div class="hero-cta">
-      <a class="btn btn-primary" href="#experience" data-hover data-magnetic>See the work ↓</a>
-      <a class="btn btn-ghost" href="mailto:justinjiang641@gmail.com" data-hover data-magnetic>Say hello</a>
-      <div class="hero-socials">
-        <a href="https://github.com/justinjiang37" target="_blank" rel="noopener" data-hover>GitHub</a>
-        <a href="https://linkedin.com/in/justinjiang37" target="_blank" rel="noopener" data-hover>LinkedIn</a>
-      </div>
+      <a class="lnk em" href="#experience" data-hover>Experience ↓</a>
+      <a class="lnk" href="mailto:justinjiang641@gmail.com" data-hover>Email ↗</a>
+      <a class="lnk" href="https://github.com/justinjiang37" target="_blank" rel="noopener" data-hover>GitHub ↗</a>
+      <a class="lnk" href="https://linkedin.com/in/justinjiang37" target="_blank" rel="noopener" data-hover>LinkedIn ↗</a>
     </div>
     <div class="scroll-hint"><span>SCROLL</span><span class="line"></span></div>
   </header>
@@ -604,7 +574,6 @@ footer .hint{opacity:.7}
           <p class="role">Software Engineering Intern · Channel Platforms</p>
           <p>Building infrastructure that powers Shopify’s merchant presence across
           <b>external sales channels</b> and the broader commerce ecosystem.</p>
-          <div class="tags"><span class="tag">Commerce Infra</span><span class="tag">Platform</span><span class="tag">Scale</span></div>
         </div>
       </article>
 
@@ -617,7 +586,7 @@ footer .hint{opacity:.7}
           streamlining an orderbook platform for shippers and carriers.</p>
           <p>Built CRM endpoints and refactored consumers to use them — <b>cutting redundant
           database queries</b>, validated against AWS RDS (PostgreSQL).</p>
-          <div class="tags"><span class="tag">TypeScript</span><span class="tag">PostgreSQL</span><span class="tag">AWS RDS</span><span class="tag">Startup speed</span></div>
+          <p class="meta-line">TypeScript <b>✦</b> PostgreSQL <b>✦</b> AWS RDS</p>
         </div>
       </article>
 
@@ -630,7 +599,7 @@ footer .hint{opacity:.7}
           integrations — <b>30% less manual entry, ~$500K saved per year</b>.</p>
           <p>Evaluated software &amp; cloud infrastructure of acquisition targets to advise
           on technology-driven M&amp;A strategy.</p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">REST APIs</span><span class="tag">Cloud due diligence</span></div>
+          <p class="meta-line">Python <b>✦</b> REST APIs <b>✦</b> Cloud Due Diligence</p>
         </div>
       </article>
 
@@ -644,7 +613,7 @@ footer .hint{opacity:.7}
           supernova classification and isochrone fitting.</p>
           <p>Modeled supernova light curves to a <b>394 ± 38 Mpc</b> cosmological distance —
           <a href="https://doi.org/10.1007/s10509-023-04250-x" target="_blank" rel="noopener" data-hover>co-authored a peer-reviewed publication ↗</a></p>
-          <div class="tags"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">Computer Vision</span><span class="tag">Research</span></div>
+          <p class="meta-line">Python <b>✦</b> PyTorch <b>✦</b> Computer Vision</p>
         </div>
       </article>
 
@@ -665,7 +634,7 @@ footer .hint{opacity:.7}
         Qwen vision model to catch early signs of colic in horses — and alerts owners in
         real time. Won USC’s Lavalab accelerator; now working with the
         <b>Amazon Ring team</b> to launch on the Ring App Store.</p>
-        <div class="tags"><span class="tag">React Native</span><span class="tag">Supabase</span><span class="tag">Qwen VLM</span><span class="tag">Ring API</span></div>
+        <p class="meta-line">React Native <b>✦</b> Supabase <b>✦</b> Qwen VLM <b>✦</b> Ring API</p>
       </article>
 
       <article class="proj reveal" data-tilt data-glow style="--d:.1s">
@@ -675,7 +644,7 @@ footer .hint{opacity:.7}
         <p>Agentic AI outreach tool that automates <b>personalized cold outreach</b> across
         email and messaging. Took 1st place ($1.75K) at LA Hacks and generated a
         <b>100+ person waitlist</b> off the demo alone.</p>
-        <div class="tags"><span class="tag">Clado API</span><span class="tag">Gemini</span><span class="tag">Stagehand</span><span class="tag">Full-stack</span></div>
+        <p class="meta-line">Clado API <b>✦</b> Gemini <b>✦</b> Stagehand</p>
       </article>
 
     </div>
@@ -688,25 +657,25 @@ footer .hint{opacity:.7}
     <div class="skill-groups">
       <div class="skill-card reveal">
         <h4>Languages</h4>
-        <div class="chips">
-          <span class="chip">Python</span><span class="chip">TypeScript</span><span class="chip">C++</span>
-          <span class="chip">Java</span><span class="chip">JavaScript</span><span class="chip">SQL</span>
-        </div>
+        <ul class="skill-list">
+          <li>Python</li><li>TypeScript</li><li>C++</li>
+          <li>Java</li><li>JavaScript</li><li>SQL</li>
+        </ul>
       </div>
       <div class="skill-card reveal" style="--d:.1s">
         <h4>Frameworks</h4>
-        <div class="chips">
-          <span class="chip">React</span><span class="chip">Next.js</span><span class="chip">Node.js</span>
-          <span class="chip">React Native</span><span class="chip">Tailwind CSS</span>
-        </div>
+        <ul class="skill-list">
+          <li>React</li><li>Next.js</li><li>Node.js</li>
+          <li>React Native</li><li>Tailwind CSS</li>
+        </ul>
       </div>
       <div class="skill-card reveal" style="--d:.2s">
         <h4>Infra & Tools</h4>
-        <div class="chips">
-          <span class="chip">AWS</span><span class="chip">Docker</span><span class="chip">PostgreSQL</span>
-          <span class="chip">Supabase</span><span class="chip">Linux</span><span class="chip">Git</span>
-          <span class="chip">REST APIs</span>
-        </div>
+        <ul class="skill-list">
+          <li>AWS</li><li>Docker</li><li>PostgreSQL</li>
+          <li>Supabase</li><li>Linux</li><li>Git</li>
+          <li>REST APIs</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -719,12 +688,7 @@ footer .hint{opacity:.7}
       <h3>University of Southern California</h3>
       <p class="deg"><b>B.S. Computer Engineering &amp; Computer Science</b> · Minor in Business Finance</p>
       <p class="meta">LOS ANGELES, CA · CLASS OF MAY 2028 · GPA 3.87 / 4.00</p>
-      <div class="badges">
-        <span class="badge">USC Presidential Scholar</span>
-        <span class="badge b">Viterbi Dean’s List</span>
-        <span class="badge">LA Hacks — 1st Place</span>
-        <span class="badge b">HackSC — 1st Place</span>
-      </div>
+      <p class="meta-line" style="margin-top:6px">USC Presidential Scholar <b>✦</b> Viterbi Dean’s List <b>✦</b> LA Hacks 1st Place <b>✦</b> HackSC 1st Place</p>
       <p class="course"><b>Coursework:</b> Data Structures &amp; Algorithms · Algorithm Analysis ·
       Machine Learning · Professional C++ · Object-Oriented Design · Software Engineering ·
       Distributed Systems · Probability Theory · Trading &amp; Exchanges</p>
@@ -761,11 +725,11 @@ footer .hint{opacity:.7}
       <span class="row2" data-split>TALK.</span>
     </h2>
     <div class="contact-cta reveal">
-      <button class="btn btn-primary email-btn" id="copyEmail" data-hover data-magnetic>
+      <button class="lnk em email-btn" id="copyEmail" data-hover>
         justinjiang641@gmail.com
         <span class="copied">copied ✓</span>
       </button>
-      <a class="btn btn-ghost" href="Justin_Jiang_Resume.pdf" target="_blank" data-hover data-magnetic>Grab the résumé</a>
+      <a class="lnk" href="Justin_Jiang_Resume.pdf" target="_blank" data-hover>Résumé ↓</a>
     </div>
     <div class="contact-links reveal">
       <a href="https://github.com/justinjiang37" target="_blank" rel="noopener" data-hover>GitHub ↗</a>
