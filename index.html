@@ -247,18 +247,24 @@ section{padding:clamp(64px,9vh,110px) 0;position:relative}
 .lnk.em{color:var(--orange-hi);border-bottom-color:rgba(255,122,61,.4)}
 .lnk.em:hover{color:var(--ink)}
 button.lnk{background:none;border-top:0;border-left:0;border-right:0;font-weight:400}
-.scroll-hint{
-  position:absolute;bottom:26px;left:50%;transform:translateX(-50%);
-  font-family:var(--font-m);font-size:.7rem;letter-spacing:.25em;color:var(--faint);
-  display:flex;flex-direction:column;align-items:center;gap:10px;
-  animation:fadeup 1s var(--ease-out) 1.4s both;
+/* ---------- marquee ---------- */
+.tape{
+  position:relative;z-index:2;overflow:hidden;padding:22px 0;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  background:rgba(25,28,33,.55);transform:rotate(-1.2deg) scale(1.02);
+  margin:10px -10px;
 }
-.scroll-hint .line{width:1px;height:44px;background:linear-gradient(var(--faint),transparent);overflow:hidden;position:relative}
-.scroll-hint .line::after{
-  content:"";position:absolute;top:-100%;left:0;width:100%;height:50%;
-  background:var(--orange);animation:drip 1.8s var(--ease-out) infinite;
+.tape-track{display:flex;width:max-content;gap:0;animation:scroll 28s linear infinite}
+.tape:hover .tape-track{animation-play-state:paused}
+.tape-track span{
+  font-family:var(--font-d);font-weight:700;font-size:clamp(1.1rem,2.4vw,1.7rem);
+  letter-spacing:.02em;text-transform:uppercase;white-space:nowrap;padding-right:18px;
+  color:transparent;-webkit-text-stroke:1px rgba(236,238,242,.4);
+  transition:color .3s;
 }
-@keyframes drip{to{top:120%}}
+.tape-track span b{font-weight:700;color:var(--orange);-webkit-text-stroke:0;padding:0 18px 0 0}
+.tape-track span:hover{color:var(--blue);-webkit-text-stroke:1px var(--blue)}
+@keyframes scroll{to{transform:translateX(-50%)}}
 
 /* ---------- about ---------- */
 .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(32px,5vw,72px);align-items:start}
@@ -503,8 +509,12 @@ footer .hint{opacity:.7}
       <a class="lnk" href="https://github.com/justinjiang37" target="_blank" rel="noopener" data-hover>GitHub ↗</a>
       <a class="lnk" href="https://linkedin.com/in/justinjiang37" target="_blank" rel="noopener" data-hover>LinkedIn ↗</a>
     </div>
-    <div class="scroll-hint"><span>SCROLL</span><span class="line"></span></div>
   </header>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="tape" aria-hidden="true">
+    <div class="tape-track" id="tape"></div>
+  </div>
 
   <!-- ============ ABOUT ============ -->
   <section id="about" class="wrap">
@@ -752,6 +762,14 @@ document.querySelectorAll("[data-split]").forEach(el => {
     el.appendChild(s);
   });
 });
+
+/* ---------- marquee content ---------- */
+(() => {
+  const items = ["Python","TypeScript","C++","React","Next.js","AWS","PostgreSQL",
+                 "Machine Learning","Docker","Node.js","Supabase","Distributed Systems"];
+  const half = items.map(t => `<span>${t}<b> ✦</b></span>`).join("");
+  document.getElementById("tape").innerHTML = half + half; /* duplicate for seamless loop */
+})();
 
 /* ---------- photo strip: duplicate cards for seamless loop ---------- */
 (() => {
