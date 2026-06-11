@@ -10,7 +10,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='sans-serif' font-weight='bold' fill='%23ff7a3d'>J</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
    JUSTIN JIANG — personal site
@@ -31,7 +31,7 @@
   --grad:      linear-gradient(92deg, var(--orange) 0%, var(--blue) 100%);
   --font-d:    "Space Grotesk", system-ui, sans-serif;
   --font-b:    "Inter", system-ui, sans-serif;
-  --font-m:    "JetBrains Mono", ui-monospace, monospace;
+  --font-m:    "Space Grotesk", system-ui, sans-serif;
   --ease-out:  cubic-bezier(.22,.85,.3,1);
   --ease-pop:  cubic-bezier(.34,1.56,.64,1);
 }
@@ -259,25 +259,6 @@ button.lnk{background:none;border-top:0;border-left:0;border-right:0;font-weight
   background:var(--orange);animation:drip 1.8s var(--ease-out) infinite;
 }
 @keyframes drip{to{top:120%}}
-
-/* ---------- marquee ---------- */
-.tape{
-  position:relative;z-index:2;overflow:hidden;padding:22px 0;
-  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
-  background:rgba(25,28,33,.55);transform:rotate(-1.2deg) scale(1.02);
-  margin:10px -10px;
-}
-.tape-track{display:flex;width:max-content;gap:0;animation:scroll 28s linear infinite}
-.tape:hover .tape-track{animation-play-state:paused}
-.tape-track span{
-  font-family:var(--font-d);font-weight:700;font-size:clamp(1.1rem,2.4vw,1.7rem);
-  letter-spacing:.02em;text-transform:uppercase;white-space:nowrap;padding-right:18px;
-  color:transparent;-webkit-text-stroke:1px rgba(236,238,242,.4);
-  transition:color .3s;
-}
-.tape-track span b{font-weight:700;color:var(--orange);-webkit-text-stroke:0;padding:0 18px 0 0}
-.tape-track span:hover{color:var(--blue);-webkit-text-stroke:1px var(--blue)}
-@keyframes scroll{to{transform:translateX(-50%)}}
 
 /* ---------- about ---------- */
 .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:clamp(32px,5vw,72px);align-items:start}
@@ -525,11 +506,6 @@ footer .hint{opacity:.7}
     <div class="scroll-hint"><span>SCROLL</span><span class="line"></span></div>
   </header>
 
-  <!-- ============ MARQUEE ============ -->
-  <div class="tape" aria-hidden="true">
-    <div class="tape-track" id="tape"></div>
-  </div>
-
   <!-- ============ ABOUT ============ -->
   <section id="about" class="wrap">
     <p class="sec-label reveal">01</p>
@@ -776,14 +752,6 @@ document.querySelectorAll("[data-split]").forEach(el => {
     el.appendChild(s);
   });
 });
-
-/* ---------- marquee content ---------- */
-(() => {
-  const items = ["Python","TypeScript","C++","React","Next.js","AWS","PostgreSQL",
-                 "Machine Learning","Docker","Node.js","Supabase","Distributed Systems"];
-  const half = items.map(t => `<span>${t}<b> ✦</b></span>`).join("");
-  document.getElementById("tape").innerHTML = half + half; /* duplicate for seamless loop */
-})();
 
 /* ---------- photo strip: duplicate cards for seamless loop ---------- */
 (() => {
