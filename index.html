@@ -344,49 +344,63 @@ button.lnk{background:none;border-top:0;border-left:0;border-right:0;font-weight
 .xp a{color:var(--blue-hi);text-decoration:none;border-bottom:1px dashed rgba(90,169,255,.4)}
 .xp a:hover{color:var(--orange-hi);border-color:rgba(255,122,61,.5)}
 
-/* ---------- projects ---------- */
-.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;perspective:1200px}
-@media (max-width:860px){.proj-grid{grid-template-columns:1fr}}
+/* ---------- projects: editorial spreads ---------- */
+.proj-list{display:flex;flex-direction:column;gap:clamp(60px,9vh,104px)}
 .proj{
-  position:relative;display:block;color:inherit;text-decoration:none;
-  border-radius:24px;background:var(--bg-card);border:1px solid var(--line);
-  overflow:hidden;transform-style:preserve-3d;
-  transition:border-color .3s, box-shadow .4s;
+  position:relative;display:grid;grid-template-columns:1.05fr 1fr;
+  gap:clamp(30px,5vw,64px);align-items:center;
+  color:inherit;text-decoration:none;perspective:900px;
+}
+.proj:nth-child(even) .proj-media{grid-column:2;grid-row:1}
+.proj:nth-child(even) .proj-body{grid-column:1;grid-row:1}
+.proj-media{
+  position:relative;aspect-ratio:16/10;border-radius:18px;overflow:hidden;
+  border:1px solid var(--line);background:#101216;
+  transform:rotate(-1.6deg);box-shadow:0 24px 60px rgba(0,0,0,.45);
+  transition:transform .45s var(--ease-pop),box-shadow .4s,border-color .3s;
   will-change:transform;
 }
-.proj:hover{border-color:rgba(255,122,61,.35);box-shadow:0 24px 60px rgba(0,0,0,.45)}
-.proj::before{
-  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .35s;
-  background:radial-gradient(620px circle at var(--mx,50%) var(--my,50%),rgba(90,169,255,.1),rgba(255,122,61,.06) 45%,transparent 70%);
-}
-.proj:hover::before{opacity:1}
-.proj-media{aspect-ratio:16/9;overflow:hidden;border-bottom:1px solid var(--line);background:#101216}
+.proj:nth-child(even) .proj-media{transform:rotate(1.6deg)}
+.proj:hover .proj-media{border-color:rgba(255,122,61,.4);box-shadow:0 30px 70px rgba(0,0,0,.55)}
 .proj-media img{
   width:100%;height:100%;object-fit:cover;display:block;
-  filter:saturate(.85);transition:transform .5s var(--ease-out),filter .4s;
+  filter:saturate(.85);transition:transform .6s var(--ease-out),filter .4s;
 }
-.proj-media.contain img{object-fit:contain;padding:12px}
-.proj:hover .proj-media img{transform:scale(1.04);filter:saturate(1.05)}
-.proj-body{padding:clamp(20px,2.8vw,30px)}
+.proj-media.contain img{object-fit:contain;padding:14px}
+.proj:hover .proj-media img{transform:scale(1.05);filter:saturate(1.05)}
+.proj-body{position:relative}
+.proj-body .idx{
+  position:absolute;top:-54px;right:0;z-index:0;line-height:1;
+  font-family:var(--font-d);font-weight:700;font-size:clamp(3.6rem,6vw,5.4rem);
+  color:transparent;-webkit-text-stroke:1px rgba(236,238,242,.12);
+  user-select:none;pointer-events:none;
+}
 .proj .award{
   display:block;font-family:var(--font-m);font-size:.72rem;letter-spacing:.1em;
   text-transform:uppercase;color:var(--orange-hi);margin-bottom:14px;
 }
 .proj .award.alt{color:var(--blue-hi)}
 .proj h3{
-  font-family:var(--font-d);font-weight:700;font-size:clamp(1.35rem,2.3vw,1.75rem);
-  letter-spacing:-.02em;margin-bottom:6px;
+  font-family:var(--font-d);font-weight:700;font-size:clamp(1.8rem,3.4vw,2.5rem);
+  letter-spacing:-.025em;margin-bottom:8px;transition:color .3s;
 }
+.proj:hover h3{color:var(--orange-hi)}
 .proj .sub{font-family:var(--font-m);font-size:.74rem;letter-spacing:.06em;color:var(--faint);margin-bottom:14px}
-.proj p{color:var(--muted);font-size:.95rem}
+.proj p{color:var(--muted);font-size:.97rem;max-width:48ch}
 .proj p b{color:var(--ink);font-weight:600}
 .proj-open{
-  display:inline-block;margin-top:16px;
+  display:inline-block;margin-top:18px;
   font-family:var(--font-m);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
   color:var(--blue-hi);border-bottom:1px solid rgba(90,169,255,.35);padding-bottom:2px;
   transition:color .25s,border-color .25s;
 }
 .proj:hover .proj-open{color:var(--orange-hi);border-color:rgba(255,122,61,.5)}
+@media (max-width:860px){
+  .proj{grid-template-columns:1fr;gap:22px}
+  .proj:nth-child(even) .proj-media{grid-column:1;grid-row:1}
+  .proj:nth-child(even) .proj-body{grid-column:1;grid-row:auto}
+  .proj-body .idx{display:none}
+}
 
 /* ---------- skills ---------- */
 .skill-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
@@ -665,11 +679,12 @@ footer .hint{opacity:.7}
   <section id="projects" class="wrap">
     <p class="sec-label reveal">03</p>
     <h2 class="sec-title reveal">Projects<i>.</i></h2>
-    <div class="proj-grid">
+    <div class="proj-list">
 
-      <article class="proj reveal" data-tilt data-glow>
-        <div class="proj-media"><img src="images/projects/valkyrie.jpg" alt="Valkyrie" loading="lazy"></div>
+      <article class="proj reveal">
+        <div class="proj-media" data-tilt><img src="images/projects/valkyrie.jpg" alt="Valkyrie" loading="lazy"></div>
         <div class="proj-body">
+          <span class="idx">01</span>
           <span class="award">Lavalab Sp26 Winner · $1.5K Prize</span>
           <h3>Valkyrie</h3>
           <p class="sub">CO-FOUNDER / DEVELOPER · FEB 2026 — PRESENT</p>
@@ -681,9 +696,10 @@ footer .hint{opacity:.7}
         </div>
       </article>
 
-      <a class="proj reveal" data-tilt data-glow data-hover href="https://devpost.com/software/brew-rojb0x" target="_blank" rel="noopener" style="--d:.08s">
-        <div class="proj-media"><img src="images/projects/brew.jpg" alt="BREW" loading="lazy"></div>
+      <a class="proj reveal" data-hover href="https://devpost.com/software/brew-rojb0x" target="_blank" rel="noopener">
+        <div class="proj-media" data-tilt><img src="images/projects/brew.jpg" alt="BREW" loading="lazy"></div>
         <div class="proj-body">
+          <span class="idx">02</span>
           <span class="award">LA Hacks 2025 · 1st of 200 Teams</span>
           <h3>BREW</h3>
           <p class="sub">FULL-STACK DEVELOPER · APRIL 2025</p>
@@ -695,9 +711,10 @@ footer .hint{opacity:.7}
         </div>
       </a>
 
-      <a class="proj reveal" data-tilt data-glow data-hover href="https://devpost.com/software/temporun-7sj6r3" target="_blank" rel="noopener">
-        <div class="proj-media contain"><img src="images/projects/temporun.jpg" alt="TempoRun" loading="lazy"></div>
+      <a class="proj reveal" data-hover href="https://devpost.com/software/temporun-7sj6r3" target="_blank" rel="noopener">
+        <div class="proj-media contain" data-tilt><img src="images/projects/temporun.jpg" alt="TempoRun" loading="lazy"></div>
         <div class="proj-body">
+          <span class="idx">03</span>
           <span class="award">HackSC SoCal Tech Week 2024 · Winner</span>
           <h3>TempoRun</h3>
           <p>iOS app that builds personalized <b>Spotify playlists</b> from workout duration,
@@ -707,9 +724,10 @@ footer .hint{opacity:.7}
         </div>
       </a>
 
-      <a class="proj reveal" data-tilt data-glow data-hover href="https://www.youtube.com/playlist?list=PLvAO_Wm_nd9988h7dCTqAu7IBqUft2WCj" target="_blank" rel="noopener" style="--d:.08s">
-        <div class="proj-media"><img src="images/projects/theclick.jpg" alt="The Click" loading="lazy"></div>
+      <a class="proj reveal" data-hover href="https://www.youtube.com/playlist?list=PLvAO_Wm_nd9988h7dCTqAu7IBqUft2WCj" target="_blank" rel="noopener">
+        <div class="proj-media" data-tilt><img src="images/projects/theclick.jpg" alt="The Click" loading="lazy"></div>
         <div class="proj-body">
+          <span class="idx">04</span>
           <span class="award alt">Multiplayer Game</span>
           <h3>The Click</h3>
           <p>Multiplayer horror game with <b>networked play</b> and AI-driven enemy
@@ -719,9 +737,10 @@ footer .hint{opacity:.7}
         </div>
       </a>
 
-      <article class="proj reveal" data-tilt data-glow>
-        <div class="proj-media"><img src="images/projects/ateball.jpg" alt="ATE Ball" loading="lazy"></div>
+      <article class="proj reveal">
+        <div class="proj-media" data-tilt><img src="images/projects/ateball.jpg" alt="ATE Ball" loading="lazy"></div>
         <div class="proj-body">
+          <span class="idx">05</span>
           <span class="award alt">Computer Vision</span>
           <h3>ATE Ball</h3>
           <p>Pool table that detects balls with <b>computer vision</b> and projects each
@@ -730,9 +749,10 @@ footer .hint{opacity:.7}
         </div>
       </article>
 
-      <a class="proj reveal" data-tilt data-glow data-hover href="https://github.com/justinjiang37/open-source-analyzer" target="_blank" rel="noopener" style="--d:.08s">
-        <div class="proj-media"><img src="images/projects/ossa.jpg" alt="OSSA" loading="lazy"></div>
+      <a class="proj reveal" data-hover href="https://github.com/justinjiang37/open-source-analyzer" target="_blank" rel="noopener">
+        <div class="proj-media" data-tilt><img src="images/projects/ossa.jpg" alt="OSSA" loading="lazy"></div>
         <div class="proj-body">
+          <span class="idx">06</span>
           <span class="award alt">Full-Stack</span>
           <h3>OSSA</h3>
           <p>Open Source Software Analyzer — full-stack app that helps aspiring
