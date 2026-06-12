@@ -289,12 +289,37 @@ button.lnk{background:none;border-top:0;border-left:0;border-right:0;font-weight
 }
 .stat .lbl{font-family:var(--font-m);font-size:.72rem;letter-spacing:.08em;color:var(--muted);text-transform:uppercase;margin-top:4px}
 
-/* ---------- experience ---------- */
-.xp-list{display:flex;flex-direction:column;gap:16px}
+/* ---------- experience journey ---------- */
+.journey{position:relative}
+.journey-path{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:visible}
+.journey-path path{fill:none;stroke:url(#jgrad);stroke-width:1.5;stroke-linecap:round;opacity:.8}
+.stops{list-style:none;position:relative;z-index:1;display:flex;flex-direction:column;gap:clamp(44px,7vh,76px)}
+.stop{display:grid;grid-template-columns:1fr 110px 1fr;align-items:center}
+.stop .node{
+  grid-column:2;grid-row:1;justify-self:center;position:relative;z-index:2;
+  width:70px;height:70px;border-radius:20px;background:#eef0f3;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(236,238,242,.2);
+  box-shadow:0 10px 30px rgba(0,0,0,.4);
+  transition:transform .35s var(--ease-pop),box-shadow .35s;
+}
+.stop .node img{width:52%;height:52%;object-fit:contain;border-radius:6px}
+.stop:hover .node{transform:scale(1.1) rotate(-3deg);box-shadow:0 14px 36px rgba(0,0,0,.5),0 0 0 6px rgba(255,122,61,.12)}
+.stop .stop-n{
+  position:absolute;top:-26px;left:50%;transform:translateX(-50%);
+  font-family:var(--font-m);font-size:.7rem;letter-spacing:.18em;color:var(--faint);
+}
+.stop:nth-child(odd) .xp{grid-column:1;grid-row:1}
+.stop:nth-child(even) .xp{grid-column:3;grid-row:1}
+@media (max-width:860px){
+  .stop{grid-template-columns:80px 1fr}
+  .stop .node{grid-column:1;width:54px;height:54px;border-radius:16px;align-self:start;margin-top:8px}
+  .stop:nth-child(odd) .xp,.stop:nth-child(even) .xp{grid-column:2}
+  .stop .stop-n{display:none}
+}
 .xp{
   position:relative;border:1px solid var(--line);border-radius:20px;
-  background:var(--bg-card);padding:clamp(22px,3.5vw,34px);
-  display:grid;grid-template-columns:150px 1fr;gap:clamp(16px,3vw,40px);
+  background:var(--bg-card);padding:clamp(22px,3vw,30px);
   overflow:hidden;transition:border-color .3s,transform .35s var(--ease-out);
 }
 .xp::before{
@@ -303,8 +328,8 @@ button.lnk{background:none;border-top:0;border-left:0;border-right:0;font-weight
 }
 .xp:hover{border-color:rgba(236,238,242,.18);transform:translateY(-3px)}
 .xp:hover::before{opacity:1}
-.xp .when{font-family:var(--font-m);font-size:.78rem;color:var(--faint);padding-top:5px;letter-spacing:.04em}
-.xp .when .now{display:inline-block;margin-top:8px;font-size:.68rem;letter-spacing:.14em;color:var(--blue-hi)}
+.xp .when{font-family:var(--font-m);font-size:.74rem;color:var(--faint);letter-spacing:.06em;margin-bottom:10px}
+.xp .when .now{margin-left:10px;font-size:.68rem;letter-spacing:.14em;color:var(--blue-hi)}
 .xp h3{font-family:var(--font-d);font-size:1.3rem;font-weight:600;letter-spacing:-.015em;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
 .xp h3 .org{color:var(--ink)}
 .xp .role{font-family:var(--font-m);font-size:.8rem;color:var(--muted);margin:4px 0 12px}
@@ -318,35 +343,50 @@ button.lnk{background:none;border-top:0;border-left:0;border-right:0;font-weight
 .meta-line b{color:var(--orange);font-weight:400;opacity:.7;padding:0 6px}
 .xp a{color:var(--blue-hi);text-decoration:none;border-bottom:1px dashed rgba(90,169,255,.4)}
 .xp a:hover{color:var(--orange-hi);border-color:rgba(255,122,61,.5)}
-@media (max-width:700px){.xp{grid-template-columns:1fr}.xp .when{padding-top:0}}
 
 /* ---------- projects ---------- */
 .proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;perspective:1200px}
 @media (max-width:860px){.proj-grid{grid-template-columns:1fr}}
 .proj{
-  position:relative;border-radius:24px;padding:clamp(26px,3.5vw,38px);
-  background:var(--bg-card);border:1px solid var(--line);
+  position:relative;display:block;color:inherit;text-decoration:none;
+  border-radius:24px;background:var(--bg-card);border:1px solid var(--line);
   overflow:hidden;transform-style:preserve-3d;
   transition:border-color .3s, box-shadow .4s;
   will-change:transform;
 }
 .proj:hover{border-color:rgba(255,122,61,.35);box-shadow:0 24px 60px rgba(0,0,0,.45)}
 .proj::before{
-  content:"";position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity .35s;
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .35s;
   background:radial-gradient(620px circle at var(--mx,50%) var(--my,50%),rgba(90,169,255,.1),rgba(255,122,61,.06) 45%,transparent 70%);
 }
 .proj:hover::before{opacity:1}
+.proj-media{aspect-ratio:16/9;overflow:hidden;border-bottom:1px solid var(--line);background:#101216}
+.proj-media img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:saturate(.85);transition:transform .5s var(--ease-out),filter .4s;
+}
+.proj-media.contain img{object-fit:contain;padding:12px}
+.proj:hover .proj-media img{transform:scale(1.04);filter:saturate(1.05)}
+.proj-body{padding:clamp(20px,2.8vw,30px)}
 .proj .award{
   display:block;font-family:var(--font-m);font-size:.72rem;letter-spacing:.1em;
-  text-transform:uppercase;color:var(--orange-hi);margin-bottom:18px;
+  text-transform:uppercase;color:var(--orange-hi);margin-bottom:14px;
 }
+.proj .award.alt{color:var(--blue-hi)}
 .proj h3{
-  font-family:var(--font-d);font-weight:700;font-size:clamp(1.7rem,3vw,2.2rem);
+  font-family:var(--font-d);font-weight:700;font-size:clamp(1.35rem,2.3vw,1.75rem);
   letter-spacing:-.02em;margin-bottom:6px;
 }
-.proj .sub{font-family:var(--font-m);font-size:.78rem;color:var(--faint);margin-bottom:16px}
-.proj p{color:var(--muted);font-size:.97rem}
+.proj .sub{font-family:var(--font-m);font-size:.74rem;letter-spacing:.06em;color:var(--faint);margin-bottom:14px}
+.proj p{color:var(--muted);font-size:.95rem}
 .proj p b{color:var(--ink);font-weight:600}
+.proj-open{
+  display:inline-block;margin-top:16px;
+  font-family:var(--font-m);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--blue-hi);border-bottom:1px solid rgba(90,169,255,.35);padding-bottom:2px;
+  transition:color .25s,border-color .25s;
+}
+.proj:hover .proj-open{color:var(--orange-hi);border-color:rgba(255,122,61,.5)}
 
 /* ---------- skills ---------- */
 .skill-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px}
@@ -541,7 +581,7 @@ footer .hint{opacity:.7}
       <div class="stats">
         <div class="stat reveal" style="--d:.05s"><div class="num" data-count="3.87" data-dec="2">0</div><div class="lbl">GPA @ USC</div></div>
         <div class="stat reveal" style="--d:.15s"><div class="num" data-count="2" data-suffix="×">0</div><div class="lbl">Hackathon 1st places</div></div>
-        <div class="stat reveal" style="--d:.25s"><div class="num" data-count="500" data-prefix="$" data-suffix="K">0</div><div class="lbl">Saved / yr for a client</div></div>
+        <div class="stat reveal" style="--d:.25s"><div class="num" data-count="4">0</div><div class="lbl">Companies shipped at</div></div>
         <div class="stat reveal" style="--d:.35s"><div class="num" data-count="1">0</div><div class="lbl">Peer-reviewed publication</div></div>
       </div>
     </div>
@@ -551,58 +591,73 @@ footer .hint{opacity:.7}
   <section id="experience" class="wrap">
     <p class="sec-label reveal">02</p>
     <h2 class="sec-title reveal">Experience<i>.</i></h2>
-    <div class="xp-list">
+    <div class="journey" id="journey">
+      <svg class="journey-path" aria-hidden="true">
+        <defs>
+          <linearGradient id="jgrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#ff7a3d"/>
+            <stop offset="1" stop-color="#5aa9ff"/>
+          </linearGradient>
+        </defs>
+        <path id="jpath" d=""/>
+      </svg>
+      <ol class="stops">
 
-      <article class="xp reveal" data-glow>
-        <div class="when">JUN — AUG 2026<br>NEW YORK, NY<br><span class="now">CURRENT</span></div>
-        <div>
-          <h3><span class="org">Shopify</span></h3>
-          <p class="role">Software Engineering Intern · Channel Platforms</p>
-          <p>Building infrastructure that powers Shopify’s merchant presence across
-          <b>external sales channels</b> and the broader commerce ecosystem.</p>
-        </div>
-      </article>
+        <li class="stop reveal">
+          <div class="node"><span class="stop-n">01</span><img src="images/logos/shopify.png" alt="Shopify"></div>
+          <article class="xp" data-glow>
+            <p class="when">JUN — AUG 2026 · NEW YORK, NY<span class="now">CURRENT</span></p>
+            <h3><span class="org">Shopify</span></h3>
+            <p class="role">Software Engineering Intern · Channel Platforms</p>
+            <p>Building infrastructure that powers Shopify’s merchant presence across
+            <b>external sales channels</b> and the broader commerce ecosystem.</p>
+          </article>
+        </li>
 
-      <article class="xp reveal" data-glow style="--d:.05s">
-        <div class="when">FEB — MAY 2026<br>LOS ANGELES, CA</div>
-        <div>
-          <h3><span class="org">Hemut</span> <span style="font-size:.8rem;color:var(--faint);font-family:var(--font-m)">YC X25</span></h3>
-          <p class="role">Software Engineering Intern</p>
-          <p>Redesigned the freight-marketplace <b>quoting interface</b> in TypeScript,
-          streamlining an orderbook platform for shippers and carriers.</p>
-          <p>Built CRM endpoints and refactored consumers to use them — <b>cutting redundant
-          database queries</b>, validated against AWS RDS (PostgreSQL).</p>
-          <p class="meta-line">TypeScript <b>✦</b> PostgreSQL <b>✦</b> AWS RDS</p>
-        </div>
-      </article>
+        <li class="stop reveal">
+          <div class="node"><span class="stop-n">02</span><img src="images/logos/hemut.png" alt="Hemut"></div>
+          <article class="xp" data-glow>
+            <p class="when">FEB — MAY 2026 · LOS ANGELES, CA</p>
+            <h3><span class="org">Hemut</span> <span style="font-size:.8rem;color:var(--faint);font-family:var(--font-m)">YC X25</span></h3>
+            <p class="role">Software Engineering Intern</p>
+            <p>Redesigned the freight-marketplace <b>quoting interface</b> in TypeScript,
+            streamlining an orderbook platform for shippers and carriers.</p>
+            <p>Built CRM endpoints and refactored consumers to use them — <b>cutting redundant
+            database queries</b>, validated against AWS RDS (PostgreSQL).</p>
+            <p class="meta-line">TypeScript <b>✦</b> PostgreSQL <b>✦</b> AWS RDS</p>
+          </article>
+        </li>
 
-      <article class="xp reveal" data-glow style="--d:.1s">
-        <div class="when">JUN — AUG 2025<br>LOS ANGELES, CA</div>
-        <div>
-          <h3><span class="org">Deloitte</span></h3>
-          <p class="role">Software Engineering Intern · Discovery I</p>
-          <p>Rebuilt a nonprofit client’s donor-data workflow with Python and REST
-          integrations — <b>30% less manual entry, ~$500K saved per year</b>.</p>
-          <p>Evaluated software &amp; cloud infrastructure of acquisition targets to advise
-          on technology-driven M&amp;A strategy.</p>
-          <p class="meta-line">Python <b>✦</b> REST APIs <b>✦</b> Cloud Due Diligence</p>
-        </div>
-      </article>
+        <li class="stop reveal">
+          <div class="node"><span class="stop-n">03</span><img src="images/logos/deloitte.png" alt="Deloitte"></div>
+          <article class="xp" data-glow>
+            <p class="when">JUN — AUG 2025 · LOS ANGELES, CA</p>
+            <h3><span class="org">Deloitte</span></h3>
+            <p class="role">Software Engineering Intern · Discovery I</p>
+            <p>Streamlined a nonprofit client’s donor-data workflow with Python and REST
+            integrations — <b>30% less manual entry, ~$500K saved per year</b>.</p>
+            <p>Evaluated software &amp; cloud infrastructure of acquisition targets to advise
+            on technology-driven M&amp;A strategy.</p>
+            <p class="meta-line">Python <b>✦</b> REST APIs <b>✦</b> Cloud Due Diligence</p>
+          </article>
+        </li>
 
-      <article class="xp reveal" data-glow style="--d:.15s">
-        <div class="when">JUN — OCT 2023<br>NEW HAVEN, CT</div>
-        <div>
-          <h3><span class="org">Yale Astrophysics</span></h3>
-          <p class="role">Research Software Engineer</p>
-          <p>Engineered a Python pipeline (NumPy, SciPy, PyTorch, TensorFlow) processing
-          observations from <b>5 telescopes across 7 epochs</b>, with Faster R-CNN
-          supernova classification and isochrone fitting.</p>
-          <p>Modeled supernova light curves to a <b>394 ± 38 Mpc</b> cosmological distance —
-          <a href="https://doi.org/10.1007/s10509-023-04250-x" target="_blank" rel="noopener" data-hover>co-authored a peer-reviewed publication ↗</a></p>
-          <p class="meta-line">Python <b>✦</b> PyTorch <b>✦</b> Computer Vision</p>
-        </div>
-      </article>
+        <li class="stop reveal">
+          <div class="node"><span class="stop-n">04</span><img src="images/logos/yale.png" alt="Yale"></div>
+          <article class="xp" data-glow>
+            <p class="when">JUN — OCT 2023 · NEW HAVEN, CT</p>
+            <h3><span class="org">Yale Astrophysics</span></h3>
+            <p class="role">Research Software Engineer</p>
+            <p>Engineered a Python pipeline (NumPy, SciPy, PyTorch, TensorFlow) processing
+            observations from <b>5 telescopes across 7 epochs</b>, with Faster R-CNN
+            supernova classification and isochrone fitting.</p>
+            <p>Modeled supernova light curves to a <b>394 ± 38 Mpc</b> cosmological distance —
+            <a href="https://doi.org/10.1007/s10509-023-04250-x" target="_blank" rel="noopener" data-hover>co-authored a peer-reviewed publication ↗</a></p>
+            <p class="meta-line">Python <b>✦</b> PyTorch <b>✦</b> Computer Vision</p>
+          </article>
+        </li>
 
+      </ol>
     </div>
   </section>
 
@@ -613,25 +668,78 @@ footer .hint{opacity:.7}
     <div class="proj-grid">
 
       <article class="proj reveal" data-tilt data-glow>
-        <span class="award">Lavalab Sp26 Winner · $1.5K Prize</span>
-        <h3>Valkyrie</h3>
-        <p class="sub">CO-FOUNDER / DEVELOPER · FEB 2026 — PRESENT</p>
-        <p>Equine health monitoring app that watches a <b>Ring camera feed</b> through a
-        Qwen vision model to catch early signs of colic in horses — and alerts owners in
-        real time. Won USC’s Lavalab accelerator; now working with the
-        <b>Amazon Ring team</b> to launch on the Ring App Store.</p>
-        <p class="meta-line">React Native <b>✦</b> Supabase <b>✦</b> Qwen VLM <b>✦</b> Ring API</p>
+        <div class="proj-media"><img src="images/projects/valkyrie.jpg" alt="Valkyrie" loading="lazy"></div>
+        <div class="proj-body">
+          <span class="award">Lavalab Sp26 Winner · $1.5K Prize</span>
+          <h3>Valkyrie</h3>
+          <p class="sub">CO-FOUNDER / DEVELOPER · FEB 2026 — PRESENT</p>
+          <p>Equine health monitoring app that watches a <b>Ring camera feed</b> through a
+          Qwen vision model to catch early signs of colic in horses — and alerts owners in
+          real time. Won USC’s Lavalab accelerator; now working with the
+          <b>Amazon Ring team</b> to launch on the Ring App Store.</p>
+          <p class="meta-line">React Native <b>✦</b> Supabase <b>✦</b> Qwen VLM <b>✦</b> Ring API</p>
+        </div>
       </article>
 
-      <article class="proj reveal" data-tilt data-glow style="--d:.1s">
-        <span class="award">LA Hacks 2025 · 1st of 200 Teams</span>
-        <h3>BREW</h3>
-        <p class="sub">FULL-STACK DEVELOPER · APRIL 2025</p>
-        <p>Agentic AI outreach tool that automates <b>personalized cold outreach</b> across
-        email and messaging. Took 1st place ($1.75K) at LA Hacks and generated a
-        <b>100+ person waitlist</b> off the demo alone.</p>
-        <p class="meta-line">Clado API <b>✦</b> Gemini <b>✦</b> Stagehand</p>
+      <a class="proj reveal" data-tilt data-glow data-hover href="https://devpost.com/software/brew-rojb0x" target="_blank" rel="noopener" style="--d:.08s">
+        <div class="proj-media"><img src="images/projects/brew.jpg" alt="BREW" loading="lazy"></div>
+        <div class="proj-body">
+          <span class="award">LA Hacks 2025 · 1st of 200 Teams</span>
+          <h3>BREW</h3>
+          <p class="sub">FULL-STACK DEVELOPER · APRIL 2025</p>
+          <p>Agentic AI outreach tool that automates <b>personalized cold outreach</b> across
+          email and messaging. Took 1st place ($1.75K) at LA Hacks and generated a
+          <b>100+ person waitlist</b> off the demo alone.</p>
+          <p class="meta-line">Clado API <b>✦</b> Gemini <b>✦</b> Stagehand</p>
+          <span class="proj-open">Devpost ↗</span>
+        </div>
+      </a>
+
+      <a class="proj reveal" data-tilt data-glow data-hover href="https://devpost.com/software/temporun-7sj6r3" target="_blank" rel="noopener">
+        <div class="proj-media contain"><img src="images/projects/temporun.jpg" alt="TempoRun" loading="lazy"></div>
+        <div class="proj-body">
+          <span class="award">HackSC SoCal Tech Week 2024 · Winner</span>
+          <h3>TempoRun</h3>
+          <p>iOS app that builds personalized <b>Spotify playlists</b> from workout duration,
+          pace, and BPM targets.</p>
+          <p class="meta-line">iOS <b>✦</b> Spotify API</p>
+          <span class="proj-open">Devpost ↗</span>
+        </div>
+      </a>
+
+      <a class="proj reveal" data-tilt data-glow data-hover href="https://www.youtube.com/playlist?list=PLvAO_Wm_nd9988h7dCTqAu7IBqUft2WCj" target="_blank" rel="noopener" style="--d:.08s">
+        <div class="proj-media"><img src="images/projects/theclick.jpg" alt="The Click" loading="lazy"></div>
+        <div class="proj-body">
+          <span class="award alt">Multiplayer Game</span>
+          <h3>The Click</h3>
+          <p>Multiplayer horror game with <b>networked play</b> and AI-driven enemy
+          pathfinding.</p>
+          <p class="meta-line">Unity <b>✦</b> Photon <b>✦</b> NavMesh AI</p>
+          <span class="proj-open">YouTube ↗</span>
+        </div>
+      </a>
+
+      <article class="proj reveal" data-tilt data-glow>
+        <div class="proj-media"><img src="images/projects/ateball.jpg" alt="ATE Ball" loading="lazy"></div>
+        <div class="proj-body">
+          <span class="award alt">Computer Vision</span>
+          <h3>ATE Ball</h3>
+          <p>Pool table that detects balls with <b>computer vision</b> and projects each
+          shot’s predicted trajectory onto the table.</p>
+          <p class="meta-line">Computer Vision <b>✦</b> Projection Mapping</p>
+        </div>
       </article>
+
+      <a class="proj reveal" data-tilt data-glow data-hover href="https://github.com/justinjiang37/open-source-analyzer" target="_blank" rel="noopener" style="--d:.08s">
+        <div class="proj-media"><img src="images/projects/ossa.jpg" alt="OSSA" loading="lazy"></div>
+        <div class="proj-body">
+          <span class="award alt">Full-Stack</span>
+          <h3>OSSA</h3>
+          <p>Open Source Software Analyzer — full-stack app that helps aspiring
+          <b>open-source contributors</b> find the right project to work on.</p>
+          <span class="proj-open">GitHub ↗</span>
+        </div>
+      </a>
 
     </div>
   </section>
@@ -775,6 +883,51 @@ document.querySelectorAll("[data-split]").forEach(el => {
 (() => {
   const t = document.getElementById("photoTrack");
   t.innerHTML += t.innerHTML;
+})();
+
+/* ---------- experience journey: winding path drawn on scroll ---------- */
+(() => {
+  const journey = document.getElementById("journey");
+  if (!journey) return;
+  const svg = journey.querySelector(".journey-path");
+  const path = document.getElementById("jpath");
+  const nodes = [...journey.querySelectorAll(".node")];
+  let len = 0;
+
+  function build() {
+    const jr = journey.getBoundingClientRect();
+    if (jr.width === 0) return;
+    svg.setAttribute("viewBox", `0 0 ${jr.width} ${jr.height}`);
+    svg.setAttribute("width", jr.width);
+    svg.setAttribute("height", jr.height);
+    const pts = nodes.map(n => {
+      const r = n.getBoundingClientRect();
+      return { x: r.left - jr.left + r.width / 2, y: r.top - jr.top + r.height / 2 };
+    });
+    let d = `M ${pts[0].x} ${pts[0].y}`;
+    for (let i = 1; i < pts.length; i++) {
+      const a = pts[i - 1], b = pts[i];
+      const sway = (i % 2 ? 1 : -1) * Math.min(jr.width * .16, 150);
+      const cx1 = Math.max(10, Math.min(jr.width - 10, a.x + sway));
+      const cx2 = Math.max(10, Math.min(jr.width - 10, b.x + sway));
+      d += ` C ${cx1} ${a.y + (b.y - a.y) * .45}, ${cx2} ${b.y - (b.y - a.y) * .45}, ${b.x} ${b.y}`;
+    }
+    path.setAttribute("d", d);
+    len = path.getTotalLength();
+    path.style.strokeDasharray = len;
+    update();
+  }
+  function update() {
+    if (!len) return;
+    if (reduceMotion) { path.style.strokeDashoffset = 0; return; }
+    const r = journey.getBoundingClientRect();
+    const p = Math.min(1, Math.max(0, (innerHeight * .8 - r.top) / r.height));
+    path.style.strokeDashoffset = len * (1 - p);
+  }
+  addEventListener("scroll", update, { passive: true });
+  addEventListener("resize", () => requestAnimationFrame(build));
+  window.addEventListener("load", build);
+  build();
 })();
 
 /* ---------- custom cursor ---------- */
