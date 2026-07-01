@@ -1,0 +1,1236 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="music">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Justin Jiang — Software Engineer</title>
+<meta name="description" content="Justin Jiang — software engineer at USC. Currently at Shopify. Previously Hemut (YC X25), Deloitte, and Yale Astrophysics. I build fast, polished products.">
+<meta property="og:title" content="Justin Jiang — Software Engineer">
+<meta property="og:description" content="USC engineer shipping at Shopify. Builder of playful, polished software.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23efe7d6'/><circle cx='50' cy='50' r='40' fill='%23171310'/><circle cx='50' cy='50' r='14' fill='%23ff5630'/><circle cx='50' cy='50' r='3' fill='%23efe7d6'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500;1,700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   JUSTIN JIANG — personal site · LINER NOTES / RECORD-SLEEVE / SAMPLER edition
+   risograph paper · fluoro orange + riso blue · ink black on warm cream
+   A printed gatefold + zine crossed with an MPC. Built to read like a sleeve.
+   ========================================================================== */
+:root{
+  --paper:    #efe7d6;
+  --paper-2:  #e6dcc6;
+  --paper-3:  #ded2b8;
+  --card:     #f5efe1;
+  --ink:      #181410;
+  --ink-2:    #4a4034;
+  --ink-3:    #82765f;
+  --line:     rgba(24,20,16,.16);
+  --line-2:   rgba(24,20,16,.30);
+  --orange:   #ff5630;
+  --orange-d: #d33d1c;
+  --blue:     #1f2bd6;
+  --blue-d:   #1620a4;
+  --vinyl:    #141009;
+  --font-d:   "Anton", system-ui, sans-serif;          /* poster display */
+  --font-b:   "Archivo", system-ui, sans-serif;        /* body / UI */
+  --font-m:   "Space Mono", ui-monospace, monospace;   /* catalog / credits */
+  --ease-out: cubic-bezier(.22,.85,.3,1);
+  --ease-pop: cubic-bezier(.34,1.4,.5,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+::selection{background:var(--orange);color:#fff}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--font-b);
+  font-size:16px;line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+@media (hover:hover) and (pointer:fine){
+  body{cursor:none}
+  body a,body button{cursor:none}
+}
+img{max-width:100%}
+a{color:inherit}
+
+/* ---------- texture layers ---------- */
+.halftone{
+  position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(rgba(24,20,16,.16) .7px, transparent 1.1px);
+  background-size:5px 5px;
+  -webkit-mask-image:radial-gradient(ellipse 120% 80% at 50% 0%, #000 35%, transparent 80%);
+  mask-image:radial-gradient(ellipse 120% 80% at 50% 0%, #000 35%, transparent 80%);
+}
+.grain{
+  position:fixed;inset:-60%;z-index:60;pointer-events:none;opacity:.5;
+  mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='0.32'/%3E%3C/svg%3E");
+  animation:grain 7s steps(8) infinite;
+}
+@keyframes grain{
+  0%,100%{transform:translate(0,0)}10%{transform:translate(-4%,-6%)}
+  30%{transform:translate(3%,-3%)}50%{transform:translate(-5%,5%)}
+  70%{transform:translate(6%,2%)}90%{transform:translate(-2%,6%)}
+}
+
+/* ---------- cursor: vinyl playhead puck ---------- */
+.puck{
+  position:fixed;top:0;left:0;width:16px;height:16px;border-radius:50%;z-index:9999;
+  pointer-events:none;display:none;transform:translate(-50%,-50%);
+  background:radial-gradient(circle at 38% 34%,#2b2620,#070502 72%);
+  box-shadow:0 2px 7px rgba(0,0,0,.4), inset 0 0 0 1px rgba(255,255,255,.07);
+  transition:width .22s var(--ease-pop),height .22s var(--ease-pop),background .22s;
+}
+.puck::after{content:"";position:absolute;inset:41%;border-radius:50%;background:var(--paper);
+  display:flex;align-items:center;justify-content:center;font-size:.62rem;color:#fff;font-family:var(--font-m)}
+.puck.hot{width:32px;height:32px;background:radial-gradient(circle at 38% 34%,var(--orange),var(--orange-d) 72%)}
+.puck.hot::after{content:"\25B6";inset:0;background:none;border-radius:0}
+.puck.down{transform:translate(-50%,-50%) scale(.82)}
+@media (hover:hover) and (pointer:fine){.puck{display:block}}
+
+/* ---------- preloader ---------- */
+.loader{
+  position:fixed;inset:0;z-index:200;background:var(--paper);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;
+  transition:transform .7s cubic-bezier(.76,0,.24,1);
+}
+.loader.done{transform:translateY(-101%)}
+.loader-disc{
+  width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:
+    repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,.04) 0 1px, transparent 1px 4px),
+    radial-gradient(circle at 38% 34%, #2c271f, #070502 74%);
+  box-shadow:0 16px 40px rgba(0,0,0,.3);
+  animation:spin 1.5s linear infinite;
+}
+.loader-disc::after{content:"";width:30px;height:30px;border-radius:50%;background:var(--orange);
+  box-shadow:0 0 0 5px var(--vinyl),0 0 0 6px rgba(24,20,16,.25)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loader-mark{
+  font-family:var(--font-m);font-weight:700;font-size:.74rem;letter-spacing:.34em;
+  text-transform:uppercase;color:var(--ink-2);animation:blink 1.3s steps(2) infinite;
+}
+@keyframes blink{50%{opacity:.35}}
+
+/* ---------- scroll progress (tonearm groove) ---------- */
+.progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:120;
+  background:linear-gradient(90deg,var(--orange),var(--blue))}
+
+/* ==========================================================================
+   MINI-PLAYER TRANSPORT BAR (navigation)
+   ========================================================================== */
+.player{
+  position:fixed;top:0;left:0;right:0;z-index:110;
+  display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;
+  padding:12px clamp(14px,3vw,30px);
+  border-bottom:2px solid var(--ink);
+  background:rgba(239,231,214,.86);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  transition:padding .3s,box-shadow .3s;
+}
+.player.scrolled{box-shadow:0 4px 0 rgba(24,20,16,.08);padding-top:9px;padding-bottom:9px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;user-select:none;min-width:0}
+.deck-mini{
+  width:30px;height:30px;border-radius:50%;flex:none;position:relative;
+  background:
+    repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,.05) 0 1px, transparent 1px 3px),
+    radial-gradient(circle at 38% 34%, #2c271f, #070502 74%);
+  box-shadow:0 2px 6px rgba(0,0,0,.3);will-change:transform;
+}
+.deck-mini::after{content:"";position:absolute;inset:39%;border-radius:50%;background:var(--orange);
+  box-shadow:0 0 0 1px var(--vinyl)}
+.brand .nm{font-family:var(--font-d);font-size:1.12rem;letter-spacing:.02em;text-transform:uppercase;line-height:1;white-space:nowrap}
+.brand .cat{font-family:var(--font-m);font-size:.6rem;letter-spacing:.14em;color:var(--ink-3);white-space:nowrap}
+.brand:hover .nm{color:var(--orange-d)}
+
+/* transport center */
+.transport{display:flex;align-items:center;gap:8px}
+.tbtn{
+  font-family:var(--font-m);font-size:.78rem;color:var(--ink);background:var(--card);
+  border:1.5px solid var(--ink);border-radius:7px;padding:5px 9px;line-height:1;
+  transition:background .15s,color .15s,transform .12s;
+}
+.tbtn:hover{background:var(--orange);color:#fff;border-color:var(--orange-d)}
+.tbtn:active{transform:translateY(1px)}
+.lcd{
+  display:flex;align-items:center;gap:10px;
+  background:var(--vinyl);border:1.5px solid var(--ink);border-radius:7px;
+  padding:5px 12px;min-width:188px;
+}
+.lcd .ldot{width:7px;height:7px;border-radius:50%;background:var(--orange);box-shadow:0 0 8px var(--orange);flex:none;animation:blink 1.6s steps(2) infinite}
+.lcd .ltxt{font-family:var(--font-m);font-size:.66rem;letter-spacing:.1em;color:#f0d9b8;text-transform:uppercase;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;flex:1}
+.lcd .ltxt b{color:#fff;font-weight:700}
+.vu{display:inline-flex;gap:2px;align-items:flex-end;height:13px;flex:none}
+.vu i{width:3px;border-radius:1px;background:var(--orange);height:30%;animation:vu .9s ease-in-out infinite}
+.vu i:nth-child(2){background:#ffd166;animation-delay:.18s}
+.vu i:nth-child(3){background:var(--orange);animation-delay:.36s}
+.vu i:nth-child(4){background:#ffd166;animation-delay:.10s}
+@keyframes vu{0%,100%{height:18%}50%{height:100%}}
+
+/* player right */
+.pright{display:flex;align-items:center;justify-content:flex-end;gap:clamp(8px,1.6vw,16px)}
+.sound-toggle{
+  font-family:var(--font-m);font-size:.62rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink);background:var(--card);border:1.5px solid var(--ink);border-radius:30px;
+  padding:6px 12px;display:inline-flex;align-items:center;gap:8px;transition:background .2s,color .2s;
+}
+.sound-toggle .led{width:8px;height:8px;border-radius:50%;background:var(--ink-3);transition:background .2s,box-shadow .2s}
+.sound-toggle.on{background:var(--ink);color:#fff}
+.sound-toggle.on .led{background:var(--orange);box-shadow:0 0 9px var(--orange)}
+.themes{display:flex;align-items:center;gap:7px;font-family:var(--font-m);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase}
+.themes a{color:var(--ink-3);text-decoration:none;transition:color .2s}
+.themes a:hover{color:var(--ink)}
+.themes a.active{color:var(--orange-d);font-weight:700;border-bottom:2px solid var(--orange)}
+.themes .sep{color:var(--ink-3);opacity:.5}
+.resume{
+  font-family:var(--font-m);font-size:.64rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  text-decoration:none;color:#fff;background:var(--ink);border:1.5px solid var(--ink);
+  padding:6px 12px;border-radius:7px;transition:background .2s}
+.resume:hover{background:var(--orange-d);border-color:var(--orange-d)}
+@media (max-width:1120px){.transport .lcd{min-width:150px}}
+@media (max-width:940px){.player{grid-template-columns:1fr auto}.transport{display:none}}
+@media (max-width:680px){.themes{display:none}.brand .cat{display:none}}
+
+/* ==========================================================================
+   LAYOUT PRIMITIVES
+   ========================================================================== */
+main{position:relative;z-index:2}
+.wrap{max-width:1200px;margin:0 auto;padding-left:clamp(18px,4vw,46px);padding-right:clamp(18px,4vw,46px)}
+section{padding:clamp(58px,8vh,104px) 0;position:relative}
+.kicker{
+  font-family:var(--font-m);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-2);display:inline-flex;align-items:center;gap:11px;margin-bottom:14px;
+}
+.kicker .trk{
+  font-weight:700;color:#fff;background:var(--orange);padding:3px 8px;border-radius:4px;
+  letter-spacing:.1em;box-shadow:2px 2px 0 var(--ink);
+}
+.kicker .ln{height:2px;width:46px;background:var(--ink)}
+.sectitle{
+  font-family:var(--font-d);font-weight:400;text-transform:uppercase;
+  font-size:clamp(2.6rem,7vw,5rem);line-height:.92;letter-spacing:.005em;
+  margin-bottom:clamp(26px,4.5vh,52px);
+}
+.sectitle .o{color:var(--orange)}
+.sectitle .stroke{color:transparent;-webkit-text-stroke:2px var(--ink)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px)}
+.reveal.in{opacity:1;transform:none;transition:opacity .7s var(--ease-out),transform .7s var(--ease-out);transition-delay:var(--d,0s)}
+
+/* ==========================================================================
+   HERO — ALBUM FRONT COVER / GATEFOLD
+   ========================================================================== */
+.cover{padding-top:clamp(108px,15vh,150px);padding-bottom:clamp(40px,6vh,72px);position:relative}
+.cover-top{
+  display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;
+  font-family:var(--font-m);font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink-2);border-top:2px solid var(--ink);border-bottom:2px solid var(--ink);
+  padding:9px 0;margin-bottom:clamp(26px,5vh,48px);
+}
+.cover-top b{color:var(--orange-d)}
+.cover-grid{display:grid;grid-template-columns:1.5fr .9fr;gap:clamp(26px,4vw,56px);align-items:start}
+@media (max-width:920px){.cover-grid{grid-template-columns:1fr;gap:30px}}
+.now-pill{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--font-m);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;
+  color:#fff;background:var(--blue);border:2px solid var(--ink);box-shadow:3px 3px 0 var(--ink);
+  padding:7px 13px;border-radius:6px;margin-bottom:26px;
+}
+.now-pill .eq{display:inline-flex;gap:2px;align-items:flex-end;height:12px}
+.now-pill .eq i{width:3px;background:#ffd166;height:30%;border-radius:1px;animation:vu .9s ease-in-out infinite}
+.now-pill .eq i:nth-child(2){animation-delay:.2s}.now-pill .eq i:nth-child(3){animation-delay:.4s}
+.albumtitle{
+  font-family:var(--font-d);font-weight:400;text-transform:uppercase;
+  font-size:clamp(3.6rem,13vw,9.4rem);line-height:.86;letter-spacing:.004em;
+  position:relative;z-index:2;
+}
+.albumtitle .l2{color:transparent;-webkit-text-stroke:clamp(2px,.5vw,4px) var(--ink)}
+.cover-art{position:relative}
+.subtitle{
+  font-family:var(--font-m);font-size:clamp(.74rem,1.5vw,.92rem);letter-spacing:.18em;text-transform:uppercase;
+  color:var(--ink-2);margin-top:18px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+}
+.subtitle .dot{color:var(--orange)}
+/* the record sliding out from behind the cover title */
+.cover-deck{
+  position:relative;margin-top:34px;width:min(300px,72vw);aspect-ratio:1;
+}
+.cover-deck .record{
+  position:absolute;inset:0;border-radius:50%;will-change:transform;
+  background:
+    repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,.045) 0 1px, transparent 1px 4px),
+    radial-gradient(circle at 36% 34%, #2c271f 0, #14100b 60%, #060402 100%);
+  box-shadow:0 24px 60px rgba(0,0,0,.4), inset 0 0 50px rgba(0,0,0,.5);
+}
+.cover-deck .record::before{
+  content:"";position:absolute;inset:0;border-radius:50%;mix-blend-mode:screen;
+  background:conic-gradient(from 210deg, transparent 0 16%, rgba(255,255,255,.10) 22%, transparent 30% 100%);
+}
+.cover-deck .label{
+  position:absolute;inset:31%;border-radius:50%;
+  background:radial-gradient(circle at 38% 34%, var(--orange), var(--orange-d) 70%);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;
+  box-shadow:inset 0 0 16px rgba(0,0,0,.3);overflow:hidden;
+}
+.cover-deck .label::before{content:"";position:absolute;inset:13%;border-radius:50%;border:1px dashed rgba(255,255,255,.32)}
+.cover-deck .label .mono{font-family:var(--font-d);font-size:1.5rem;color:#fff;z-index:1;line-height:1}
+.cover-deck .label .cat{font-family:var(--font-m);font-size:.46rem;letter-spacing:.18em;color:rgba(255,255,255,.85);text-transform:uppercase;z-index:1}
+.cover-deck .hole{position:absolute;inset:48.5%;border-radius:50%;background:var(--paper);box-shadow:0 0 0 1px rgba(255,255,255,.1)}
+.cover-deck .tonearm{position:absolute;top:-6%;right:-4%;width:50%;height:50%;transform:rotate(16deg);transition:transform .6s var(--ease-out)}
+.cover-deck:hover .tonearm{transform:rotate(26deg)}
+.cover-deck .arm{position:absolute;top:10%;right:11%;width:6px;height:74%;border-radius:4px;
+  background:linear-gradient(var(--ink),#5a4f3f);transform-origin:top;transform:rotate(33deg);box-shadow:0 2px 5px rgba(0,0,0,.4)}
+.cover-deck .pivot{position:absolute;top:2%;right:3%;width:24px;height:24px;border-radius:50%;
+  background:radial-gradient(circle at 38% 34%,#5a4f3f,var(--ink));box-shadow:0 3px 7px rgba(0,0,0,.4)}
+
+/* right liner column */
+.cover-liner{
+  border:2px solid var(--ink);background:var(--card);box-shadow:6px 6px 0 var(--ink);
+  padding:clamp(20px,2.6vw,28px);
+}
+.cover-liner .lede{font-size:1.02rem;color:var(--ink-2);margin-bottom:18px}
+.cover-liner .lede b{color:var(--ink);font-weight:700}
+.hero-links{display:flex;flex-wrap:wrap;gap:9px;margin-bottom:20px}
+.chip{
+  font-family:var(--font-m);font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;
+  color:var(--ink);border:1.5px solid var(--ink);padding:6px 11px;border-radius:30px;transition:background .18s,color .18s;
+}
+.chip:hover{background:var(--ink);color:var(--paper)}
+.chip.em{background:var(--orange);color:#fff;border-color:var(--orange-d)}
+.chip.em:hover{background:var(--orange-d)}
+.teaser{border-top:1.5px dashed var(--line-2);padding-top:14px}
+.teaser .th{font-family:var(--font-m);font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-3);margin-bottom:8px}
+.teaser ol{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:4px 16px}
+.teaser li{font-family:var(--font-m);font-size:.72rem;color:var(--ink-2);display:flex;gap:8px}
+.teaser li span{color:var(--orange-d);font-weight:700;min-width:22px}
+
+/* ==========================================================================
+   ABOUT — LINER NOTES ZINE SPREAD + CHART
+   ========================================================================== */
+.about{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(26px,4vw,56px);align-items:start}
+@media (max-width:860px){.about{grid-template-columns:1fr;gap:28px}}
+.about-quote{
+  font-family:var(--font-d);font-weight:400;text-transform:uppercase;
+  font-size:clamp(2rem,4.6vw,3.4rem);line-height:.98;letter-spacing:.01em;position:relative;
+}
+.about-quote .q{color:var(--orange)}
+.about-quote .cite{display:block;font-family:var(--font-m);font-size:.7rem;font-weight:400;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-3);margin-top:16px}
+.about-copy p{color:var(--ink-2);font-size:1.05rem;margin-bottom:1.1em}
+.about-copy p b{color:var(--ink);font-weight:700}
+.about-copy .drop::first-letter{
+  font-family:var(--font-d);float:left;font-size:3.4rem;line-height:.78;padding:6px 12px 0 0;color:var(--orange);
+}
+.about-list{list-style:none;display:flex;flex-direction:column;gap:11px;margin-top:6px}
+.about-list li{color:var(--ink-2);font-size:.98rem;padding-left:30px;position:relative}
+.about-list li::before{content:"\25B8";position:absolute;left:6px;top:1px;color:var(--orange);font-size:.82rem}
+.about-list li b{color:var(--ink);font-weight:700}
+.chart{margin-top:clamp(34px,5vh,58px);border:2px solid var(--ink);background:var(--card);box-shadow:6px 6px 0 var(--ink)}
+.chart-head{font-family:var(--font-m);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:#fff;
+  background:var(--ink);padding:8px 16px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.chart-head span{color:#ffd166}
+.chart-row{display:grid;grid-template-columns:repeat(4,1fr)}
+@media (max-width:680px){.chart-row{grid-template-columns:repeat(2,1fr)}}
+.ch{padding:22px 18px;border-right:1.5px solid var(--line);position:relative}
+.ch:last-child{border-right:0}
+@media (max-width:680px){.ch:nth-child(2){border-right:0}.ch:nth-child(1),.ch:nth-child(2){border-bottom:1.5px solid var(--line)}}
+.ch .pos{font-family:var(--font-d);font-size:clamp(2.2rem,5vw,3.1rem);line-height:1;color:var(--ink);display:block}
+.ch:nth-child(even) .pos{color:var(--orange)}
+.ch .lbl{font-family:var(--font-m);font-size:.62rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin-top:6px;display:block}
+
+/* ==========================================================================
+   SAMPLER — 16 PAD MPC
+   ========================================================================== */
+.sampler-head{display:flex;justify-content:space-between;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:20px}
+.sampler-head .hint{font-family:var(--font-m);font-size:.74rem;color:var(--ink-2);max-width:48ch}
+.sampler-head .hint b{color:var(--orange-d)}
+.mpc{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(8px,1.3vw,14px);max-width:560px;
+  padding:clamp(14px,2vw,22px);background:var(--paper-3);border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink);
+}
+.pad{
+  position:relative;aspect-ratio:1;border-radius:9px;border:1.5px solid var(--ink);
+  background:linear-gradient(160deg,#fbf6ea,#e3d8bf);
+  box-shadow:inset 0 -3px 0 rgba(24,20,16,.18), 0 2px 0 rgba(24,20,16,.1);
+  display:flex;align-items:flex-end;padding:8px;transition:transform .1s,box-shadow .18s,background .18s;
+}
+.pad .pn{font-family:var(--font-m);font-size:.6rem;color:var(--ink-3)}
+.pad .glow{position:absolute;inset:0;border-radius:9px;opacity:0;pointer-events:none;transition:opacity .22s;
+  background:radial-gradient(circle at 50% 42%,rgba(255,86,48,.55),transparent 66%)}
+.pad:hover{background:linear-gradient(160deg,#fff,#f0c8a0)}
+.pad:hover .pn{color:var(--orange-d)}
+.pad.hit{transform:translateY(3px);box-shadow:inset 0 0 22px rgba(255,86,48,.5);border-color:var(--orange-d);background:linear-gradient(160deg,#ffd9a0,#ff8a5e)}
+.pad.hit .glow{opacity:1}
+
+/* ==========================================================================
+   EXPERIENCE — TRACKLIST / RECORD BACK COVER
+   ========================================================================== */
+.tracklist{border:2px solid var(--ink);background:var(--card);box-shadow:7px 7px 0 var(--ink)}
+.side-head{
+  font-family:var(--font-d);text-transform:uppercase;font-size:1.3rem;letter-spacing:.02em;
+  background:var(--ink);color:var(--paper);padding:9px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;
+}
+.side-head span{font-family:var(--font-m);font-size:.64rem;font-weight:400;letter-spacing:.14em;color:#ffd166}
+.tracks{list-style:none}
+.track{display:grid;grid-template-columns:64px 1fr;border-bottom:1.5px solid var(--line);transition:background .2s}
+.track:last-child{border-bottom:0}
+.track:hover{background:var(--paper-2)}
+.tno{
+  font-family:var(--font-d);font-size:1.5rem;color:var(--ink-3);text-align:center;padding:20px 0 0;
+  border-right:1.5px solid var(--line);
+}
+.track.now .tno{color:var(--orange)}
+.tbody{padding:18px clamp(16px,2.4vw,26px)}
+.tline{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.tline h3{font-family:var(--font-d);font-weight:400;text-transform:uppercase;font-size:clamp(1.3rem,2.4vw,1.7rem);letter-spacing:.01em;line-height:1.04}
+.tline h3 em{font-style:normal;color:var(--ink-2);font-family:var(--font-b);font-weight:600;font-size:.62em;letter-spacing:0;text-transform:none}
+.tline h3 .yc{font-family:var(--font-m);font-size:.5em;color:var(--orange-d);letter-spacing:.06em}
+.run{font-family:var(--font-m);font-size:.74rem;color:var(--ink);background:var(--paper-3);border:1.5px solid var(--line-2);border-radius:5px;padding:3px 9px;white-space:nowrap}
+.track.now .run{background:var(--orange);color:#fff;border-color:var(--orange-d)}
+.tmeta{font-family:var(--font-m);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);margin:8px 0 12px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.nowtag{display:inline-flex;align-items:center;gap:6px;color:var(--orange-d);font-weight:700}
+.nowtag .eq{display:inline-flex;gap:2px;align-items:flex-end;height:11px}
+.nowtag .eq i{width:3px;background:var(--orange);height:30%;border-radius:1px;animation:vu .9s ease-in-out infinite}
+.nowtag .eq i:nth-child(2){animation-delay:.2s}.nowtag .eq i:nth-child(3){animation-delay:.4s}
+.notes{color:var(--ink-2);font-size:.98rem;max-width:66ch}
+.notes + .notes{margin-top:7px}
+.notes b{color:var(--ink);font-weight:700}
+.notes a{color:var(--blue);text-decoration:none;border-bottom:1.5px solid var(--blue);font-weight:600}
+.notes a:hover{color:var(--orange-d);border-color:var(--orange)}
+.credits{font-family:var(--font-m);font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);margin-top:14px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.credits .lp-chip{display:inline-flex;align-items:center;gap:7px}
+.credits .lp-chip img{width:16px;height:16px;object-fit:contain;background:#fff;border-radius:3px;padding:2px;border:1px solid var(--line)}
+.credits .sp{color:var(--orange);font-weight:700}
+
+/* ==========================================================================
+   PROJECTS — RECORD RACK / DISCOGRAPHY (sleeves with disc slide-out)
+   ========================================================================== */
+.discog{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,3.4vw,46px)}
+@media (max-width:900px){.discog{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.discog{grid-template-columns:1fr;max-width:380px;margin:0 auto}}
+.release{text-decoration:none;color:inherit;display:flex;flex-direction:column}
+.sleeve{position:relative;aspect-ratio:1;margin-bottom:30px}
+.sleeve .disc{
+  position:absolute;top:4%;left:4%;width:92%;height:92%;border-radius:50%;z-index:1;
+  background:
+    repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,.045) 0 1px, transparent 1px 4px),
+    radial-gradient(circle at 36% 34%, #2c271f, #060402 72%);
+  box-shadow:0 14px 30px rgba(0,0,0,.35);transition:transform .5s var(--ease-out);
+}
+.sleeve .disc::after{content:"";position:absolute;inset:39%;border-radius:50%;
+  background:radial-gradient(circle at 38% 34%,var(--blue),var(--blue-d) 70%)}
+.sleeve .disc::before{content:"";position:absolute;inset:48.5%;border-radius:50%;background:var(--vinyl);z-index:1}
+.sleeve .jacket{
+  position:absolute;inset:0;z-index:2;overflow:hidden;border:2px solid var(--ink);
+  background:#ded2b8;box-shadow:7px 7px 0 var(--ink);transition:box-shadow .4s;
+}
+.sleeve .jacket img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.95) contrast(1.02);transition:transform .5s var(--ease-out)}
+.sleeve .jacket.logo{background:radial-gradient(80% 80% at 50% 42%,#fbf6ea,#ded2b8);display:flex;align-items:center;justify-content:center}
+.sleeve .jacket.logo img{object-fit:contain;width:62%;height:62%;filter:none}
+.sleeve .cat{
+  position:absolute;left:0;bottom:-26px;z-index:3;font-family:var(--font-m);font-size:.64rem;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+}
+.release:hover .sleeve .disc{transform:translateX(26%) rotate(38deg)}
+.release:hover .sleeve .jacket{box-shadow:11px 11px 0 var(--orange)}
+.release:hover .sleeve .jacket img{transform:scale(1.04)}
+.award{font-family:var(--font-m);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+  color:#fff;background:var(--orange);align-self:flex-start;padding:4px 9px;border-radius:4px;margin-bottom:10px;box-shadow:2px 2px 0 var(--ink)}
+.award.blue{background:var(--blue)}
+.release h3{font-family:var(--font-d);font-weight:400;text-transform:uppercase;font-size:clamp(1.5rem,2.5vw,2rem);letter-spacing:.01em;line-height:1;transition:color .2s}
+.release:hover h3{color:var(--orange-d)}
+.release .role{font-family:var(--font-m);font-size:.66rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-3);margin:7px 0 9px}
+.release p{color:var(--ink-2);font-size:.94rem}
+.release p b{color:var(--ink);font-weight:700}
+.release .rcredits{font-family:var(--font-m);font-size:.64rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3);margin-top:11px}
+.release .rcredits .sp{color:var(--orange);font-weight:700}
+.listen{margin-top:12px;font-family:var(--font-m);font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;font-weight:700;
+  color:var(--blue);display:inline-flex;align-items:center;gap:6px;border-bottom:1.5px solid var(--blue);align-self:flex-start;padding-bottom:2px}
+.release:hover .listen{color:var(--orange-d);border-color:var(--orange)}
+
+/* ==========================================================================
+   CRATE WALL — REAL ALBUM COVERS (flip-through bin)
+   ========================================================================== */
+.crate-sec{padding-top:0}
+.crate{
+  display:flex;gap:18px;overflow-x:auto;padding:24px clamp(18px,4vw,46px) 30px;
+  scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none;cursor:grab;
+}
+.crate.dragging{cursor:grabbing}
+.crate::-webkit-scrollbar{display:none}
+.lp{flex:0 0 auto;width:clamp(150px,20vw,196px);scroll-snap-align:center}
+.lp .jacket{
+  aspect-ratio:1;overflow:hidden;border:2px solid var(--ink);box-shadow:5px 5px 0 var(--ink);
+  transform:rotate(-1.6deg);transition:transform .35s var(--ease-pop),box-shadow .3s;background:#ded2b8;
+}
+.lp:nth-child(even) .jacket{transform:rotate(1.6deg)}
+.lp .jacket img{width:100%;height:100%;object-fit:cover;display:block;pointer-events:none}
+.lp:hover .jacket{transform:rotate(0) translateY(-5px) scale(1.03);box-shadow:9px 9px 0 var(--orange)}
+.lp .cap{font-family:var(--font-m);font-size:.62rem;letter-spacing:.04em;color:var(--ink-2);margin-top:12px;line-height:1.35}
+.lp .cap b{color:var(--ink);font-weight:700;display:block}
+
+/* ==========================================================================
+   SKILLS — THE RIG / CREDITS
+   ========================================================================== */
+.rig{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media (max-width:820px){.rig{grid-template-columns:1fr}}
+.rig-card{border:2px solid var(--ink);background:var(--card);box-shadow:5px 5px 0 var(--ink);padding:22px}
+.rig-card h4{font-family:var(--font-m);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700;
+  color:#fff;background:var(--ink);display:inline-block;padding:4px 10px;border-radius:4px;margin-bottom:16px}
+.rig-card:nth-child(2) h4{background:var(--orange)}
+.rig-card:nth-child(3) h4{background:var(--blue)}
+.rig-list{list-style:none}
+.rig-list li{font-family:var(--font-b);font-weight:600;font-size:1rem;color:var(--ink-2);
+  padding:8px 2px;border-bottom:1.5px solid var(--line);display:flex;justify-content:space-between;align-items:center;
+  transition:color .2s,padding-left .25s var(--ease-out)}
+.rig-list li:last-child{border-bottom:0}
+.rig-list li::after{content:"";width:0;height:6px;background:var(--orange);transition:width .25s var(--ease-out);border-radius:3px}
+.rig-list li:hover{color:var(--ink);padding-left:8px}
+.rig-list li:hover::after{width:22px}
+
+/* ==========================================================================
+   EDUCATION — THE LABEL
+   ========================================================================== */
+.label{border:2px solid var(--ink);background:var(--card);box-shadow:7px 7px 0 var(--ink);padding:clamp(24px,4vw,42px);position:relative;overflow:hidden}
+.label::after{content:"";position:absolute;top:-70px;right:-70px;width:230px;height:230px;border-radius:50%;
+  background:repeating-radial-gradient(circle at 50% 50%, rgba(31,43,214,.10) 0 6px, transparent 6px 12px);pointer-events:none}
+.label h3{font-family:var(--font-d);font-weight:400;text-transform:uppercase;font-size:clamp(1.7rem,3.4vw,2.5rem);letter-spacing:.01em;line-height:1}
+.label .deg{color:var(--ink-2);margin:12px 0 4px;font-size:1.02rem}
+.label .deg b{color:var(--ink);font-weight:700}
+.label .meta{font-family:var(--font-m);font-size:.74rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3);margin-bottom:10px}
+.label .honors{font-family:var(--font-m);font-size:.7rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink-3)}
+.label .honors .sp{color:var(--orange);font-weight:700}
+.label .course{color:var(--ink-2);font-size:.94rem;margin-top:18px;max-width:74ch;border-top:1.5px dashed var(--line-2);padding-top:16px}
+.label .course b{color:var(--ink);font-weight:700}
+
+/* ==========================================================================
+   PHOTOS — HIDDEN TRACK / CONTACT SHEET
+   ========================================================================== */
+.sheet{display:flex;gap:18px;overflow-x:auto;padding:20px clamp(18px,4vw,46px) 26px;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;cursor:grab}
+.sheet.dragging{cursor:grabbing}
+.sheet::-webkit-scrollbar{display:none}
+.frame{flex:0 0 auto;height:248px;border:2px solid var(--ink);box-shadow:4px 4px 0 var(--ink);overflow:hidden;
+  transform:rotate(-1.4deg);transition:transform .35s var(--ease-pop),box-shadow .3s;background:#ded2b8}
+.frame:nth-child(even){transform:rotate(1.4deg)}
+.frame img{height:100%;width:auto;display:block;pointer-events:none;filter:saturate(.9) sepia(.06)}
+.frame:hover{transform:rotate(0) translateY(-4px) scale(1.03);box-shadow:8px 8px 0 var(--orange)}
+@media (max-width:680px){.frame{height:180px}}
+
+/* ==========================================================================
+   CONTACT — OUTRO / RUN-OUT GROOVE
+   ========================================================================== */
+.outro{text-align:center;padding-bottom:64px}
+.outro .big{
+  font-family:var(--font-d);font-weight:400;text-transform:uppercase;
+  font-size:clamp(3rem,12vw,8.4rem);line-height:.86;letter-spacing:.01em;margin:6px 0 26px;
+}
+.outro .big .l2{color:transparent;-webkit-text-stroke:clamp(2px,.5vw,3px) var(--ink)}
+.outro .big .o{color:var(--orange)}
+.outro-cta{display:flex;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap}
+.email-btn{position:relative;font-family:var(--font-m);font-size:.92rem;letter-spacing:.02em;color:#fff;background:var(--ink);
+  border:2px solid var(--ink);box-shadow:4px 4px 0 var(--orange);padding:11px 18px;border-radius:8px;transition:box-shadow .2s,transform .12s}
+.email-btn:hover{box-shadow:6px 6px 0 var(--orange)}
+.email-btn:active{transform:translateY(1px)}
+.email-btn .copied{position:absolute;top:-34px;left:50%;transform:translateX(-50%) translateY(6px);
+  font-family:var(--font-m);font-size:.7rem;color:var(--blue);opacity:0;pointer-events:none;white-space:nowrap;
+  transition:opacity .3s,transform .3s var(--ease-pop)}
+.email-btn.show .copied{opacity:1;transform:translateX(-50%) translateY(0)}
+.outro-links{display:flex;justify-content:center;gap:22px;margin-top:34px;flex-wrap:wrap}
+.outro-links a{font-family:var(--font-m);font-size:.76rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-2);text-decoration:none;transition:color .2s}
+.outro-links a:hover{color:var(--orange-d)}
+
+/* ---------- footer ---------- */
+footer{border-top:2px solid var(--ink);padding:24px clamp(18px,4vw,46px);display:flex;justify-content:space-between;
+  align-items:center;gap:14px;flex-wrap:wrap;position:relative;z-index:2}
+footer p{font-family:var(--font-m);font-size:.7rem;letter-spacing:.04em;color:var(--ink-3)}
+footer p b{color:var(--ink-2);font-weight:700}
+
+/* ==========================================================================
+   REDUCED MOTION
+   ========================================================================== */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important}
+  html{scroll-behavior:auto}
+  body,body a,body button{cursor:auto}
+  .puck{display:none !important}
+  .grain{animation:none}
+  .reveal{opacity:1;transform:none}
+  .vu i,.now-pill .eq i,.nowtag .eq i{animation:none;height:60%}
+  .deck-mini,.cover-deck .record{transform:none !important}
+}
+</style>
+</head>
+<body>
+
+<!-- texture -->
+<div class="halftone" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- cursor -->
+<div class="puck" id="puck" aria-hidden="true"></div>
+
+<!-- preloader -->
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-disc"></div>
+  <div class="loader-mark">cueing up · side a</div>
+</div>
+
+<div class="progress" id="progress"></div>
+
+<!-- ======================= MINI-PLAYER TRANSPORT NAV ======================= -->
+<header class="player" id="player">
+  <a class="brand" href="#top" id="brand" data-hover aria-label="Justin Jiang — back to top">
+    <span class="deck-mini" id="deckMini" aria-hidden="true"></span>
+    <span>
+      <span class="nm">Justin Jiang</span><br>
+      <span class="cat">CAT# JJ-2026 · LP</span>
+    </span>
+  </a>
+
+  <div class="transport" role="group" aria-label="Section transport">
+    <button class="tbtn" id="prevBtn" data-hover aria-label="Previous section">&#9664;&#9664;</button>
+    <div class="lcd" aria-hidden="true">
+      <span class="ldot"></span>
+      <span class="ltxt" id="lcd"><b>A0</b> &middot; Side A — Opening</span>
+      <span class="vu"><i></i><i></i><i></i><i></i></span>
+    </div>
+    <button class="tbtn" id="topBtn" data-hover aria-label="Rewind to start">&#9654;</button>
+    <button class="tbtn" id="nextBtn" data-hover aria-label="Next section">&#9654;&#9654;</button>
+  </div>
+
+  <div class="pright">
+    <button class="sound-toggle" id="soundToggle" data-hover aria-pressed="false">
+      <span class="led"></span><span id="soundLabel">Sound Off</span>
+    </button>
+    <nav class="themes" aria-label="Theme">
+      <a href="index.html" data-theme="classic" data-hover>Home</a><span class="sep">/</span>
+      <a href="cosmos.html" data-theme="cosmos" data-hover>Cosmos</a><span class="sep">/</span>
+      <a href="cockpit.html" data-theme="cockpit" data-hover>Cockpit</a><span class="sep">/</span>
+      <a href="music.html" data-theme="music" class="active" data-hover>Music</a>
+    </nav>
+    <a class="resume" href="Justin_Jiang_Resume.pdf" target="_blank" data-hover>Résumé ↓</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ============ HERO · ALBUM COVER ============ -->
+  <header class="cover wrap" data-track="Side A — Opening" data-no="A0">
+    <div class="cover-top">
+      <span>Justin Jiang Records &middot; <b>Long-Player</b></span>
+      <span>33⅓ RPM &middot; STEREO &middot; <b>LP / 2026</b></span>
+    </div>
+    <div class="cover-grid">
+      <div class="cover-art">
+        <span class="now-pill">
+          <span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>
+          Now Playing — SWE Intern @ Shopify · Summer 2026
+        </span>
+        <h1 class="albumtitle">JUSTIN<br><span class="l2">JIANG</span></h1>
+        <div class="subtitle">
+          <span>A Long-Player</span><span class="dot">●</span>
+          <span>Software Engineer</span><span class="dot">●</span>
+          <span>Crate-Dug &amp; Hand-Built</span>
+        </div>
+        <div class="cover-deck" aria-hidden="true">
+          <div class="record" id="heroDisc">
+            <div class="label"><span class="mono">JJ</span><span class="cat">side a · 33⅓</span></div>
+            <div class="hole"></div>
+          </div>
+          <div class="tonearm"><div class="pivot"></div><div class="arm"></div></div>
+        </div>
+      </div>
+
+      <aside class="cover-liner">
+        <p class="lede">
+          Software engineer studying CS &amp; Computer Engineering at <b>USC</b> —
+          Presidential Scholar, class of ’28. Currently building channel-platform
+          infrastructure at <b>Shopify</b>; previously <b>Hemut (YC X25)</b>,
+          <b>Deloitte</b>, and <b>Yale Astrophysics</b>.
+        </p>
+        <div class="hero-links">
+          <a class="chip em" href="#experience" data-hover>Tracklist ↓</a>
+          <a class="chip" href="mailto:justinjiang641@gmail.com" data-hover>Email ↗</a>
+          <a class="chip" href="https://github.com/justinjiang37" target="_blank" rel="noopener" data-hover>GitHub ↗</a>
+          <a class="chip" href="https://linkedin.com/in/justinjiang37" target="_blank" rel="noopener" data-hover>LinkedIn ↗</a>
+        </div>
+        <div class="teaser">
+          <div class="th">— Tracklist —</div>
+          <ol>
+            <li><span>A1</span> About</li>
+            <li><span>A2</span> Sampler</li>
+            <li><span>B1</span> Experience</li>
+            <li><span>B2</span> Projects</li>
+            <li><span>B3</span> The Crate</li>
+            <li><span>C1</span> Toolkit</li>
+            <li><span>C2</span> Education</li>
+            <li><span>D1</span> Offline</li>
+          </ol>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <!-- ============ ABOUT · LINER NOTES ============ -->
+  <section id="about" class="wrap" data-track="A1 — Liner Notes" data-no="A1">
+    <p class="kicker"><span class="trk">A1</span><span class="ln"></span>Liner Notes</p>
+    <h2 class="sectitle">About<span class="o">.</span></h2>
+    <div class="about">
+      <blockquote class="about-quote reveal">
+        <span class="q">“</span>I build fast,<br>polished<br>products.<span class="q">”</span>
+        <span class="cite">— from the liner notes</span>
+      </blockquote>
+      <div class="about-copy">
+        <p class="drop reveal">
+          CS &amp; Computer Engineering student at <b>USC</b>, minoring in Business Finance —
+          Presidential Scholar, GPA 3.87. I like turning messy problems into fast, polished
+          software that ships.
+        </p>
+        <ul class="about-list">
+          <li class="reveal">Software engineering intern at <b>Shopify</b> on Channel Platforms —
+            infrastructure powering merchant presence across external sales channels.</li>
+          <li class="reveal" style="--d:.07s">Previously shipped a redesigned freight-marketplace
+            quoting interface at <b>Hemut (YC X25)</b>, and automated donor-data processing at
+            <b>Deloitte</b> — 30% less manual entry, ~$500K saved per year.</li>
+          <li class="reveal" style="--d:.14s">Co-authored a <b>peer-reviewed publication</b> from
+            Yale Astrophysics research on supernova classification.</li>
+          <li class="reveal" style="--d:.21s">Co-founder of <b>Valkyrie</b> — won USC’s Lavalab
+            accelerator, now launching on the Ring App Store with Amazon’s Ring team.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="chart reveal">
+      <div class="chart-head"><span>★ This Week On The Charts</span><span>Pos. / Stat</span></div>
+      <div class="chart-row">
+        <div class="ch"><span class="pos" data-count="3.87" data-dec="2">0</span><span class="lbl">GPA @ USC</span></div>
+        <div class="ch"><span class="pos" data-count="2" data-suffix="×">0</span><span class="lbl">Hackathon 1st Places</span></div>
+        <div class="ch"><span class="pos" data-count="4">0</span><span class="lbl">Companies Shipped At</span></div>
+        <div class="ch"><span class="pos" data-count="1">0</span><span class="lbl">Peer-Reviewed Publication</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SAMPLER · A2 ============ -->
+  <section id="sampler" class="wrap" data-track="A2 — Interlude" data-no="A2">
+    <p class="kicker"><span class="trk">A2</span><span class="ln"></span>Interlude</p>
+    <h2 class="sectitle">The Sampler<span class="o">.</span></h2>
+    <div class="sampler-head reveal">
+      <p class="hint">Sixteen pads, hand-chopped. Tap one to hear it — audio stays off until you flip
+        <b>Sound</b> in the player up top. Nothing autoplays.</p>
+    </div>
+    <div class="mpc reveal" id="mpc" style="--d:.08s"></div>
+  </section>
+
+  <!-- ============ EXPERIENCE · TRACKLIST ============ -->
+  <section id="experience" class="wrap" data-track="B1 — Tracklist" data-no="B1">
+    <p class="kicker"><span class="trk">B1</span><span class="ln"></span>The Tracklist</p>
+    <h2 class="sectitle">Experience<span class="o">.</span></h2>
+
+    <div class="tracklist reveal">
+      <div class="side-head">Side A <span>recorded 2026</span></div>
+      <ol class="tracks">
+
+        <li class="track now">
+          <div class="tno">A1</div>
+          <div class="tbody">
+            <div class="tline">
+              <h3>Shopify <em>— SWE Intern, Channel Platforms</em></h3>
+              <span class="run">Jun – Aug 2026</span>
+            </div>
+            <div class="tmeta">New York, NY
+              <span class="nowtag"><span class="eq" aria-hidden="true"><i></i><i></i><i></i></span>Now Playing</span>
+            </div>
+            <p class="notes">Building infrastructure that powers Shopify’s merchant presence across
+              <b>external sales channels</b> and the broader commerce ecosystem.</p>
+            <p class="credits"><span class="lp-chip"><img src="images/logos/shopify.png" alt="Shopify" loading="lazy">Label: Shopify</span></p>
+          </div>
+        </li>
+
+        <li class="track">
+          <div class="tno">A2</div>
+          <div class="tbody">
+            <div class="tline">
+              <h3>Hemut <span class="yc">YC X25</span> <em>— SWE Intern</em></h3>
+              <span class="run">Feb – May 2026</span>
+            </div>
+            <div class="tmeta">Los Angeles, CA</div>
+            <p class="notes">Redesigned the freight-marketplace <b>quoting interface</b> in TypeScript,
+              streamlining an orderbook platform for shippers and carriers.</p>
+            <p class="notes">Built CRM endpoints and refactored consumers to use them — <b>cutting
+              redundant database queries</b>, validated against AWS RDS (PostgreSQL).</p>
+            <p class="credits"><span class="lp-chip"><img src="images/logos/hemut.png" alt="Hemut" loading="lazy">Credits:</span>
+              TypeScript <span class="sp">✦</span> PostgreSQL <span class="sp">✦</span> AWS RDS</p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="side-head">Side B <span>recorded 2023 – 2025</span></div>
+      <ol class="tracks">
+
+        <li class="track">
+          <div class="tno">B1</div>
+          <div class="tbody">
+            <div class="tline">
+              <h3>Deloitte <em>— SWE Intern, Discovery I</em></h3>
+              <span class="run">Jun – Aug 2025</span>
+            </div>
+            <div class="tmeta">Los Angeles, CA</div>
+            <p class="notes">Streamlined a nonprofit client’s donor-data workflow with Python and REST
+              integrations — <b>30% less manual entry, ~$500K saved per year</b>.</p>
+            <p class="notes">Evaluated software &amp; cloud infrastructure of acquisition targets to
+              advise on technology-driven M&amp;A strategy.</p>
+            <p class="credits"><span class="lp-chip"><img src="images/logos/deloitte.png" alt="Deloitte" loading="lazy">Credits:</span>
+              Python <span class="sp">✦</span> REST APIs <span class="sp">✦</span> Cloud Due Diligence</p>
+          </div>
+        </li>
+
+        <li class="track">
+          <div class="tno">B2</div>
+          <div class="tbody">
+            <div class="tline">
+              <h3>Yale Astrophysics <em>— Research Software Engineer</em></h3>
+              <span class="run">Jun – Oct 2023</span>
+            </div>
+            <div class="tmeta">New Haven, CT</div>
+            <p class="notes">Engineered a Python pipeline (NumPy, SciPy, PyTorch, TensorFlow) processing
+              observations from <b>5 telescopes across 7 epochs</b>, with Faster R-CNN supernova
+              classification and isochrone fitting.</p>
+            <p class="notes">Modeled supernova light curves to a <b>394 ± 38 Mpc</b> cosmological
+              distance — <a href="https://doi.org/10.1007/s10509-023-04250-x" target="_blank" rel="noopener" data-hover>co-authored a peer-reviewed publication ↗</a></p>
+            <p class="credits"><span class="lp-chip"><img src="images/logos/yale.png" alt="Yale" loading="lazy">Credits:</span>
+              Python <span class="sp">✦</span> PyTorch <span class="sp">✦</span> Computer Vision</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS · DISCOGRAPHY RACK ============ -->
+  <section id="projects" class="wrap" data-track="B2 — The Catalog" data-no="B2">
+    <p class="kicker"><span class="trk">B2</span><span class="ln"></span>The Catalog</p>
+    <h2 class="sectitle">Projects<span class="o">.</span></h2>
+    <div class="discog">
+
+      <article class="release reveal">
+        <div class="sleeve">
+          <div class="disc"></div>
+          <div class="jacket logo"><img src="images/projects/valkyrie-logo.png" alt="Valkyrie" loading="lazy"></div>
+          <span class="cat">JJ-001 · LP</span>
+        </div>
+        <span class="award">Lavalab Sp26 Winner · $1.5K</span>
+        <h3>Valkyrie</h3>
+        <p class="role">Co-Founder / Developer · Feb 2026 — Present</p>
+        <p>Equine health monitoring app that watches a <b>Ring camera feed</b> through a Qwen vision
+          model to catch early signs of colic in horses — and alerts owners in real time. Won USC’s
+          Lavalab accelerator; now working with the <b>Amazon Ring team</b> to launch on the Ring App Store.</p>
+        <p class="rcredits">React Native <span class="sp">✦</span> Supabase <span class="sp">✦</span> Qwen VLM <span class="sp">✦</span> Ring API</p>
+      </article>
+
+      <a class="release reveal" data-hover style="--d:.06s" href="https://devpost.com/software/brew-rojb0x" target="_blank" rel="noopener">
+        <div class="sleeve">
+          <div class="disc"></div>
+          <div class="jacket"><img src="images/projects/brew.jpg" alt="BREW" loading="lazy"></div>
+          <span class="cat">JJ-002 · 12"</span>
+        </div>
+        <span class="award">LA Hacks 2025 · 1st of 200</span>
+        <h3>BREW</h3>
+        <p class="role">Full-Stack Developer · April 2025</p>
+        <p>Agentic AI outreach tool that automates <b>personalized cold outreach</b> across email and
+          messaging. Took 1st place ($1.75K) at LA Hacks and generated a <b>100+ person waitlist</b>
+          off the demo alone.</p>
+        <p class="rcredits">Clado API <span class="sp">✦</span> Gemini <span class="sp">✦</span> Stagehand</p>
+        <span class="listen">Devpost ↗</span>
+      </a>
+
+      <a class="release reveal" data-hover style="--d:.12s" href="https://devpost.com/software/temporun-7sj6r3" target="_blank" rel="noopener">
+        <div class="sleeve">
+          <div class="disc"></div>
+          <div class="jacket"><img src="images/projects/temporun.jpg" alt="TempoRun" loading="lazy"></div>
+          <span class="cat">JJ-003 · EP</span>
+        </div>
+        <span class="award blue">HackSC SoCal Tech Week 2024 · Winner</span>
+        <h3>TempoRun</h3>
+        <p class="role">iOS Developer</p>
+        <p>iOS app that builds personalized <b>Spotify playlists</b> from workout duration, pace, and
+          BPM targets.</p>
+        <p class="rcredits">iOS <span class="sp">✦</span> Spotify API</p>
+        <span class="listen">Devpost ↗</span>
+      </a>
+
+      <a class="release reveal" data-hover href="https://www.youtube.com/playlist?list=PLvAO_Wm_nd9988h7dCTqAu7IBqUft2WCj" target="_blank" rel="noopener">
+        <div class="sleeve">
+          <div class="disc"></div>
+          <div class="jacket"><img src="images/projects/theclick.jpg" alt="The Click" loading="lazy"></div>
+          <span class="cat">JJ-004 · 7"</span>
+        </div>
+        <span class="award blue">Multiplayer Game</span>
+        <h3>The Click</h3>
+        <p class="role">Game Developer</p>
+        <p>Multiplayer horror game with <b>networked play</b> and AI-driven enemy pathfinding.</p>
+        <p class="rcredits">Unity <span class="sp">✦</span> Photon <span class="sp">✦</span> NavMesh AI</p>
+        <span class="listen">YouTube ↗</span>
+      </a>
+
+      <article class="release reveal" style="--d:.06s">
+        <div class="sleeve">
+          <div class="disc"></div>
+          <div class="jacket"><img src="images/projects/ateball.jpg" alt="ATE Ball" loading="lazy"></div>
+          <span class="cat">JJ-005 · 12"</span>
+        </div>
+        <span class="award blue">Computer Vision</span>
+        <h3>ATE Ball</h3>
+        <p class="role">Builder</p>
+        <p>Pool table that detects balls with <b>computer vision</b> and projects each shot’s predicted
+          trajectory onto the table.</p>
+        <p class="rcredits">Computer Vision <span class="sp">✦</span> Projection Mapping</p>
+      </article>
+
+      <a class="release reveal" data-hover style="--d:.12s" href="https://github.com/justinjiang37/open-source-analyzer" target="_blank" rel="noopener">
+        <div class="sleeve">
+          <div class="disc"></div>
+          <div class="jacket"><img src="images/projects/ossa.jpg" alt="OSSA" loading="lazy"></div>
+          <span class="cat">JJ-006 · LP</span>
+        </div>
+        <span class="award blue">Full-Stack</span>
+        <h3>OSSA</h3>
+        <p class="role">Full-Stack Developer</p>
+        <p>Open Source Software Analyzer — full-stack app that helps aspiring <b>open-source
+          contributors</b> find the right project to work on.</p>
+        <span class="listen">GitHub ↗</span>
+      </a>
+
+    </div>
+  </section>
+
+  <!-- ============ CRATE WALL · REAL COVERS ============ -->
+  <section class="crate-sec" data-track="B3 — From the Crate" data-no="B3" id="crate-sec">
+    <div class="wrap">
+      <p class="kicker"><span class="trk">B3</span><span class="ln"></span>From the Crate</p>
+      <h2 class="sectitle">Influences<span class="o">.</span></h2>
+      <p style="font-family:var(--font-m);font-size:.78rem;color:var(--ink-2);margin:-26px 0 4px;max-width:60ch">
+        The sample-based classics on heavy rotation while building — drag to flip through the bin.
+      </p>
+    </div>
+    <div class="crate reveal" id="crate" role="list" aria-label="Album crate">
+      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/illmatic.jpg" alt="Nas — Illmatic" loading="lazy"></div><div class="cap"><b>Illmatic</b>Nas</div></div>
+      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/atcq-lowend.jpg" alt="A Tribe Called Quest — The Low End Theory" loading="lazy"></div><div class="cap"><b>The Low End Theory</b>A Tribe Called Quest</div></div>
+      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/wutang-36.jpg" alt="Wu-Tang Clan — Enter the Wu-Tang (36 Chambers)" loading="lazy"></div><div class="cap"><b>36 Chambers</b>Wu-Tang Clan</div></div>
+      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/dilla-donuts.jpg" alt="J Dilla — Donuts" loading="lazy"></div><div class="cap"><b>Donuts</b>J Dilla</div></div>
+      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/madvillainy.jpg" alt="Madvillain — Madvillainy" loading="lazy"></div><div class="cap"><b>Madvillainy</b>Madvillain</div></div>
+      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/outkast-aquemini.jpg" alt="OutKast — Aquemini" loading="lazy"></div><div class="cap"><b>Aquemini</b>OutKast</div></div>
+      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/kendrick-gkmc.jpg" alt="Kendrick Lamar — good kid, m.A.A.d city" loading="lazy"></div><div class="cap"><b>good kid, m.A.A.d city</b>Kendrick Lamar</div></div>
+      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/kanye-late.jpg" alt="Late Registration" loading="lazy"></div><div class="cap"><b>Late Registration</b>Kanye West</div></div>
+      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/roots-tfa.jpg" alt="The Roots — Things Fall Apart" loading="lazy"></div><div class="cap"><b>Things Fall Apart</b>The Roots</div></div>
+      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/delasoul-3feet.jpg" alt="De La Soul — 3 Feet High and the Rising" loading="lazy"></div><div class="cap"><b>3 Feet High and Rising</b>De La Soul</div></div>
+      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/mosdef-bobs.jpg" alt="Mos Def — Black on Both Sides" loading="lazy"></div><div class="cap"><b>Black on Both Sides</b>Mos Def</div></div>
+      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/doom-mmfood.jpg" alt="MF DOOM — Mm..Food" loading="lazy"></div><div class="cap"><b>Mm..Food</b>MF DOOM</div></div>
+      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/gza-liquid.jpg" alt="GZA — Liquid Swords" loading="lazy"></div><div class="cap"><b>Liquid Swords</b>GZA</div></div>
+      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/peterock-mecca.jpg" alt="Pete Rock &amp; CL Smooth — Mecca and the Soul Brother" loading="lazy"></div><div class="cap"><b>Mecca and the Soul Brother</b>Pete Rock &amp; CL Smooth</div></div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS · THE RIG ============ -->
+  <section id="skills" class="wrap" data-track="C1 — The Rig" data-no="C1">
+    <p class="kicker"><span class="trk">C1</span><span class="ln"></span>The Rig</p>
+    <h2 class="sectitle">Toolkit<span class="o">.</span></h2>
+    <div class="rig">
+      <div class="rig-card reveal">
+        <h4>Languages</h4>
+        <ul class="rig-list"><li>Python</li><li>TypeScript</li><li>C++</li><li>Java</li><li>JavaScript</li><li>SQL</li></ul>
+      </div>
+      <div class="rig-card reveal" style="--d:.08s">
+        <h4>Frameworks</h4>
+        <ul class="rig-list"><li>React</li><li>Next.js</li><li>Node.js</li><li>React Native</li><li>Tailwind CSS</li></ul>
+      </div>
+      <div class="rig-card reveal" style="--d:.16s">
+        <h4>Infra &amp; Tools</h4>
+        <ul class="rig-list"><li>AWS</li><li>Docker</li><li>PostgreSQL</li><li>Supabase</li><li>Linux</li><li>Git</li><li>REST APIs</li></ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EDUCATION · THE LABEL ============ -->
+  <section id="education" class="wrap" data-track="C2 — The Label" data-no="C2">
+    <p class="kicker"><span class="trk">C2</span><span class="ln"></span>The Label</p>
+    <h2 class="sectitle">Education<span class="o">.</span></h2>
+    <div class="label reveal">
+      <h3>University of Southern California</h3>
+      <p class="deg"><b>B.S. Computer Engineering &amp; Computer Science</b> · Minor in Business Finance</p>
+      <p class="meta">Los Angeles, CA · Class of May 2028 · GPA 3.87 / 4.00</p>
+      <p class="honors">USC Presidential Scholar <span class="sp">✦</span> Viterbi Dean’s List <span class="sp">✦</span> LA Hacks 1st Place <span class="sp">✦</span> HackSC 1st Place</p>
+      <p class="course"><b>Coursework:</b> Data Structures &amp; Algorithms · Algorithm Analysis ·
+        Machine Learning · Professional C++ · Object-Oriented Design · Software Engineering ·
+        Distributed Systems · Probability Theory · Trading &amp; Exchanges</p>
+    </div>
+  </section>
+
+  <!-- ============ PHOTOS · HIDDEN TRACK ============ -->
+  <section id="offline" data-track="D1 — Hidden Track" data-no="D1">
+    <div class="wrap">
+      <p class="kicker"><span class="trk">D1</span><span class="ln"></span>Hidden Track</p>
+      <h2 class="sectitle">Offline<span class="o">.</span></h2>
+    </div>
+    <div class="sheet reveal" id="sheet" aria-label="Photo contact sheet">
+      <div class="frame"><img src="images/cockpit.jpg" alt="Flying" loading="lazy"></div>
+      <div class="frame"><img src="images/rocket.jpg" alt="Rocket launch day" loading="lazy"></div>
+      <div class="frame"><img src="images/warriors.jpg" alt="Golden State Warriors" loading="lazy"></div>
+      <div class="frame"><img src="images/cessna.jpg" alt="Preflight walk-out" loading="lazy"></div>
+      <div class="frame"><img src="images/yale.jpg" alt="With the research team" loading="lazy"></div>
+      <div class="frame"><img src="images/snow.jpg" alt="Snowboarding" loading="lazy"></div>
+      <div class="frame"><img src="images/goldengate.jpg" alt="Golden Gate Bridge" loading="lazy"></div>
+      <div class="frame"><img src="images/presenting.jpg" alt="Presenting" loading="lazy"></div>
+      <div class="frame"><img src="images/soldering.jpg" alt="Soldering" loading="lazy"></div>
+      <div class="frame"><img src="images/team.jpg" alt="Hackathon team" loading="lazy"></div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT · OUTRO ============ -->
+  <section id="contact" class="outro wrap" data-track="D2 — Outro" data-no="D2">
+    <p class="kicker" style="justify-content:center"><span class="trk">D2</span><span class="ln"></span>Outro · Run-Out Groove</p>
+    <h2 class="big reveal">LET’S<br><span class="l2">TALK<span class="o">.</span></span></h2>
+    <div class="outro-cta reveal">
+      <button class="email-btn" id="copyEmail" data-hover>
+        justinjiang641@gmail.com
+        <span class="copied">copied ✓</span>
+      </button>
+      <a class="chip" href="Justin_Jiang_Resume.pdf" target="_blank" data-hover>Résumé ↓</a>
+    </div>
+    <div class="outro-links reveal">
+      <a href="https://github.com/justinjiang37" target="_blank" rel="noopener" data-hover>GitHub ↗</a>
+      <a href="https://linkedin.com/in/justinjiang37" target="_blank" rel="noopener" data-hover>LinkedIn ↗</a>
+      <a href="tel:+12139941612" data-hover>(213) 994-1612</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><b>© 2026 Justin Jiang</b> · pressed in los angeles</p>
+  <p>psst — flip Sound on in the player and hit the pads.</p>
+</footer>
+
+<script>
+/* ==========================================================================
+   interactions — gated behind reduced-motion / fine-pointer checks
+   ========================================================================== */
+const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const finePointer  = matchMedia("(hover: hover) and (pointer: fine)").matches;
+const lerp = (a,b,t) => a + (b-a)*t;
+
+/* ---------- preloader + fail-safe ---------- */
+window.addEventListener("load", () => {
+  setTimeout(() => document.getElementById("loader")?.classList.add("done"), reduceMotion ? 0 : 700);
+  setTimeout(() => document.getElementById("loader")?.remove(), 1500);
+});
+setTimeout(() => {
+  const l = document.getElementById("loader");
+  if (l) { l.classList.add("done"); setTimeout(() => l.remove(), 700); }
+}, 3000);
+
+/* ---------- mini-player: section transport + LCD scroll-spy ---------- */
+(() => {
+  const sections = [...document.querySelectorAll("[data-track]")];
+  const lcd = document.getElementById("lcd");
+  let activeIdx = 0;
+
+  function setLCD(i){
+    const s = sections[i]; if (!s || !lcd) return;
+    lcd.innerHTML = `<b>${s.dataset.no}</b> &middot; ${s.dataset.track}`;
+  }
+  function currentIndex(){
+    const mid = innerHeight * 0.32;
+    let idx = 0;
+    sections.forEach((s,i) => { if (s.getBoundingClientRect().top <= mid) idx = i; });
+    return idx;
+  }
+  addEventListener("scroll", () => {
+    const i = currentIndex();
+    if (i !== activeIdx){ activeIdx = i; setLCD(i); }
+  }, { passive:true });
+
+  function jump(i){
+    i = Math.max(0, Math.min(sections.length - 1, i));
+    sections[i].scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block:"start" });
+  }
+  document.getElementById("prevBtn")?.addEventListener("click", () => jump(currentIndex() - 1));
+  document.getElementById("nextBtn")?.addEventListener("click", () => jump(currentIndex() + 1));
+  document.getElementById("topBtn")?.addEventListener("click", () => jump(0));
+  setLCD(0);
+})();
+
+/* ---------- spinning decks: idle groove + scroll-velocity scratch ---------- */
+(() => {
+  if (reduceMotion) return;
+  const hero = document.getElementById("heroDisc");
+  const mini = document.getElementById("deckMini");
+  if (!hero && !mini) return;
+  let angle = 0, lastY = scrollY, vel = 0;
+  addEventListener("scroll", () => { vel += (scrollY - lastY) * 0.16; lastY = scrollY; }, { passive:true });
+  (function loop(){
+    requestAnimationFrame(loop);
+    vel *= 0.92;
+    angle += 0.25 + vel;            /* base groove + scratch from scroll velocity */
+    if (hero) hero.style.transform = `rotate(${angle}deg)`;
+    if (mini) mini.style.transform = `rotate(${angle * 0.6}deg)`;
+  })();
+})();
+
+/* ---------- sampler: 16 pads + opt-in WebAudio ---------- */
+(() => {
+  const grid = document.getElementById("mpc");
+  if (!grid) return;
+  for (let i = 0; i < 16; i++){
+    const pad = document.createElement("button");
+    pad.className = "pad";
+    pad.setAttribute("data-hover","");
+    pad.setAttribute("aria-label","Sampler pad " + (i+1));
+    pad.innerHTML = `<span class="glow"></span><span class="pn">${String(i+1).padStart(2,"0")}</span>`;
+    pad.dataset.i = i;
+    grid.appendChild(pad);
+  }
+
+  let soundOn = false, actx = null, master = null;
+  const toggle = document.getElementById("soundToggle");
+  const label  = document.getElementById("soundLabel");
+  function ensureAudio(){
+    if (actx) return;
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if (!AC) return;
+    actx = new AC();
+    master = actx.createGain();
+    master.gain.value = 0.16;
+    master.connect(actx.destination);
+  }
+  toggle?.addEventListener("click", () => {
+    soundOn = !soundOn;
+    if (soundOn){ ensureAudio(); actx && actx.resume(); }
+    toggle.classList.toggle("on", soundOn);
+    toggle.setAttribute("aria-pressed", soundOn ? "true" : "false");
+    if (label) label.textContent = soundOn ? "Sound On" : "Sound Off";
+  });
+
+  const SCALE = [110,130.81,146.83,164.81,196,220,261.63,293.66,
+                 329.63,392,440,523.25,587.33,659.25,783.99,880];
+  function playPad(i){
+    if (!soundOn || !actx) return;
+    const now = actx.currentTime;
+    const g = actx.createGain(); g.connect(master);
+    if (i < 4){
+      const osc = actx.createOscillator();
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(160, now);
+      osc.frequency.exponentialRampToValueAtTime(48, now + 0.16);
+      g.gain.setValueAtTime(0.0001, now);
+      g.gain.exponentialRampToValueAtTime(0.9, now + 0.005);
+      g.gain.exponentialRampToValueAtTime(0.0001, now + 0.22);
+      osc.connect(g); osc.start(now); osc.stop(now + 0.24);
+    } else {
+      const osc = actx.createOscillator(), o2 = actx.createOscillator();
+      osc.type = "triangle"; o2.type = "sine";
+      osc.frequency.value = SCALE[i]; o2.frequency.value = SCALE[i] * 2.01;
+      const g2 = actx.createGain(); g2.gain.value = 0.35; o2.connect(g2); g2.connect(g);
+      g.gain.setValueAtTime(0.0001, now);
+      g.gain.exponentialRampToValueAtTime(0.7, now + 0.008);
+      g.gain.exponentialRampToValueAtTime(0.0001, now + 0.5);
+      osc.connect(g); osc.start(now); o2.start(now);
+      osc.stop(now + 0.55); o2.stop(now + 0.55);
+    }
+  }
+  function hit(pad){
+    const i = +pad.dataset.i;
+    pad.classList.remove("hit"); void pad.offsetWidth; pad.classList.add("hit");
+    setTimeout(() => pad.classList.remove("hit"), 200);
+    playPad(i);
+  }
+  grid.addEventListener("pointerdown", e => {
+    const pad = e.target.closest(".pad"); if (pad) hit(pad);
+  });
+})();
+
+/* ---------- custom cursor: vinyl playhead puck ---------- */
+if (finePointer && !reduceMotion){
+  const puck = document.getElementById("puck");
+  let px = innerWidth/2, py = innerHeight/2, tx = px, ty = py;
+  addEventListener("mousemove", e => { tx = e.clientX; ty = e.clientY; }, { passive:true });
+  addEventListener("mousedown", () => puck.classList.add("down"));
+  addEventListener("mouseup",   () => puck.classList.remove("down"));
+  document.querySelectorAll("[data-hover], a, button").forEach(el => {
+    el.addEventListener("mouseenter", () => puck.classList.add("hot"));
+    el.addEventListener("mouseleave", () => puck.classList.remove("hot"));
+  });
+  (function loop(){
+    px = lerp(px, tx, 0.22); py = lerp(py, ty, 0.22);
+    puck.style.left = px + "px"; puck.style.top = py + "px";
+    requestAnimationFrame(loop);
+  })();
+}
+
+/* ---------- drag-to-scroll for crate + contact sheet (desktop) ---------- */
+if (finePointer){
+  document.querySelectorAll("#crate, #sheet").forEach(strip => {
+    let down = false, startX = 0, startScroll = 0, moved = 0;
+    strip.addEventListener("pointerdown", e => {
+      down = true; moved = 0; startX = e.clientX; startScroll = strip.scrollLeft;
+      strip.classList.add("dragging");
+    });
+    strip.addEventListener("pointermove", e => {
+      if (!down) return;
+      const dx = e.clientX - startX; moved = Math.abs(dx);
+      strip.scrollLeft = startScroll - dx;
+    });
+    const end = () => { down = false; strip.classList.remove("dragging"); };
+    strip.addEventListener("pointerup", e => {
+      if (moved > 6){ e.target.closest("a")?.addEventListener("click", ev => ev.preventDefault(), { once:true }); }
+      end();
+    });
+    strip.addEventListener("pointerleave", end);
+  });
+}
+
+/* ---------- scroll reveals ---------- */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(en => { if (en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target); } });
+}, { threshold:.12, rootMargin:"0px 0px -40px 0px" });
+document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+/* ---------- animated chart counters ---------- */
+const cio = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (!en.isIntersecting) return;
+    cio.unobserve(en.target);
+    const el = en.target, target = parseFloat(el.dataset.count);
+    const dec = +(el.dataset.dec || 0), suf = el.dataset.suffix || "";
+    if (reduceMotion){ el.textContent = target.toFixed(dec) + suf; return; }
+    const t0 = performance.now(), dur = 1300;
+    (function tick(t){
+      const p = Math.min((t - t0) / dur, 1), eased = 1 - Math.pow(1 - p, 4);
+      el.textContent = (target * eased).toFixed(dec) + suf;
+      if (p < 1) requestAnimationFrame(tick);
+    })(t0);
+  });
+}, { threshold:.6 });
+document.querySelectorAll("[data-count]").forEach(el => cio.observe(el));
+
+/* ---------- player scrolled state + progress bar ---------- */
+const player = document.getElementById("player"), bar = document.getElementById("progress");
+addEventListener("scroll", () => {
+  player.classList.toggle("scrolled", scrollY > 20);
+  const h = document.documentElement.scrollHeight - innerHeight;
+  bar.style.width = (h > 0 ? scrollY / h * 100 : 0) + "%";
+}, { passive:true });
+
+/* ---------- copy email ---------- */
+document.getElementById("copyEmail")?.addEventListener("click", function(){
+  navigator.clipboard?.writeText("justinjiang641@gmail.com").then(() => {
+    this.classList.add("show");
+    setTimeout(() => this.classList.remove("show"), 1700);
+  }).catch(() => { location.href = "mailto:justinjiang641@gmail.com"; });
+});
+</script>
+</body>
+</html>
