@@ -613,6 +613,22 @@ footer p b{color:var(--ink-2);font-weight:700}
 </style>
 </head>
 <body>
+<!-- consistent theme switcher · identical on every page -->
+<style>
+#theme-nav{position:fixed;left:50%;transform:translateX(-50%);bottom:16px;z-index:999;display:flex;gap:2px;padding:4px;border-radius:999px;background:rgba(18,18,22,.74);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.16);box-shadow:0 6px 20px rgba(0,0,0,.22);font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:12px;line-height:1;cursor:auto}
+#theme-nav a{color:rgba(255,255,255,.64);text-decoration:none;padding:6px 12px;border-radius:999px;transition:color .18s,background .18s;white-space:nowrap;cursor:pointer}
+#theme-nav a:hover{color:#fff}
+#theme-nav a[aria-current="page"]{color:#141414;background:#fff;font-weight:600}
+@media (max-width:520px){#theme-nav{bottom:10px;font-size:11px}#theme-nav a{padding:6px 10px}}
+@media (prefers-reduced-motion:reduce){#theme-nav a{transition:none}}
+</style>
+<nav id="theme-nav" aria-label="Switch theme">
+<a href="index.html">Home</a>
+<a href="cosmos.html">Cosmos</a>
+<a href="cockpit.html">Cockpit</a>
+<a href="music.html" aria-current="page">Music</a>
+</nav>
+
 
 <!-- texture -->
 <div class="halftone" aria-hidden="true"></div>
@@ -654,12 +670,6 @@ footer p b{color:var(--ink-2);font-weight:700}
     <button class="sound-toggle" id="soundToggle" data-hover aria-pressed="false">
       <span class="led"></span><span id="soundLabel">Sound Off</span>
     </button>
-    <nav class="themes" aria-label="Theme">
-      <a href="index.html" data-theme="classic" data-hover>Home</a><span class="sep">/</span>
-      <a href="cosmos.html" data-theme="cosmos" data-hover>Cosmos</a><span class="sep">/</span>
-      <a href="cockpit.html" data-theme="cockpit" data-hover>Cockpit</a><span class="sep">/</span>
-      <a href="music.html" data-theme="music" class="active" data-hover>Music</a>
-    </nav>
     <a class="resume" href="Justin_Jiang_Resume.pdf" target="_blank" data-hover>Résumé ↓</a>
   </div>
 </header>
