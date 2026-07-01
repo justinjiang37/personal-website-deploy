@@ -1469,7 +1469,8 @@ setTimeout(() => {
     requestAnimationFrame(draw);
   }
   function startPlay(){
-    enableSound();                 /* Play is a user gesture — turn sound on if needed */
+    ensureAudio();                 /* create the audio clock for timing (no sound yet) */
+    if (actx) actx.resume();       /* Sound On/Off controls whether steps are audible */
     if (!actx || isPlaying) return;
     isPlaying = true; current = 0; drawStep = -1; queue.length = 0;
     nextTime = actx.currentTime + 0.06;
