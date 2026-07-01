@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Justin Jiang — Software Engineer</title>
-<meta name="description" content="Justin Jiang — software engineer at USC. Currently at Shopify. Previously Hemut (YC X25), Deloitte, and Yale Astrophysics. I build fast, polished products.">
+<meta name="description" content="Justin Jiang — CS & Computer Engineering student at USC (Presidential Scholar). Currently a software engineering intern at Shopify; previously Hemut (YC X25), Deloitte, and Yale Astrophysics.">
 <meta property="og:title" content="Justin Jiang — Software Engineer">
-<meta property="og:description" content="USC engineer shipping at Shopify. Builder of playful, polished software.">
+<meta property="og:description" content="USC CS & Computer Engineering student, currently a software engineering intern at Shopify. Previously Hemut (YC X25), Deloitte, and Yale Astrophysics.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%23efe7d6'/><circle cx='50' cy='50' r='40' fill='%23171310'/><circle cx='50' cy='50' r='14' fill='%23ff5630'/><circle cx='50' cy='50' r='3' fill='%23efe7d6'/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -313,13 +313,12 @@ section{padding:clamp(58px,8vh,104px) 0;position:relative}
    ========================================================================== */
 .about{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(26px,4vw,56px);align-items:start}
 @media (max-width:860px){.about{grid-template-columns:1fr;gap:28px}}
-.about-quote{
-  font-family:var(--font-d);font-weight:400;text-transform:uppercase;
-  font-size:clamp(2rem,4.6vw,3.4rem);line-height:.98;letter-spacing:.01em;position:relative;
-}
-.about-quote .q{color:var(--orange)}
-.about-quote .cite{display:block;font-family:var(--font-m);font-size:.7rem;font-weight:400;letter-spacing:.14em;
-  text-transform:uppercase;color:var(--ink-3);margin-top:16px}
+.about-facts{border:2px solid var(--ink);background:var(--card);box-shadow:6px 6px 0 var(--ink);align-self:start}
+.af-row{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  padding:13px 16px;border-bottom:1.5px solid var(--line)}
+.af-row:last-child{border-bottom:0}
+.af-k{font-family:var(--font-m);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);flex:none}
+.af-v{font-family:var(--font-m);font-size:.72rem;letter-spacing:.01em;color:var(--ink);font-weight:700;text-align:right}
 .about-copy p{color:var(--ink-2);font-size:1.05rem;margin-bottom:1.1em}
 .about-copy p b{color:var(--ink);font-weight:700}
 .about-copy .drop::first-letter{
@@ -365,6 +364,44 @@ section{padding:clamp(58px,8vh,104px) 0;position:relative}
 .pad:hover .pn{color:var(--orange-d)}
 .pad.hit{transform:translateY(3px);box-shadow:inset 0 0 22px rgba(255,86,48,.5);border-color:var(--orange-d);background:linear-gradient(160deg,#ffd9a0,#ff8a5e)}
 .pad.hit .glow{opacity:1}
+/* pad labels: key (display) + voice name */
+.pad{flex-direction:column;align-items:stretch;justify-content:space-between;gap:3px}
+.pad .pk{font-family:var(--font-d);font-size:1.05rem;line-height:1;color:var(--ink);text-align:right;position:relative;z-index:1}
+.pad .pn{font-family:var(--font-m);font-size:.52rem;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-3);position:relative;z-index:1;line-height:1.1}
+.pad:hover .pn{color:var(--orange-d)}
+.pad.hit .pk,.pad.hit .pn{color:var(--ink)}
+
+/* beat-maker layout: pads + step sequencer */
+.beat{display:grid;grid-template-columns:minmax(220px,300px) 1fr;gap:clamp(16px,2.4vw,26px);align-items:start}
+@media (max-width:820px){.beat{grid-template-columns:1fr}}
+.beat .mpc{max-width:100%;margin:0}
+.seq{border:2px solid var(--ink);background:var(--paper-3);box-shadow:6px 6px 0 var(--ink);padding:clamp(14px,2vw,20px);min-width:0}
+.seq-transport{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.seq-btn{font-family:var(--font-m);font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;color:var(--ink);
+  background:var(--card);border:1.5px solid var(--ink);border-radius:7px;padding:7px 13px;line-height:1;
+  transition:background .15s,color .15s,transform .1s}
+.seq-btn:hover{background:var(--orange);color:#fff;border-color:var(--orange-d)}
+.seq-btn:active{transform:translateY(1px)}
+.seq-btn.play.on{background:var(--orange);color:#fff;border-color:var(--orange-d)}
+.bpm{display:inline-flex;align-items:center;gap:9px;font-family:var(--font-m);font-size:.62rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-2);margin-left:auto}
+.bpm b{color:var(--ink);font-size:.82rem;min-width:2.4ch;text-align:right}
+.bpm input[type=range]{-webkit-appearance:none;appearance:none;width:110px;height:4px;border-radius:3px;
+  background:var(--line-2);outline:none;cursor:pointer}
+.bpm input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:16px;height:16px;border-radius:50%;
+  background:var(--orange);border:2px solid var(--ink);cursor:pointer}
+.bpm input[type=range]::-moz-range-thumb{width:14px;height:14px;border-radius:50%;background:var(--orange);border:2px solid var(--ink);cursor:pointer}
+.seq-scroll{overflow-x:auto;scrollbar-width:thin}
+.seq-grid{display:flex;flex-direction:column;gap:6px;min-width:470px}
+.seq-row{display:grid;grid-template-columns:56px repeat(16,1fr);gap:4px;align-items:center}
+.seq-name{font-family:var(--font-m);font-size:.58rem;letter-spacing:.03em;text-transform:uppercase;color:var(--ink-2);white-space:nowrap}
+.cell{appearance:none;-webkit-appearance:none;aspect-ratio:1;min-height:18px;border:1.5px solid var(--line-2);border-radius:4px;
+  background:var(--card);cursor:pointer;padding:0;transition:background .08s,box-shadow .08s,transform .06s}
+.cell.q{box-shadow:inset 3px 0 0 rgba(31,43,214,.32)}
+.cell:hover{background:var(--paper-2)}
+.cell.on{background:var(--orange);border-color:var(--orange-d)}
+.cell.ph{box-shadow:inset 0 0 0 2px var(--blue)}
+.cell:active{transform:scale(.9)}
 
 /* ==========================================================================
    EXPERIENCE — TRACKLIST / RECORD BACK COVER
@@ -457,13 +494,20 @@ section{padding:clamp(58px,8vh,104px) 0;position:relative}
    ========================================================================== */
 .crate-sec{padding-top:0}
 .crate{
-  display:flex;gap:18px;overflow-x:auto;padding:24px clamp(18px,4vw,46px) 30px;
-  scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:none;cursor:grab;
+  overflow:hidden;padding:24px 0 30px;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 4%,#000 96%,transparent 100%);
+  mask-image:linear-gradient(90deg,transparent 0,#000 4%,#000 96%,transparent 100%);
 }
-.crate.dragging{cursor:grabbing}
 .crate::-webkit-scrollbar{display:none}
-.lp{flex:0 0 auto;width:clamp(150px,20vw,196px);scroll-snap-align:center}
+.crate-track{
+  display:flex;align-items:flex-start;width:max-content;
+  animation:crate-marquee 80s linear infinite;will-change:transform;
+}
+.crate:hover .crate-track,.crate:focus-within .crate-track{animation-play-state:paused}
+@keyframes crate-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.lp{flex:0 0 auto;width:clamp(150px,20vw,196px);margin-right:18px}
 .lp .jacket{
+  position:relative;
   aspect-ratio:1;overflow:hidden;border:2px solid var(--ink);box-shadow:5px 5px 0 var(--ink);
   transform:rotate(-1.6deg);transition:transform .35s var(--ease-pop),box-shadow .3s;background:#ded2b8;
 }
@@ -472,6 +516,7 @@ section{padding:clamp(58px,8vh,104px) 0;position:relative}
 .lp:hover .jacket{transform:rotate(0) translateY(-5px) scale(1.03);box-shadow:9px 9px 0 var(--orange)}
 .lp .cap{font-family:var(--font-m);font-size:.62rem;letter-spacing:.04em;color:var(--ink-2);margin-top:12px;line-height:1.35}
 .lp .cap b{color:var(--ink);font-weight:700;display:block}
+.lp .cap .note{display:block;margin-top:4px;font-style:italic;font-weight:500;color:var(--ink-3);font-size:.6rem;line-height:1.35}
 
 /* ==========================================================================
    SKILLS — THE RIG / CREDITS
@@ -562,6 +607,8 @@ footer p b{color:var(--ink-2);font-weight:700}
   .reveal{opacity:1;transform:none}
   .vu i,.now-pill .eq i,.nowtag .eq i{animation:none;height:60%}
   .deck-mini,.cover-deck .record{transform:none !important}
+  .crate{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+  .crate-track{animation:none !important;transform:none !important;width:max-content}
 }
 </style>
 </head>
@@ -681,15 +728,17 @@ footer p b{color:var(--ink-2);font-weight:700}
     <p class="kicker"><span class="trk">A1</span><span class="ln"></span>Liner Notes</p>
     <h2 class="sectitle">About<span class="o">.</span></h2>
     <div class="about">
-      <blockquote class="about-quote reveal">
-        <span class="q">“</span>I build fast,<br>polished<br>products.<span class="q">”</span>
-        <span class="cite">— from the liner notes</span>
-      </blockquote>
+      <aside class="about-facts reveal">
+        <div class="af-row"><span class="af-k">School</span><span class="af-v">USC — CS &amp; Computer Engineering</span></div>
+        <div class="af-row"><span class="af-k">Minor</span><span class="af-v">Business Finance</span></div>
+        <div class="af-row"><span class="af-k">Now</span><span class="af-v">SWE Intern @ Shopify</span></div>
+        <div class="af-row"><span class="af-k">Based</span><span class="af-v">Los Angeles / New York</span></div>
+        <div class="af-row"><span class="af-k">Class</span><span class="af-v">2028 · Presidential Scholar</span></div>
+      </aside>
       <div class="about-copy">
         <p class="drop reveal">
           CS &amp; Computer Engineering student at <b>USC</b>, minoring in Business Finance —
-          Presidential Scholar, GPA 3.87. I like turning messy problems into fast, polished
-          software that ships.
+          Presidential Scholar, GPA 3.87.
         </p>
         <ul class="about-list">
           <li class="reveal">Software engineering intern at <b>Shopify</b> on Channel Platforms —
@@ -720,10 +769,27 @@ footer p b{color:var(--ink-2);font-weight:700}
     <p class="kicker"><span class="trk">A2</span><span class="ln"></span>Interlude</p>
     <h2 class="sectitle">The Sampler<span class="o">.</span></h2>
     <div class="sampler-head reveal">
-      <p class="hint">Sixteen pads, hand-chopped. Tap one to hear it — audio stays off until you flip
-        <b>Sound</b> in the player up top. Nothing autoplays.</p>
+      <p class="hint">A little beat maker. Finger-drum the pads (or your keyboard —
+        <b>1&nbsp;2&nbsp;3&nbsp;4 / Q&nbsp;W&nbsp;E&nbsp;R / A&nbsp;S&nbsp;D&nbsp;F / Z&nbsp;X&nbsp;C&nbsp;V</b>),
+        toggle steps in the grid, then hit <b>Play</b> (or <b>Space</b>). Audio stays off until you flip
+        <b>Sound</b> up top — nothing autoplays, and your pattern saves automatically.</p>
     </div>
-    <div class="mpc reveal" id="mpc" style="--d:.08s"></div>
+    <div class="beat reveal" style="--d:.08s">
+      <div class="mpc" id="mpc" aria-label="Drum pads"></div>
+      <div class="seq">
+        <div class="seq-transport">
+          <button class="seq-btn play" id="seqPlay" type="button" data-hover aria-pressed="false">&#9654; Play</button>
+          <button class="seq-btn" id="seqClear" type="button" data-hover>Clear</button>
+          <label class="bpm" for="seqBpm">Tempo
+            <input id="seqBpm" type="range" min="60" max="180" step="1" value="90" data-hover aria-label="Tempo in beats per minute">
+            <b id="seqBpmVal">90</b> BPM
+          </label>
+        </div>
+        <div class="seq-scroll">
+          <div class="seq-grid" id="seqGrid" role="grid" aria-label="Step sequencer"></div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ============ EXPERIENCE · TRACKLIST ============ -->
@@ -911,26 +977,64 @@ footer p b{color:var(--ink-2);font-weight:700}
   <section class="crate-sec" data-track="B3 — From the Crate" data-no="B3" id="crate-sec">
     <div class="wrap">
       <p class="kicker"><span class="trk">B3</span><span class="ln"></span>From the Crate</p>
-      <h2 class="sectitle">Influences<span class="o">.</span></h2>
-      <p style="font-family:var(--font-m);font-size:.78rem;color:var(--ink-2);margin:-26px 0 4px;max-width:60ch">
-        The sample-based classics on heavy rotation while building — drag to flip through the bin.
-      </p>
+      <h2 class="sectitle">Rotation<span class="o">.</span></h2>
     </div>
-    <div class="crate reveal" id="crate" role="list" aria-label="Album crate">
-      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/illmatic.jpg" alt="Nas — Illmatic" loading="lazy"></div><div class="cap"><b>Illmatic</b>Nas</div></div>
-      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/atcq-lowend.jpg" alt="A Tribe Called Quest — The Low End Theory" loading="lazy"></div><div class="cap"><b>The Low End Theory</b>A Tribe Called Quest</div></div>
-      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/wutang-36.jpg" alt="Wu-Tang Clan — Enter the Wu-Tang (36 Chambers)" loading="lazy"></div><div class="cap"><b>36 Chambers</b>Wu-Tang Clan</div></div>
-      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/dilla-donuts.jpg" alt="J Dilla — Donuts" loading="lazy"></div><div class="cap"><b>Donuts</b>J Dilla</div></div>
-      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/madvillainy.jpg" alt="Madvillain — Madvillainy" loading="lazy"></div><div class="cap"><b>Madvillainy</b>Madvillain</div></div>
-      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/outkast-aquemini.jpg" alt="OutKast — Aquemini" loading="lazy"></div><div class="cap"><b>Aquemini</b>OutKast</div></div>
-      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/kendrick-gkmc.jpg" alt="Kendrick Lamar — good kid, m.A.A.d city" loading="lazy"></div><div class="cap"><b>good kid, m.A.A.d city</b>Kendrick Lamar</div></div>
-      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/kanye-late.jpg" alt="Late Registration" loading="lazy"></div><div class="cap"><b>Late Registration</b>Kanye West</div></div>
-      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/roots-tfa.jpg" alt="The Roots — Things Fall Apart" loading="lazy"></div><div class="cap"><b>Things Fall Apart</b>The Roots</div></div>
-      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/delasoul-3feet.jpg" alt="De La Soul — 3 Feet High and the Rising" loading="lazy"></div><div class="cap"><b>3 Feet High and Rising</b>De La Soul</div></div>
-      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/mosdef-bobs.jpg" alt="Mos Def — Black on Both Sides" loading="lazy"></div><div class="cap"><b>Black on Both Sides</b>Mos Def</div></div>
-      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/doom-mmfood.jpg" alt="MF DOOM — Mm..Food" loading="lazy"></div><div class="cap"><b>Mm..Food</b>MF DOOM</div></div>
-      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/gza-liquid.jpg" alt="GZA — Liquid Swords" loading="lazy"></div><div class="cap"><b>Liquid Swords</b>GZA</div></div>
-      <div class="lp" role="listitem"><div class="jacket"><img src="images/albums/peterock-mecca.jpg" alt="Pete Rock &amp; CL Smooth — Mecca and the Soul Brother" loading="lazy"></div><div class="cap"><b>Mecca and the Soul Brother</b>Pete Rock &amp; CL Smooth</div></div>
+    <div class="crate reveal" id="crate" aria-label="Album crate — auto-scrolling">
+      <div class="crate-track" id="crateTrack">
+      <div class="lp"><div class="jacket"><img src="images/albums/mbdtf.jpg" alt="Kanye West — My Beautiful Dark Twisted Fantasy" loading="lazy"></div><div class="cap"><b>My Beautiful Dark Twisted Fantasy</b>Kanye West<span class="note">Gold standard — Runaway</span></div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/blonde.jpg" alt="Frank Ocean — Blonde" loading="lazy"></div><div class="cap"><b>Blonde</b>Frank Ocean<span class="note">Best emotional album ever</span></div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/newjeans-getup.jpg" alt="NewJeans — Get Up" loading="lazy"></div><div class="cap"><b>Get Up</b>NewJeans<span class="note">Impeccable discography, no misses</span></div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/astroworld.jpg" alt="Travis Scott — Astroworld" loading="lazy"></div><div class="cap"><b>Astroworld</b>Travis Scott<span class="note">Impeccable production</span></div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/apricot-princess.jpg" alt="Rex Orange County — Apricot Princess" loading="lazy"></div><div class="cap"><b>Apricot Princess</b>Rex Orange County<span class="note">Rex's best</span></div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/mr-morale.jpg" alt="Kendrick Lamar — Mr. Morale &amp; the Big Steppers" loading="lazy"></div><div class="cap"><b>Mr. Morale &amp; the Big Steppers</b>Kendrick Lamar</div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/divine-feminine.jpg" alt="Mac Miller — The Divine Feminine" loading="lazy"></div><div class="cap"><b>The Divine Feminine</b>Mac Miller<span class="note">Cinderella — all-time top 10</span></div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/igor.jpg" alt="Tyler, the Creator — IGOR" loading="lazy"></div><div class="cap"><b>IGOR</b>Tyler, the Creator<span class="note">Tyler's best</span></div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/graduation.jpg" alt="Kanye West — Graduation" loading="lazy"></div><div class="cap"><b>Graduation</b>Kanye West<span class="note">Makes me feel unstoppable</span></div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/hmhas.jpg" alt="Billie Eilish — Hit Me Hard and Soft" loading="lazy"></div><div class="cap"><b>Hit Me Hard and Soft</b>Billie Eilish<span class="note">Best album in recent years</span></div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/motm2.jpg" alt="Kid Cudi — Man on the Moon II" loading="lazy"></div><div class="cap"><b>Man on the Moon II</b>Kid Cudi<span class="note">My favorite Cudi</span></div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/channel-orange.jpg" alt="Frank Ocean — channel ORANGE" loading="lazy"></div><div class="cap"><b>channel ORANGE</b>Frank Ocean</div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/take-care.jpg" alt="Drake — Take Care" loading="lazy"></div><div class="cap"><b>Take Care</b>Drake<span class="note">Drake's best by far</span></div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/damn.jpg" alt="Kendrick Lamar — DAMN." loading="lazy"></div><div class="cap"><b>DAMN.</b>Kendrick Lamar</div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/who-cares.jpg" alt="Rex Orange County — Who Cares?" loading="lazy"></div><div class="cap"><b>Who Cares?</b>Rex Orange County</div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/utopia.jpg" alt="Travis Scott — Utopia" loading="lazy"></div><div class="cap"><b>Utopia</b>Travis Scott</div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/freudian.jpg" alt="Daniel Caesar — Freudian" loading="lazy"></div><div class="cap"><b>Freudian</b>Daniel Caesar</div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/swimming.jpg" alt="Mac Miller — Swimming" loading="lazy"></div><div class="cap"><b>Swimming</b>Mac Miller</div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/miseducation.jpg" alt="Lauryn Hill — The Miseducation of Lauryn Hill" loading="lazy"></div><div class="cap"><b>The Miseducation of Lauryn Hill</b>Lauryn Hill<span class="note">Still hits 25+ years later</span></div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/allasap.jpg" alt="A$AP Rocky — At Long Last ASAP" loading="lazy"></div><div class="cap"><b>At Long Last ASAP</b>A$AP Rocky</div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/nectar.jpg" alt="Joji — Nectar" loading="lazy"></div><div class="cap"><b>Nectar</b>Joji<span class="note">Joji's best</span></div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/2014fhd.jpg" alt="J. Cole — 2014 Forest Hills Drive" loading="lazy"></div><div class="cap"><b>2014 Forest Hills Drive</b>J. Cole</div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/luvsic.jpg" alt="Nujabes — Luv(sic) Hexalogy" loading="lazy"></div><div class="cap"><b>Luv(sic) Hexalogy</b>Nujabes<span class="note">Insane vibes</span></div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/melodrama.jpg" alt="Lorde — Melodrama" loading="lazy"></div><div class="cap"><b>Melodrama</b>Lorde<span class="note">Insane album by Lorde</span></div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/the-sailor.jpg" alt="Rich Brian — The Sailor" loading="lazy"></div><div class="cap"><b>The Sailor</b>Rich Brian<span class="note">Best album by an Asian artist</span></div></div>
+      <div class="lp"><div class="jacket"><img src="images/albums/charm.jpg" alt="Clairo — Charm" loading="lazy"></div><div class="cap"><b>Charm</b>Clairo</div></div>
+        <!-- duplicated set for seamless loop -->
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/mbdtf.jpg" alt="Kanye West — My Beautiful Dark Twisted Fantasy" loading="lazy"></div><div class="cap"><b>My Beautiful Dark Twisted Fantasy</b>Kanye West<span class="note">Gold standard — Runaway</span></div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/blonde.jpg" alt="Frank Ocean — Blonde" loading="lazy"></div><div class="cap"><b>Blonde</b>Frank Ocean<span class="note">Best emotional album ever</span></div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/newjeans-getup.jpg" alt="NewJeans — Get Up" loading="lazy"></div><div class="cap"><b>Get Up</b>NewJeans<span class="note">Impeccable discography, no misses</span></div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/astroworld.jpg" alt="Travis Scott — Astroworld" loading="lazy"></div><div class="cap"><b>Astroworld</b>Travis Scott<span class="note">Impeccable production</span></div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/apricot-princess.jpg" alt="Rex Orange County — Apricot Princess" loading="lazy"></div><div class="cap"><b>Apricot Princess</b>Rex Orange County<span class="note">Rex's best</span></div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/mr-morale.jpg" alt="Kendrick Lamar — Mr. Morale &amp; the Big Steppers" loading="lazy"></div><div class="cap"><b>Mr. Morale &amp; the Big Steppers</b>Kendrick Lamar</div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/divine-feminine.jpg" alt="Mac Miller — The Divine Feminine" loading="lazy"></div><div class="cap"><b>The Divine Feminine</b>Mac Miller<span class="note">Cinderella — all-time top 10</span></div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/igor.jpg" alt="Tyler, the Creator — IGOR" loading="lazy"></div><div class="cap"><b>IGOR</b>Tyler, the Creator<span class="note">Tyler's best</span></div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/graduation.jpg" alt="Kanye West — Graduation" loading="lazy"></div><div class="cap"><b>Graduation</b>Kanye West<span class="note">Makes me feel unstoppable</span></div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/hmhas.jpg" alt="Billie Eilish — Hit Me Hard and Soft" loading="lazy"></div><div class="cap"><b>Hit Me Hard and Soft</b>Billie Eilish<span class="note">Best album in recent years</span></div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/motm2.jpg" alt="Kid Cudi — Man on the Moon II" loading="lazy"></div><div class="cap"><b>Man on the Moon II</b>Kid Cudi<span class="note">My favorite Cudi</span></div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/channel-orange.jpg" alt="Frank Ocean — channel ORANGE" loading="lazy"></div><div class="cap"><b>channel ORANGE</b>Frank Ocean</div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/take-care.jpg" alt="Drake — Take Care" loading="lazy"></div><div class="cap"><b>Take Care</b>Drake<span class="note">Drake's best by far</span></div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/damn.jpg" alt="Kendrick Lamar — DAMN." loading="lazy"></div><div class="cap"><b>DAMN.</b>Kendrick Lamar</div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/who-cares.jpg" alt="Rex Orange County — Who Cares?" loading="lazy"></div><div class="cap"><b>Who Cares?</b>Rex Orange County</div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/utopia.jpg" alt="Travis Scott — Utopia" loading="lazy"></div><div class="cap"><b>Utopia</b>Travis Scott</div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/freudian.jpg" alt="Daniel Caesar — Freudian" loading="lazy"></div><div class="cap"><b>Freudian</b>Daniel Caesar</div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/swimming.jpg" alt="Mac Miller — Swimming" loading="lazy"></div><div class="cap"><b>Swimming</b>Mac Miller</div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/miseducation.jpg" alt="Lauryn Hill — The Miseducation of Lauryn Hill" loading="lazy"></div><div class="cap"><b>The Miseducation of Lauryn Hill</b>Lauryn Hill<span class="note">Still hits 25+ years later</span></div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/allasap.jpg" alt="A$AP Rocky — At Long Last ASAP" loading="lazy"></div><div class="cap"><b>At Long Last ASAP</b>A$AP Rocky</div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/nectar.jpg" alt="Joji — Nectar" loading="lazy"></div><div class="cap"><b>Nectar</b>Joji<span class="note">Joji's best</span></div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/2014fhd.jpg" alt="J. Cole — 2014 Forest Hills Drive" loading="lazy"></div><div class="cap"><b>2014 Forest Hills Drive</b>J. Cole</div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/luvsic.jpg" alt="Nujabes — Luv(sic) Hexalogy" loading="lazy"></div><div class="cap"><b>Luv(sic) Hexalogy</b>Nujabes<span class="note">Insane vibes</span></div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/melodrama.jpg" alt="Lorde — Melodrama" loading="lazy"></div><div class="cap"><b>Melodrama</b>Lorde<span class="note">Insane album by Lorde</span></div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/the-sailor.jpg" alt="Rich Brian — The Sailor" loading="lazy"></div><div class="cap"><b>The Sailor</b>Rich Brian<span class="note">Best album by an Asian artist</span></div></div>
+      <div class="lp" aria-hidden="true"><div class="jacket"><img src="images/albums/charm.jpg" alt="Clairo — Charm" loading="lazy"></div><div class="cap"><b>Charm</b>Clairo</div></div>
+      </div>
     </div>
   </section>
 
@@ -1080,20 +1184,17 @@ setTimeout(() => {
   })();
 })();
 
-/* ---------- sampler: 16 pads + opt-in WebAudio ---------- */
+/* ---------- beat maker: 16 pads + step sequencer + opt-in WebAudio ---------- */
 (() => {
-  const grid = document.getElementById("mpc");
+  const grid    = document.getElementById("mpc");
+  const seqGrid = document.getElementById("seqGrid");
+  const playBtn = document.getElementById("seqPlay");
+  const clearBtn= document.getElementById("seqClear");
+  const bpmInput= document.getElementById("seqBpm");
+  const bpmVal  = document.getElementById("seqBpmVal");
   if (!grid) return;
-  for (let i = 0; i < 16; i++){
-    const pad = document.createElement("button");
-    pad.className = "pad";
-    pad.setAttribute("data-hover","");
-    pad.setAttribute("aria-label","Sampler pad " + (i+1));
-    pad.innerHTML = `<span class="glow"></span><span class="pn">${String(i+1).padStart(2,"0")}</span>`;
-    pad.dataset.i = i;
-    grid.appendChild(pad);
-  }
 
+  /* ---- opt-in audio context ---- */
   let soundOn = false, actx = null, master = null;
   const toggle = document.getElementById("soundToggle");
   const label  = document.getElementById("soundLabel");
@@ -1103,53 +1204,318 @@ setTimeout(() => {
     if (!AC) return;
     actx = new AC();
     master = actx.createGain();
-    master.gain.value = 0.16;
+    master.gain.value = 0.3;
     master.connect(actx.destination);
+  }
+  function reflectToggle(){
+    toggle?.classList.toggle("on", soundOn);
+    toggle?.setAttribute("aria-pressed", soundOn ? "true" : "false");
+    if (label) label.textContent = soundOn ? "Sound On" : "Sound Off";
+  }
+  function enableSound(){          /* called by a Play gesture — no flourish */
+    if (soundOn){ actx && actx.resume(); return; }
+    soundOn = true; ensureAudio(); actx && actx.resume(); reflectToggle();
   }
   toggle?.addEventListener("click", () => {
     soundOn = !soundOn;
     if (soundOn){ ensureAudio(); actx && actx.resume(); }
-    toggle.classList.toggle("on", soundOn);
-    toggle.setAttribute("aria-pressed", soundOn ? "true" : "false");
-    if (label) label.textContent = soundOn ? "Sound On" : "Sound Off";
+    reflectToggle();
+    if (soundOn) playRunaway();     /* homage to Kanye West — "Runaway" intro */
   });
 
-  const SCALE = [110,130.81,146.83,164.81,196,220,261.63,293.66,
-                 329.63,392,440,523.25,587.33,659.25,783.99,880];
-  function playPad(i){
-    if (!soundOn || !actx) return;
-    const now = actx.currentTime;
-    const g = actx.createGain(); g.connect(master);
-    if (i < 4){
-      const osc = actx.createOscillator();
-      osc.type = "sine";
-      osc.frequency.setValueAtTime(160, now);
-      osc.frequency.exponentialRampToValueAtTime(48, now + 0.16);
-      g.gain.setValueAtTime(0.0001, now);
-      g.gain.exponentialRampToValueAtTime(0.9, now + 0.005);
-      g.gain.exponentialRampToValueAtTime(0.0001, now + 0.22);
-      osc.connect(g); osc.start(now); osc.stop(now + 0.24);
-    } else {
-      const osc = actx.createOscillator(), o2 = actx.createOscillator();
-      osc.type = "triangle"; o2.type = "sine";
-      osc.frequency.value = SCALE[i]; o2.frequency.value = SCALE[i] * 2.01;
-      const g2 = actx.createGain(); g2.gain.value = 0.35; o2.connect(g2); g2.connect(g);
-      g.gain.setValueAtTime(0.0001, now);
-      g.gain.exponentialRampToValueAtTime(0.7, now + 0.008);
-      g.gain.exponentialRampToValueAtTime(0.0001, now + 0.5);
-      osc.connect(g); osc.start(now); o2.start(now);
-      osc.stop(now + 0.55); o2.stop(now + 0.55);
-    }
+  /* ---- synth voices (all WebAudio, no files) ---- */
+  function env(g, t, atk, dec, peak){
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.exponentialRampToValueAtTime(peak, t + atk);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dec);
   }
-  function hit(pad){
-    const i = +pad.dataset.i;
+  function noiseBuf(dur){
+    const len = Math.max(1, Math.floor(actx.sampleRate * dur));
+    const buf = actx.createBuffer(1, len, actx.sampleRate);
+    const d = buf.getChannelData(0);
+    for (let i = 0; i < len; i++) d[i] = Math.random() * 2 - 1;
+    return buf;
+  }
+  function kick(t, vel=1){
+    const o = actx.createOscillator(), g = actx.createGain();
+    o.type = "sine";
+    o.frequency.setValueAtTime(150, t);
+    o.frequency.exponentialRampToValueAtTime(45, t + 0.12);
+    env(g, t, 0.004, 0.32, vel);
+    o.connect(g); g.connect(master); o.start(t); o.stop(t + 0.34);
+  }
+  function snare(t, vel=1){
+    const n = actx.createBufferSource(); n.buffer = noiseBuf(0.2);
+    const hp = actx.createBiquadFilter(); hp.type = "highpass"; hp.frequency.value = 1400;
+    const ng = actx.createGain(); env(ng, t, 0.002, 0.18, vel * 0.7);
+    n.connect(hp); hp.connect(ng); ng.connect(master); n.start(t); n.stop(t + 0.2);
+    const o = actx.createOscillator(), og = actx.createGain();
+    o.type = "triangle"; o.frequency.setValueAtTime(190, t);
+    env(og, t, 0.002, 0.12, vel * 0.5);
+    o.connect(og); og.connect(master); o.start(t); o.stop(t + 0.14);
+  }
+  function hihat(t, vel=1, open=false){
+    const dur = open ? 0.3 : 0.05;
+    const n = actx.createBufferSource(); n.buffer = noiseBuf(dur + 0.02);
+    const hp = actx.createBiquadFilter(); hp.type = "highpass"; hp.frequency.value = 7000;
+    const g = actx.createGain(); env(g, t, 0.001, dur, vel * 0.45);
+    n.connect(hp); hp.connect(g); g.connect(master); n.start(t); n.stop(t + dur + 0.02);
+  }
+  function clap(t, vel=1){
+    const hp = actx.createBiquadFilter(); hp.type = "highpass"; hp.frequency.value = 1000;
+    hp.connect(master);
+    [0, 0.012, 0.024, 0.05].forEach((off, idx) => {
+      const n = actx.createBufferSource(); n.buffer = noiseBuf(0.09);
+      const g = actx.createGain(); const tt = t + off;
+      g.gain.setValueAtTime(0.0001, tt);
+      g.gain.exponentialRampToValueAtTime(vel * (idx === 3 ? 0.6 : 0.4), tt + 0.001);
+      g.gain.exponentialRampToValueAtTime(0.0001, tt + (idx === 3 ? 0.12 : 0.03));
+      n.connect(g); g.connect(hp); n.start(tt); n.stop(tt + 0.14);
+    });
+  }
+  function tom(t, freq=180, vel=1){
+    const o = actx.createOscillator(), g = actx.createGain();
+    o.type = "sine";
+    o.frequency.setValueAtTime(freq, t);
+    o.frequency.exponentialRampToValueAtTime(freq * 0.5, t + 0.18);
+    env(g, t, 0.004, 0.25, vel * 0.85);
+    o.connect(g); g.connect(master); o.start(t); o.stop(t + 0.27);
+  }
+  function cowbell(t, vel=1){
+    const g = actx.createGain(); env(g, t, 0.002, 0.2, vel * 0.45);
+    const bp = actx.createBiquadFilter(); bp.type = "bandpass"; bp.frequency.value = 560; bp.Q.value = 2;
+    [560, 845].forEach(f => { const o = actx.createOscillator(); o.type = "square"; o.frequency.value = f; o.connect(bp); o.start(t); o.stop(t + 0.22); });
+    bp.connect(g); g.connect(master);
+  }
+  function rim(t, vel=1){
+    const o = actx.createOscillator(), g = actx.createGain();
+    o.type = "triangle"; o.frequency.setValueAtTime(400, t);
+    o.frequency.exponentialRampToValueAtTime(180, t + 0.03);
+    env(g, t, 0.001, 0.06, vel * 0.7);
+    o.connect(g); g.connect(master); o.start(t); o.stop(t + 0.07);
+  }
+  function tone(t, freq, vel=0.8, wave="triangle", dur=0.45){
+    const o = actx.createOscillator(), o2 = actx.createOscillator();
+    o.type = wave; o2.type = "sine"; o.frequency.value = freq; o2.frequency.value = freq * 2;
+    const g = actx.createGain(), g2 = actx.createGain(); g2.gain.value = 0.3;
+    o2.connect(g2); g2.connect(g);
+    env(g, t, 0.006, dur, vel);
+    o.connect(g); g.connect(master); o.start(t); o2.start(t); o.stop(t + dur + 0.05); o2.stop(t + dur + 0.05);
+  }
+
+  /* ---- the Runaway homage: the lone, spaced piano "call" + a resolving note ---- */
+  function playRunaway(){
+    if (!actx) return;
+    const t = actx.currentTime + 0.08;
+    const E5 = 659.25, E4 = 329.63, step = 0.36;
+    for (let k = 0; k < 3; k++) tone(t + k * step, E5, 0.5, "triangle", 0.5);
+    tone(t + 3 * step + 0.05, E4, 0.55, "triangle", 0.9);
+  }
+
+  /* ---- 16 pads for finger-drumming ---- */
+  const KEYS = ["1","2","3","4","q","w","e","r","a","s","d","f","z","x","c","v"];
+  const VOICES = [
+    {name:"Kick",    play:t=>kick(t)},
+    {name:"Snare",   play:t=>snare(t)},
+    {name:"Hi-Hat",  play:t=>hihat(t,1,false)},
+    {name:"Open Hat",play:t=>hihat(t,0.9,true)},
+    {name:"Clap",    play:t=>clap(t)},
+    {name:"Rim",     play:t=>rim(t)},
+    {name:"Tom Lo",  play:t=>tom(t,120)},
+    {name:"Tom Hi",  play:t=>tom(t,240)},
+    {name:"Cowbell", play:t=>cowbell(t)},
+    {name:"Perc",    play:t=>tom(t,300,0.7)},
+    {name:"Shaker",  play:t=>hihat(t,0.4,false)},
+    {name:"Zap",     play:t=>tone(t,880,0.5,"sawtooth",0.12)},
+    {name:"Bass C",  play:t=>tone(t,65.41,0.9,"sawtooth",0.4)},
+    {name:"Bass E",  play:t=>tone(t,82.41,0.9,"sawtooth",0.4)},
+    {name:"Bass G",  play:t=>tone(t,98.00,0.9,"sawtooth",0.4)},
+    {name:"Bass B",  play:t=>tone(t,123.47,0.9,"sawtooth",0.4)},
+  ];
+  const padEls = [];
+  VOICES.forEach((v, i) => {
+    const pad = document.createElement("button");
+    pad.className = "pad";
+    pad.type = "button";
+    pad.setAttribute("data-hover","");
+    pad.setAttribute("aria-label", v.name + " pad — key " + KEYS[i].toUpperCase());
+    pad.innerHTML = `<span class="glow"></span><span class="pk">${KEYS[i].toUpperCase()}</span><span class="pn">${v.name}</span>`;
+    pad.dataset.i = i;
+    grid.appendChild(pad);
+    padEls.push(pad);
+  });
+  function firePad(i){
+    const pad = padEls[i]; if (!pad) return;
     pad.classList.remove("hit"); void pad.offsetWidth; pad.classList.add("hit");
-    setTimeout(() => pad.classList.remove("hit"), 200);
-    playPad(i);
+    setTimeout(() => pad.classList.remove("hit"), 160);
+    if (soundOn && actx) VOICES[i].play(actx.currentTime);
   }
   grid.addEventListener("pointerdown", e => {
-    const pad = e.target.closest(".pad"); if (pad) hit(pad);
+    const pad = e.target.closest(".pad"); if (pad) firePad(+pad.dataset.i);
   });
+
+  /* ---- step sequencer ---- */
+  const ROWS = [
+    {name:"Kick",   play:t=>kick(t)},
+    {name:"Snare",  play:t=>snare(t)},
+    {name:"Hi-Hat", play:t=>hihat(t,1,false)},
+    {name:"Clap",   play:t=>clap(t)},
+    {name:"Perc",   play:t=>tom(t,200,0.8)},
+  ];
+  const STEPS = 16;
+  const LS_KEY = "jj-beat-v1";
+  let bpm = 90;
+  let pattern = ROWS.map(() => new Array(STEPS).fill(false));
+  const cellEls = [];
+
+  function save(){
+    try { localStorage.setItem(LS_KEY, JSON.stringify({ pattern, bpm })); } catch(e){}
+  }
+  function load(){
+    try {
+      const raw = localStorage.getItem(LS_KEY); if (!raw) return;
+      const d = JSON.parse(raw);
+      if (d && Array.isArray(d.pattern)){
+        for (let r = 0; r < ROWS.length; r++)
+          for (let s = 0; s < STEPS; s++)
+            pattern[r][s] = !!(d.pattern[r] && d.pattern[r][s]);
+      }
+      if (d && d.bpm) bpm = Math.min(180, Math.max(60, d.bpm | 0));
+    } catch(e){}
+  }
+  function syncCells(){
+    for (let r = 0; r < ROWS.length; r++)
+      for (let s = 0; s < STEPS; s++){
+        const on = pattern[r][s];
+        cellEls[r][s].classList.toggle("on", on);
+        cellEls[r][s].setAttribute("aria-pressed", on ? "true" : "false");
+      }
+  }
+  function buildGrid(){
+    ROWS.forEach((row, r) => {
+      const rowEl = document.createElement("div");
+      rowEl.className = "seq-row"; rowEl.setAttribute("role","row");
+      const nm = document.createElement("span");
+      nm.className = "seq-name"; nm.textContent = row.name;
+      rowEl.appendChild(nm);
+      cellEls[r] = [];
+      for (let s = 0; s < STEPS; s++){
+        const c = document.createElement("button");
+        c.type = "button";
+        c.className = "cell" + (s % 4 === 0 ? " q" : "");
+        c.setAttribute("data-hover","");
+        c.setAttribute("role","gridcell");
+        c.setAttribute("aria-label", row.name + " step " + (s + 1));
+        c.setAttribute("aria-pressed","false");
+        c.dataset.r = r; c.dataset.s = s;
+        rowEl.appendChild(c);
+        cellEls[r][s] = c;
+      }
+      seqGrid.appendChild(rowEl);
+    });
+    syncCells();
+  }
+  seqGrid?.addEventListener("click", e => {
+    const c = e.target.closest(".cell"); if (!c) return;
+    const r = +c.dataset.r, s = +c.dataset.s;
+    pattern[r][s] = !pattern[r][s];
+    c.classList.toggle("on", pattern[r][s]);
+    c.setAttribute("aria-pressed", pattern[r][s] ? "true" : "false");
+    if (soundOn && actx && pattern[r][s]) ROWS[r].play(actx.currentTime);
+    save();
+  });
+
+  /* ---- transport: lookahead scheduler + rAF playhead ---- */
+  let isPlaying = false, current = 0, nextTime = 0, timer = null, drawStep = -1;
+  const queue = [];
+  const stepDur = () => 60 / bpm / 4;   /* sixteenth notes */
+  function scheduleStep(step, time){
+    queue.push({ step, time });
+    for (let r = 0; r < ROWS.length; r++) if (pattern[r][step]) ROWS[r].play(time);
+  }
+  function scheduler(){
+    if (!isPlaying || !actx) return;
+    while (nextTime < actx.currentTime + 0.1){
+      scheduleStep(current, nextTime);
+      nextTime += stepDur();
+      current = (current + 1) % STEPS;
+    }
+    timer = setTimeout(scheduler, 25);
+  }
+  function highlight(step){
+    for (let s = 0; s < STEPS; s++){
+      const on = s === step;
+      for (let r = 0; r < ROWS.length; r++) cellEls[r][s].classList.toggle("ph", on);
+    }
+  }
+  function clearHighlight(){
+    cellEls.forEach(row => row.forEach(c => c.classList.remove("ph")));
+  }
+  function draw(){
+    if (!isPlaying) return;
+    let step = drawStep; const now = actx.currentTime;
+    while (queue.length && queue[0].time < now){ step = queue[0].step; queue.shift(); }
+    if (step !== drawStep){ drawStep = step; highlight(step); }
+    requestAnimationFrame(draw);
+  }
+  function startPlay(){
+    enableSound();                 /* Play is a user gesture — turn sound on if needed */
+    if (!actx || isPlaying) return;
+    isPlaying = true; current = 0; drawStep = -1; queue.length = 0;
+    nextTime = actx.currentTime + 0.06;
+    scheduler(); requestAnimationFrame(draw);
+    playBtn.classList.add("on");
+    playBtn.innerHTML = "&#9209; Stop";
+    playBtn.setAttribute("aria-pressed","true");
+  }
+  function stopPlay(){
+    isPlaying = false; clearTimeout(timer); queue.length = 0; drawStep = -1;
+    clearHighlight();
+    playBtn.classList.remove("on");
+    playBtn.innerHTML = "&#9654; Play";
+    playBtn.setAttribute("aria-pressed","false");
+  }
+  function togglePlay(){ isPlaying ? stopPlay() : startPlay(); }
+  playBtn?.addEventListener("click", togglePlay);
+  clearBtn?.addEventListener("click", () => {
+    pattern = ROWS.map(() => new Array(STEPS).fill(false));
+    syncCells();
+    try { localStorage.removeItem(LS_KEY); } catch(e){}
+  });
+  bpmInput?.addEventListener("input", () => {
+    bpm = Math.min(180, Math.max(60, +bpmInput.value || 90));
+    if (bpmVal) bpmVal.textContent = bpm;
+    save();
+  });
+
+  /* ---- keyboard: pads + spacebar transport ----
+     Only active while the beat maker is on screen, so Space still scrolls the
+     page and the pad letters don't fire drums while reading other sections. */
+  const keyIndex = {}; KEYS.forEach((k, i) => keyIndex[k] = i);
+  let samplerActive = false;
+  const samplerSec = document.getElementById("sampler");
+  if (samplerSec && "IntersectionObserver" in window){
+    new IntersectionObserver(
+      es => es.forEach(en => { samplerActive = en.isIntersecting; }),
+      { threshold: 0.3 }
+    ).observe(samplerSec);
+  }
+  addEventListener("keydown", e => {
+    if (!samplerActive) return;                     // beat maker not in view → leave keys alone
+    const tag = (e.target.tagName || "").toLowerCase();
+    if (tag === "input" || tag === "textarea" || e.target.isContentEditable) return;
+    if (e.repeat) return;
+    if (e.code === "Space"){ e.preventDefault(); togglePlay(); return; }
+    const k = e.key.toLowerCase();
+    if (k in keyIndex) firePad(keyIndex[k]);
+  });
+
+  /* ---- init: restore saved pattern + tempo ---- */
+  load();
+  if (seqGrid) buildGrid();
+  bpm = Math.min(180, Math.max(60, bpm || 90));
+  if (bpmInput) bpmInput.value = bpm;
+  if (bpmVal) bpmVal.textContent = bpm;
 })();
 
 /* ---------- custom cursor: vinyl playhead puck ---------- */
@@ -1170,9 +1536,10 @@ if (finePointer && !reduceMotion){
   })();
 }
 
-/* ---------- drag-to-scroll for crate + contact sheet (desktop) ---------- */
+/* ---------- drag-to-scroll for contact sheet (desktop) ---------- */
+/* NOTE: #crate is now a CSS auto-loop marquee (see .crate-track) — no JS drag. */
 if (finePointer){
-  document.querySelectorAll("#crate, #sheet").forEach(strip => {
+  document.querySelectorAll("#sheet").forEach(strip => {
     let down = false, startX = 0, startScroll = 0, moved = 0;
     strip.addEventListener("pointerdown", e => {
       down = true; moved = 0; startX = e.clientX; startScroll = strip.scrollLeft;
