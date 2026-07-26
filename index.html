@@ -159,6 +159,41 @@ section:first-child{padding-top:0;border-top:0}
   transition:opacity .2s ease;
 }
 .gallery img:hover{opacity:.85}
+.gallery button{
+  display:block;width:100%;padding:0;border:0;background:none;
+  cursor:zoom-in;border-radius:10px;
+}
+.gallery button:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+
+/* ---------- lightbox ---------- */
+body.lb-open{overflow:hidden}
+.lightbox{
+  position:fixed;inset:0;z-index:100;padding:32px;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(24,24,27,.93);
+}
+.lightbox[hidden]{display:none}
+.lightbox .lb-img{
+  max-width:min(1100px,92vw);max-height:84vh;
+  display:block;object-fit:contain;border-radius:8px;
+  animation:lbin .18s ease;
+}
+@keyframes lbin{from{opacity:0;transform:scale(.985)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.lightbox .lb-img{animation:none}}
+.lb-btn{
+  position:absolute;background:none;border:0;color:#fff;cursor:pointer;
+  line-height:1;padding:10px 16px;opacity:.65;transition:opacity .15s ease;
+  font-family:inherit;
+}
+.lb-btn:hover,.lb-btn:focus-visible{opacity:1}
+.lb-btn:focus-visible{outline:2px solid #fff;outline-offset:2px;border-radius:6px}
+.lb-close{top:12px;right:16px;font-size:2.1rem}
+.lb-prev{left:6px;top:50%;transform:translateY(-50%);font-size:2.9rem}
+.lb-next{right:6px;top:50%;transform:translateY(-50%);font-size:2.9rem}
+@media (max-width:520px){
+  .lightbox{padding:16px}
+  .lb-prev,.lb-next{font-size:2.1rem;padding:10px 8px}
+}
 </style>
 </head>
 <body>
@@ -273,6 +308,61 @@ section:first-child{padding-top:0;border-top:0}
       </div>
 
       <div class="card">
+        <p class="when">2026 · Verilog / FPGA</p>
+        <h3>Rhythm Hero</h3>
+        <p class="sub">Hardware Rhythm Game</p>
+        <p>A complete rhythm game built in pure Verilog on a Nexys&nbsp;A7 (Artix-7) FPGA —
+        no soft-core CPU, no OS, just custom digital logic. Full VGA pipeline plus a renderer
+        handling note falloff, hit detection, and scoring.</p>
+        <p>Wrote a from-scratch SPI master to stream audio out of QSPI flash, decoupling
+        reader and playback with a width-converting FIFO. Verified modules against Verilog
+        testbenches, closed timing with clock constraints and critical-path fixes, and handled
+        clock-domain crossing across the SPI, pixel, and system clocks.</p>
+        <p class="stack">Verilog · Artix-7 FPGA · VGA · SPI · FIFO &amp; CDC</p>
+      </div>
+
+      <div class="card">
+        <p class="when">2026 · Low-Level Systems</p>
+        <h3>Compiler &amp; Bytecode VM</h3>
+        <p class="sub">Register Allocation · C++</p>
+        <p>An AOT compiler backend lowering a small imperative language to bytecode, mapping
+        unbounded virtual registers onto 7 physical registers via linear-scan register
+        allocation over live intervals.</p>
+        <p>Paired with a register-based bytecode virtual machine built on an explicit memory
+        layout and low-level execution model — 26 polymorphic opcodes, a stack, and exception
+        handling.</p>
+        <p class="stack">C++ · Compilers · Register Allocation</p>
+      </div>
+
+      <div class="card">
+        <p class="when">2024 – Present · USC Makers</p>
+        <h3>SkateMo</h3>
+        <p class="sub">Autonomous Skateboard</p>
+        <p>A self-driving skateboard that navigates a route on its own. GPS supplies coarse
+        global position and waypoints; LiDAR supplies the fine local geometry the GPS can't
+        see. Fusing the two lets the board hold a commanded path to
+        <b>under 10&nbsp;cm</b> of accuracy while detecting and steering around obstacles in
+        its way.</p>
+        <p>The interesting constraint is that both sensors are wrong in different ways — GPS
+        drifts and updates slowly, LiDAR is precise but only knows what's directly in front
+        of it. The fusion layer is what turns two unreliable signals into one trustworthy
+        estimate.</p>
+        <p class="stack">LiDAR · GPS · Sensor Fusion · C++ · Embedded</p>
+      </div>
+
+      <div class="card">
+        <p class="when">2024 – Present · USC Makers</p>
+        <h3>ATE Ball</h3>
+        <p class="sub">Computer Vision Pool Table</p>
+        <p>A pool table that watches itself. An OpenCV and C++ pipeline detects the balls on
+        the felt, predicts where the cue ball will travel after the strike, and projects that
+        trajectory back down onto the table so the player can see the shot before taking it.</p>
+        <p>Runs the full detect → predict → project loop at <b>30&nbsp;FPS</b> — a ~33&nbsp;ms
+        budget per frame — while holding <b>over 90% accuracy</b> on predicted cue-ball paths.</p>
+        <p class="stack">OpenCV · C++ · Computer Vision · Projection Mapping</p>
+      </div>
+
+      <div class="card">
         <p class="when">2025 · LA Hacks · 1st of 200</p>
         <h3>BREW <a href="https://devpost.com/software/brew-rojb0x" target="_blank" rel="noopener">↗</a></h3>
         <p class="sub">Full-Stack Developer</p>
@@ -298,16 +388,8 @@ section:first-child{padding-top:0;border-top:0}
       </div>
 
       <div class="card">
-        <p class="when">Computer Vision</p>
-        <h3>ATE Ball</h3>
-        <p>Pool table that detects balls with computer vision and projects each shot’s
-        predicted trajectory onto the table.</p>
-        <p class="stack">Computer Vision · Projection Mapping</p>
-      </div>
-
-      <div class="card">
         <p class="when">Full-Stack</p>
-        <h3>OSSA <a href="https://github.com/justinjiang37/open-source-analyzer" target="_blank" rel="noopener">↗</a></h3>
+        <h3>OSSA <a href="https://open-source-analyzer.vercel.app/explore" target="_blank" rel="noopener">↗</a></h3>
         <p>Open Source Software Analyzer — full-stack app that helps aspiring open-source
         contributors find the right project to work on.</p>
       </div>
@@ -321,15 +403,15 @@ section:first-child{padding-top:0;border-top:0}
     <div class="cols">
       <div>
         <h4>Languages</h4>
-        <ul><li>Python</li><li>TypeScript</li><li>C++</li><li>Java</li><li>JavaScript</li><li>SQL</li></ul>
+        <ul><li>Python</li><li>C++</li><li>C</li><li>Verilog</li><li>TypeScript</li><li>Java</li><li>SQL</li></ul>
       </div>
       <div>
         <h4>Frameworks</h4>
-        <ul><li>React</li><li>Next.js</li><li>Node.js</li><li>React Native</li><li>Tailwind CSS</li></ul>
+        <ul><li>React</li><li>Next.js</li><li>Node.js</li><li>React Native</li><li>OpenCV</li><li>Tailwind CSS</li></ul>
       </div>
       <div>
         <h4>Infra &amp; Tools</h4>
-        <ul><li>AWS</li><li>Docker</li><li>PostgreSQL</li><li>Supabase</li><li>Linux</li><li>Git</li><li>REST APIs</li></ul>
+        <ul><li>FPGA / RTL</li><li>AWS</li><li>Docker</li><li>PostgreSQL</li><li>Linux</li><li>Git</li><li>REST APIs</li><li>GraphQL</li></ul>
       </div>
     </div>
   </section>
@@ -343,27 +425,94 @@ section:first-child{padding-top:0;border-top:0}
     <p class="meta">USC Presidential Scholar · Viterbi Dean’s List · LA Hacks 1st Place · HackSC 1st Place</p>
     <p class="course"><b>Coursework:</b> Data Structures &amp; Algorithms · Algorithm Analysis ·
     Machine Learning · Professional C++ · Object-Oriented Design · Software Engineering ·
-    Distributed Systems · Probability Theory · Trading &amp; Exchanges</p>
+    Distributed Systems · Digital Circuits &amp; Design · Embedded Systems ·
+    Probability Theory · Trading &amp; Exchanges</p>
   </section>
 
   <!-- ============ OFFLINE / PHOTOS ============ -->
   <section aria-labelledby="offline">
     <h2 class="label" id="offline">Offline</h2>
-    <div class="gallery">
-      <figure><img src="images/cockpit.jpg" alt="Flying a small plane" loading="lazy"></figure>
-      <figure><img src="images/rocket.jpg" alt="Rocket launch day" loading="lazy"></figure>
-      <figure><img src="images/warriors.jpg" alt="Golden State Warriors game" loading="lazy"></figure>
-      <figure><img src="images/yale.jpg" alt="With the Yale research team" loading="lazy"></figure>
-      <figure><img src="images/snow.jpg" alt="Snowboarding" loading="lazy"></figure>
-      <figure><img src="images/presenting.jpg" alt="Presenting on stage" loading="lazy"></figure>
-      <figure><img src="images/soldering.jpg" alt="Soldering hardware" loading="lazy"></figure>
-      <figure><img src="images/goldengate.jpg" alt="Golden Gate Bridge" loading="lazy"></figure>
+    <p class="label" style="margin:-8px 0 14px;letter-spacing:0;text-transform:none;font-size:.82rem;font-weight:400">Click any photo to view it larger.</p>
+    <div class="gallery" id="gallery">
+      <figure><button type="button"><img src="images/cockpit.jpg" alt="Flying a small plane" loading="lazy"></button></figure>
+      <figure><button type="button"><img src="images/rocket.jpg" alt="Rocket launch day" loading="lazy"></button></figure>
+      <figure><button type="button"><img src="images/warriors.jpg" alt="Golden State Warriors game" loading="lazy"></button></figure>
+      <figure><button type="button"><img src="images/yale.jpg" alt="With the Yale research team" loading="lazy"></button></figure>
+      <figure><button type="button"><img src="images/snow.jpg" alt="Snowboarding" loading="lazy"></button></figure>
+      <figure><button type="button"><img src="images/presenting.jpg" alt="Presenting on stage" loading="lazy"></button></figure>
+      <figure><button type="button"><img src="images/soldering.jpg" alt="Soldering hardware" loading="lazy"></button></figure>
+      <figure><button type="button"><img src="images/goldengate.jpg" alt="Golden Gate Bridge" loading="lazy"></button></figure>
     </div>
   </section>
 
   </div><!-- /content -->
 
 </main>
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Photo viewer" hidden>
+  <button type="button" class="lb-btn lb-close" id="lbClose" aria-label="Close">&times;</button>
+  <button type="button" class="lb-btn lb-prev"  id="lbPrev"  aria-label="Previous photo">&#8249;</button>
+  <img class="lb-img" id="lbImg" src="" alt="">
+  <button type="button" class="lb-btn lb-next"  id="lbNext"  aria-label="Next photo">&#8250;</button>
+</div>
+
+<script>
+(function(){
+  var box   = document.getElementById('lightbox'),
+      lbImg = document.getElementById('lbImg'),
+      shots = [].slice.call(document.querySelectorAll('#gallery img')),
+      last  = null,
+      at    = 0;
+
+  function show(i){
+    at = (i + shots.length) % shots.length;
+    var src = shots[at];
+    lbImg.src = src.currentSrc || src.src;
+    lbImg.alt = src.alt;
+  }
+
+  function open(i){
+    last = document.activeElement;
+    show(i);
+    box.hidden = false;
+    document.body.classList.add('lb-open');
+    document.getElementById('lbClose').focus();
+  }
+
+  function close(){
+    box.hidden = true;
+    lbImg.src = '';
+    document.body.classList.remove('lb-open');
+    if (last) last.focus();
+  }
+
+  shots.forEach(function(img, i){
+    img.parentNode.addEventListener('click', function(){ open(i); });
+  });
+
+  document.getElementById('lbClose').addEventListener('click', close);
+  document.getElementById('lbPrev').addEventListener('click', function(){ show(at - 1); });
+  document.getElementById('lbNext').addEventListener('click', function(){ show(at + 1); });
+
+  // click the backdrop (not the photo or a button) to dismiss
+  box.addEventListener('click', function(e){ if (e.target === box) close(); });
+
+  document.addEventListener('keydown', function(e){
+    if (box.hidden) return;
+    if (e.key === 'Escape')     close();
+    if (e.key === 'ArrowLeft')  show(at - 1);
+    if (e.key === 'ArrowRight') show(at + 1);
+    // keep tab focus inside the dialog
+    if (e.key === 'Tab'){
+      var f = box.querySelectorAll('button'),
+          first = f[0], lastF = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first){ e.preventDefault(); lastF.focus(); }
+      else if (!e.shiftKey && document.activeElement === lastF){ e.preventDefault(); first.focus(); }
+    }
+  });
+})();
+</script>
 
 </body>
 </html>
