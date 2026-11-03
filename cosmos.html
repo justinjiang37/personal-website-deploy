@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Justin Jiang — Software Engineer</title>
-<meta name="description" content="Justin Jiang — software engineer at USC. Currently at Shopify. Previously Hemut (YC X25), Deloitte, and Yale Astrophysics. I build fast, polished products.">
+<meta name="description" content="Justin Jiang — software engineer at USC. Most recently at Shopify. Previously Hemut (YC X25), Deloitte, and Yale Astrophysics. I build fast, polished products.">
 <meta property="og:title" content="Justin Jiang — Software Engineer">
-<meta property="og:description" content="USC engineer shipping at Shopify. Builder of playful, polished software.">
+<meta property="og:description" content="USC engineer, most recently at Shopify. Builder of playful, polished software.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='sans-serif' font-weight='bold' fill='%23ff7a3d'>J</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -375,6 +375,9 @@ button.lnk{background:none;border-top:0;border-left:0;border-right:0;font-weight
 .proj-media.contain img{object-fit:contain;padding:14px}
 .proj-media.logo{background:radial-gradient(80% 80% at 50% 42%,#191c22,#101216)}
 .proj-media.logo img{object-fit:contain;padding:21%;filter:none}
+.proj-body p:not(.sub)+p:not(.meta-line){margin-top:10px}
+.proj-media.type{display:grid;place-items:center;background:radial-gradient(80% 80% at 50% 42%,#191c22,#101216)}
+.proj-media.type span{font-family:var(--font-d);font-size:clamp(2rem,5vw,3.4rem);font-weight:700;letter-spacing:-.02em;color:var(--ink)}
 .proj:hover .proj-media img{transform:scale(1.05);filter:saturate(1.05)}
 .proj-body{position:relative}
 .proj-body .idx{
@@ -445,6 +448,9 @@ button.lnk{background:none;border-top:0;border-left:0;border-right:0;font-weight
 .edu .meta{font-family:var(--font-m);font-size:.78rem;color:var(--faint);margin-bottom:18px}
 .edu .course{color:var(--muted);font-size:.92rem;margin-top:18px;max-width:70ch}
 .edu .course b{color:var(--ink);font-weight:600}
+.edu h3 a{color:inherit;text-decoration:none}
+.edu h3 a:hover{color:var(--orange-hi)}
+.edu .course a{color:var(--orange-hi);text-decoration:none}
 
 /* ---------- photos ---------- */
 .photos{overflow:hidden;margin-top:6px}
@@ -577,7 +583,7 @@ footer .hint{opacity:.7}
     </h1>
     <p class="hero-sub">
       Software engineer studying CS &amp; Computer Engineering at <strong>USC</strong> —
-      Presidential Scholar, class of ’28. Currently building channel-platform
+      Presidential Scholar, class of ’28. Most recently built channel-platform
       infrastructure at <strong>Shopify</strong>; previously <strong>Hemut (YC X25)</strong>,
       <strong>Deloitte</strong>, and <strong>Yale Astrophysics</strong>.
     </p>
@@ -586,6 +592,7 @@ footer .hint{opacity:.7}
       <a class="lnk" href="mailto:justinjiang641@gmail.com" data-hover>Email ↗</a>
       <a class="lnk" href="https://github.com/justinjiang37" target="_blank" rel="noopener" data-hover>GitHub ↗</a>
       <a class="lnk" href="https://linkedin.com/in/justinjiang37" target="_blank" rel="noopener" data-hover>LinkedIn ↗</a>
+      <a class="lnk" href="https://x.com/Jjiang37" target="_blank" rel="noopener" data-hover>X ↗</a>
     </div>
   </header>
 
@@ -605,9 +612,9 @@ footer .hint{opacity:.7}
           Business Finance — Presidential Scholar, GPA 3.87.
         </p>
         <ul class="about-list">
-          <li class="reveal">Software engineering intern at <strong>Shopify</strong> on Channel
+          <li class="reveal">Interned at <strong>Shopify</strong> on Channel
           Platforms — infrastructure powering merchant presence across external sales channels.</li>
-          <li class="reveal" style="--d:.08s">Previously shipped a redesigned freight-marketplace
+          <li class="reveal" style="--d:.08s">Before that, shipped a redesigned freight-marketplace
           quoting interface at <strong>Hemut (YC X25)</strong>, and automated donor-data
           processing at <strong>Deloitte</strong> — 30% less manual entry, ~$500K saved per year.</li>
           <li class="reveal" style="--d:.16s">Co-authored a <strong>peer-reviewed publication</strong>
@@ -644,10 +651,10 @@ footer .hint{opacity:.7}
         <li class="stop reveal">
           <div class="node"><span class="stop-n">01</span><img src="images/logos/shopify.png" alt="Shopify"></div>
           <article class="xp" data-glow>
-            <p class="when">JUN — AUG 2026 · NEW YORK, NY<span class="now">CURRENT</span></p>
+            <p class="when">JUN — AUG 2026 · NEW YORK, NY</p>
             <h3><span class="org">Shopify</span></h3>
             <p class="role">Software Engineering Intern · Channel Platforms</p>
-            <p>Building infrastructure that powers Shopify’s merchant presence across
+            <p>Built infrastructure that powers Shopify’s merchant presence across
             <b>external sales channels</b> and the broader commerce ecosystem.</p>
           </article>
         </li>
@@ -721,10 +728,76 @@ footer .hint{opacity:.7}
         </div>
       </a>
 
+      <a class="proj reveal" data-hover href="https://x.com/Jjiang37/status/2113508758899068984" target="_blank" rel="noopener">
+        <div class="proj-media type" data-tilt><span>SO-101</span></div>
+        <div class="proj-body">
+          <span class="idx">02</span>
+          <span class="award alt">In Progress</span>
+          <h3>SO-101 Robot Arm</h3>
+          <p class="sub">ROBOT LEARNING · HARDWARE BUILD · 2026 — PRESENT</p>
+          <p>A 6-DOF desktop robot arm I’m building to learn robot foundation models end to end. 3D printed and assembled a leader and follower arm with 12 serial bus servos and two cameras, then calibrated both and got teleoperation running at a steady <b>60&nbsp;Hz</b>.</p>
+          <p>Along the way, fixed an encoder wraparound bug caused by a bad calibration pose, and camera frame drops from two uncompressed video streams saturating USB, solved by switching to MJPG. Next up: collecting demonstrations and fine-tuning a vision-language-action model.</p>
+          <p class="meta-line">Python <b>✦</b> LeRobot <b>✦</b> Feetech Servos <b>✦</b> OpenCV <b>✦</b> 3D Printing</p>
+          <span class="proj-open">X post ↗</span>
+        </div>
+      </a>
+
+      <article class="proj reveal">
+        <div class="proj-media type" data-tilt><span>FPGA</span></div>
+        <div class="proj-body">
+          <span class="idx">03</span>
+          <span class="award alt">Verilog / FPGA</span>
+          <h3>Rhythm Hero</h3>
+          <p class="sub">HARDWARE RHYTHM GAME · 2026</p>
+          <p>A complete rhythm game built in pure Verilog on a Nexys&nbsp;A7 (Artix-7) FPGA — no soft-core CPU, no OS, just custom digital logic. Full VGA pipeline plus a renderer handling note falloff, hit detection, and scoring.</p>
+          <p>Wrote a from-scratch SPI master to stream audio out of QSPI flash, decoupling reader and playback with a width-converting FIFO. Verified modules against Verilog testbenches, closed timing with clock constraints and critical-path fixes, and handled clock-domain crossing across the SPI, pixel, and system clocks.</p>
+          <p class="meta-line">Verilog <b>✦</b> Artix-7 FPGA <b>✦</b> VGA <b>✦</b> SPI <b>✦</b> FIFO &amp; CDC</p>
+        </div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj-media type" data-tilt><span>C++</span></div>
+        <div class="proj-body">
+          <span class="idx">04</span>
+          <span class="award alt">Low-Level Systems</span>
+          <h3>Compiler &amp; Bytecode VM</h3>
+          <p class="sub">REGISTER ALLOCATION · C++ · 2026</p>
+          <p>An AOT compiler backend lowering a small imperative language to bytecode, mapping unbounded virtual registers onto 7 physical registers via linear-scan register allocation over live intervals.</p>
+          <p>Paired with a register-based bytecode virtual machine built on an explicit memory layout and low-level execution model — 26 polymorphic opcodes, a stack, and exception handling.</p>
+          <p class="meta-line">C++ <b>✦</b> Compilers <b>✦</b> Register Allocation</p>
+        </div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj-media type" data-tilt><span>LiDAR</span></div>
+        <div class="proj-body">
+          <span class="idx">05</span>
+          <span class="award alt">USC Makers</span>
+          <h3>SkateMo</h3>
+          <p class="sub">AUTONOMOUS SKATEBOARD · FALL 2025</p>
+          <p>A self-driving skateboard that navigates a route on its own. GPS supplies coarse global position and waypoints; LiDAR supplies the fine local geometry the GPS can’t see. Fusing the two lets the board hold a commanded path to <b>under 10&nbsp;cm</b> of accuracy while detecting and steering around obstacles in its way.</p>
+          <p>The interesting constraint is that both sensors are wrong in different ways — GPS drifts and updates slowly, LiDAR is precise but only knows what’s directly in front of it. The fusion layer is what turns two unreliable signals into one trustworthy estimate.</p>
+          <p class="meta-line">LiDAR <b>✦</b> GPS <b>✦</b> Sensor Fusion <b>✦</b> C++ <b>✦</b> Embedded</p>
+        </div>
+      </article>
+
+      <article class="proj reveal">
+        <div class="proj-media" data-tilt><img src="images/projects/ateball.jpg" alt="ATE Ball" loading="lazy"></div>
+        <div class="proj-body">
+          <span class="idx">06</span>
+          <span class="award alt">USC Makers</span>
+          <h3>ATE Ball</h3>
+          <p class="sub">COMPUTER VISION POOL TABLE · SPRING 2025</p>
+          <p>A pool table that watches itself. An OpenCV and C++ pipeline detects the balls on the felt, predicts where the cue ball will travel after the strike, and projects that trajectory back down onto the table so the player can see the shot before taking it.</p>
+          <p>Runs the full detect → predict → project loop at <b>30&nbsp;FPS</b> — a ~33&nbsp;ms budget per frame — while holding <b>over 90% accuracy</b> on predicted cue-ball paths.</p>
+          <p class="meta-line">OpenCV <b>✦</b> C++ <b>✦</b> Computer Vision <b>✦</b> Projection Mapping</p>
+        </div>
+      </article>
+
       <a class="proj reveal" data-hover href="https://devpost.com/software/brew-rojb0x" target="_blank" rel="noopener">
         <div class="proj-media" data-tilt><img src="images/projects/brew.jpg" alt="BREW" loading="lazy"></div>
         <div class="proj-body">
-          <span class="idx">02</span>
+          <span class="idx">07</span>
           <span class="award">LA Hacks 2025 · 1st of 200 Teams</span>
           <h3>BREW</h3>
           <p class="sub">FULL-STACK DEVELOPER · APRIL 2025</p>
@@ -739,7 +812,7 @@ footer .hint{opacity:.7}
       <a class="proj reveal" data-hover href="https://devpost.com/software/temporun-7sj6r3" target="_blank" rel="noopener">
         <div class="proj-media contain" data-tilt><img src="images/projects/temporun.jpg" alt="TempoRun" loading="lazy"></div>
         <div class="proj-body">
-          <span class="idx">03</span>
+          <span class="idx">08</span>
           <span class="award">HackSC SoCal Tech Week 2024 · Winner</span>
           <h3>TempoRun</h3>
           <p>iOS app that builds personalized <b>Spotify playlists</b> from workout duration,
@@ -752,7 +825,7 @@ footer .hint{opacity:.7}
       <a class="proj reveal" data-hover href="https://www.youtube.com/playlist?list=PLvAO_Wm_nd9988h7dCTqAu7IBqUft2WCj" target="_blank" rel="noopener">
         <div class="proj-media" data-tilt><img src="images/projects/theclick.jpg" alt="The Click" loading="lazy"></div>
         <div class="proj-body">
-          <span class="idx">04</span>
+          <span class="idx">09</span>
           <span class="award alt">Multiplayer Game</span>
           <h3>The Click</h3>
           <p>Multiplayer horror game with <b>networked play</b> and AI-driven enemy
@@ -762,27 +835,15 @@ footer .hint{opacity:.7}
         </div>
       </a>
 
-      <article class="proj reveal">
-        <div class="proj-media" data-tilt><img src="images/projects/ateball.jpg" alt="ATE Ball" loading="lazy"></div>
-        <div class="proj-body">
-          <span class="idx">05</span>
-          <span class="award alt">Computer Vision</span>
-          <h3>ATE Ball</h3>
-          <p>Pool table that detects balls with <b>computer vision</b> and projects each
-          shot’s predicted trajectory onto the table.</p>
-          <p class="meta-line">Computer Vision <b>✦</b> Projection Mapping</p>
-        </div>
-      </article>
-
-      <a class="proj reveal" data-hover href="https://github.com/justinjiang37/open-source-analyzer" target="_blank" rel="noopener">
+      <a class="proj reveal" data-hover href="https://open-source-analyzer.vercel.app/explore" target="_blank" rel="noopener">
         <div class="proj-media" data-tilt><img src="images/projects/ossa.jpg" alt="OSSA" loading="lazy"></div>
         <div class="proj-body">
-          <span class="idx">06</span>
+          <span class="idx">10</span>
           <span class="award alt">Full-Stack</span>
           <h3>OSSA</h3>
           <p>Open Source Software Analyzer — full-stack app that helps aspiring
           <b>open-source contributors</b> find the right project to work on.</p>
-          <span class="proj-open">GitHub ↗</span>
+          <span class="proj-open">Live site ↗</span>
         </div>
       </a>
 
@@ -797,23 +858,19 @@ footer .hint{opacity:.7}
       <div class="skill-card reveal">
         <h4>Languages</h4>
         <ul class="skill-list">
-          <li>Python</li><li>TypeScript</li><li>C++</li>
-          <li>Java</li><li>JavaScript</li><li>SQL</li>
+          <li>Python</li><li>C++</li><li>C</li><li>Verilog</li><li>TypeScript</li><li>Java</li><li>SQL</li>
         </ul>
       </div>
       <div class="skill-card reveal" style="--d:.1s">
         <h4>Frameworks</h4>
         <ul class="skill-list">
-          <li>React</li><li>Next.js</li><li>Node.js</li>
-          <li>React Native</li><li>Tailwind CSS</li>
+          <li>React</li><li>Next.js</li><li>Node.js</li><li>React Native</li><li>OpenCV</li><li>Tailwind CSS</li>
         </ul>
       </div>
       <div class="skill-card reveal" style="--d:.2s">
         <h4>Infra & Tools</h4>
         <ul class="skill-list">
-          <li>AWS</li><li>Docker</li><li>PostgreSQL</li>
-          <li>Supabase</li><li>Linux</li><li>Git</li>
-          <li>REST APIs</li>
+          <li>FPGA / RTL</li><li>AWS</li><li>Docker</li><li>PostgreSQL</li><li>Linux</li><li>Git</li><li>REST APIs</li><li>GraphQL</li>
         </ul>
       </div>
     </div>
@@ -830,14 +887,26 @@ footer .hint{opacity:.7}
       <p class="meta-line" style="margin-top:6px">USC Presidential Scholar <b>✦</b> Viterbi Dean’s List <b>✦</b> LA Hacks 1st Place <b>✦</b> HackSC 1st Place</p>
       <p class="course"><b>Coursework:</b> Data Structures &amp; Algorithms · Algorithm Analysis ·
       Machine Learning · Professional C++ · Object-Oriented Design · Software Engineering ·
-      Distributed Systems · Probability Theory · Trading &amp; Exchanges</p>
+      Distributed Systems · Digital Circuits &amp; Design · Embedded Systems · Probability Theory · Trading &amp; Exchanges</p>
+    </div>
+  </section>
+
+  <!-- ============ WRITING ============ -->
+  <section id="writing" class="wrap">
+    <p class="sec-label reveal">06</p>
+    <h2 class="sec-title reveal">Writing<i>.</i></h2>
+    <div class="edu reveal" data-glow>
+      <h3><a href="https://justinjiang37.github.io/2026/10/25/i-slept-9-hours-last-night.html" target="_blank" rel="noopener" data-hover>I Slept 9 Hours Last Night</a></h3>
+      <p class="deg">On sleep, hustle culture, and finding a direction worth losing sleep over.</p>
+      <p class="meta">OCT 2026</p>
+      <p class="course"><a href="https://justinjiang37.github.io" target="_blank" rel="noopener" data-hover>All posts →</a></p>
     </div>
   </section>
 
   <!-- ============ PHOTOS ============ -->
   <section id="offline">
     <div class="wrap">
-      <p class="sec-label reveal">06</p>
+      <p class="sec-label reveal">07</p>
       <h2 class="sec-title reveal">Offline<i>.</i></h2>
     </div>
     <div class="photos reveal">
@@ -858,7 +927,7 @@ footer .hint{opacity:.7}
 
   <!-- ============ CONTACT ============ -->
   <section id="contact" class="contact wrap">
-    <p class="sec-label reveal" style="justify-content:center">07</p>
+    <p class="sec-label reveal" style="justify-content:center">08</p>
     <h2 class="mega reveal" aria-label="Let's talk">
       <span class="row1" data-split>LET’S</span><br>
       <span class="row2" data-split>TALK.</span>
@@ -873,6 +942,7 @@ footer .hint{opacity:.7}
     <div class="contact-links reveal">
       <a href="https://github.com/justinjiang37" target="_blank" rel="noopener" data-hover>GitHub ↗</a>
       <a href="https://linkedin.com/in/justinjiang37" target="_blank" rel="noopener" data-hover>LinkedIn ↗</a>
+      <a href="https://x.com/Jjiang37" target="_blank" rel="noopener" data-hover>X ↗</a>
       <a href="tel:+12139941612" data-hover>(213) 994-1612</a>
     </div>
   </section>

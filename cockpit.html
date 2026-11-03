@@ -6,7 +6,7 @@
 <title>Justin Jiang — Pilot's Logbook</title>
 <meta name="description" content="Justin Jiang — software engineer at USC and private pilot. A pilot's logbook of work at Shopify, Hemut (YC X25), Deloitte, and Yale Astrophysics.">
 <meta property="og:title" content="Justin Jiang — Pilot's Logbook">
-<meta property="og:description" content="USC engineer shipping at Shopify. Private pilot. A logbook of the work.">
+<meta property="og:description" content="USC engineer, most recently at Shopify. Private pilot. A logbook of the work.">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%23f4efe4'/><text y='.92em' x='8' font-size='84' font-family='sans-serif' font-weight='bold' fill='%23c2185b'>N</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -354,6 +354,9 @@ section{padding:clamp(52px,8vh,92px) 0;position:relative}
 .strip-thumb{width:96px;flex:none;overflow:hidden;background:var(--paper-2);border-right:1px solid var(--line-2)}
 .strip-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s var(--ease)}
 .strip-thumb.contain img{object-fit:contain;padding:12px}
+.strip-body p:not(.sub)+p{margin-top:8px}
+.strip-thumb.type{display:flex;align-items:center;justify-content:center}
+.strip-thumb.type span{font-family:var(--font-m);font-size:.8rem;font-weight:600;letter-spacing:.04em;color:var(--ink-soft)}
 .strip:hover .strip-thumb img{transform:scale(1.06)}
 .strip-body{padding:16px 18px;min-width:0;flex:1}
 .strip-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
@@ -407,6 +410,9 @@ section{padding:clamp(52px,8vh,92px) 0;position:relative}
   border:1px solid rgba(194,24,91,.3);background:rgba(194,24,91,.06);padding:4px 9px;border-radius:5px}
 .edu .course{color:var(--ink-soft);font-size:.92rem;max-width:74ch;border-top:1px solid var(--line-2);padding-top:16px}
 .edu .course b{color:var(--ink);font-weight:600}
+.edu h3 a{color:inherit;text-decoration:none}
+.edu h3 a:hover{color:var(--magenta)}
+.edu .course a{color:var(--magenta);text-decoration:none}
 
 /* ============================================================
    PHOTOS
@@ -527,7 +533,7 @@ footer p b{color:var(--ink-soft)}
           </div>
           <p class="hero-role">
             Software engineer &amp; private pilot. Studying CS and Computer Engineering at
-            <b>USC</b> — currently building channel-platform infrastructure at <b>Shopify</b>.
+            <b>USC</b> — most recently built channel-platform infrastructure at <b>Shopify</b>.
           </p>
           <div class="readouts">
             <div class="readout"><div class="rk">Local</div><div class="rv" id="clock">--:--:--</div></div>
@@ -540,6 +546,7 @@ footer p b{color:var(--ink-soft)}
             <a href="mailto:justinjiang641@gmail.com">Email ↗</a>
             <a href="https://github.com/justinjiang37" target="_blank" rel="noopener">GitHub ↗</a>
             <a href="https://linkedin.com/in/justinjiang37" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a href="https://x.com/Jjiang37" target="_blank" rel="noopener">X ↗</a>
           </div>
         </div>
         <div class="adi-wrap">
@@ -580,7 +587,7 @@ footer p b{color:var(--ink-soft)}
     <div class="about-grid">
       <div class="about-copy">
         <p class="reveal">CS &amp; Computer Engineering student at <strong>USC</strong>, minoring in Business Finance — <strong>USC Presidential Scholar</strong>, GPA 3.87. Class of 2028.</p>
-        <p class="reveal" style="--d:.06s">I build fast, polished software — infrastructure at <strong>Shopify</strong> on Channel Platforms today, and before that a freight-marketplace quoting interface at <strong>Hemut (YC X25)</strong> and donor-data automation at <strong>Deloitte</strong> that saved a nonprofit ~$500K a year.</p>
+        <p class="reveal" style="--d:.06s">I build fast, polished software — infrastructure at <strong>Shopify</strong> on Channel Platforms, and before that a freight-marketplace quoting interface at <strong>Hemut (YC X25)</strong> and donor-data automation at <strong>Deloitte</strong> that saved a nonprofit ~$500K a year.</p>
         <p class="reveal" style="--d:.12s">I co-authored a <strong>peer-reviewed astrophysics publication</strong> from research at Yale, co-founded <strong>Valkyrie</strong> (winner of USC's Lavalab accelerator), and — off the clock — I fly. Private pilot, Cessna and gliders.</p>
       </div>
       <div class="totals reveal" style="--d:.1s">
@@ -608,14 +615,14 @@ footer p b{color:var(--ink-soft)}
       </div>
 
       <div class="led-row">
-        <div class="lc-date">JUN–AUG 2026<span class="loc">New York, NY</span><span class="now">CURRENT</span></div>
+        <div class="lc-date">JUN–AUG 2026<span class="loc">New York, NY</span></div>
         <div class="lc-org">
           <span class="org-name"><img src="images/logos/shopify.png" alt="" loading="lazy">Shopify</span>
           <span class="reg">N-SHOP</span>
         </div>
         <div class="lc-role">Software Engineering Intern · Channel Platforms</div>
         <div class="lc-rem">
-          <ul><li>Building infrastructure that powers Shopify's merchant presence across <b>external sales channels</b> and the broader commerce ecosystem.</li></ul>
+          <ul><li>Built infrastructure that powers Shopify's merchant presence across <b>external sales channels</b> and the broader commerce ecosystem.</li></ul>
         </div>
       </div>
 
@@ -732,7 +739,73 @@ footer p b{color:var(--ink-soft)}
         </div>
       </a>
 
-      <a class="strip reveal" style="--d:.06s" href="https://devpost.com/software/brew-rojb0x" target="_blank" rel="noopener">
+      <a class="strip reveal" style="--d:.06s" href="https://x.com/Jjiang37/status/2113508758899068984" target="_blank" rel="noopener">
+        <div class="strip-edge"></div>
+        <div class="strip-thumb type"><span>SO-101</span></div>
+        <div class="strip-body">
+          <div class="strip-top"><span class="strip-flt">FLT SO1 · ROBOTICS</span><span class="strip-award">In Progress</span></div>
+          <h3>SO-101 Robot Arm</h3>
+          <p class="sub">ROBOT LEARNING · HARDWARE BUILD · 2026 — PRESENT</p>
+          <p>A 6-DOF desktop robot arm I’m building to learn robot foundation models end to end. 3D printed and assembled a leader and follower arm with 12 serial bus servos and two cameras, then calibrated both and got teleoperation running at a steady <b>60&nbsp;Hz</b>.</p>
+          <p>Along the way, fixed an encoder wraparound bug caused by a bad calibration pose, and camera frame drops from two uncompressed video streams saturating USB, solved by switching to MJPG. Next up: collecting demonstrations and fine-tuning a vision-language-action model.</p>
+          <div class="tech">Python<span>✦</span>LeRobot<span>✦</span>Feetech Servos<span>✦</span>OpenCV<span>✦</span>3D Printing</div>
+          <span class="go">X post ↗</span>
+        </div>
+      </a>
+
+      <div class="strip amb reveal">
+        <div class="strip-edge"></div>
+        <div class="strip-thumb type"><span>FPGA</span></div>
+        <div class="strip-body">
+          <div class="strip-top"><span class="strip-flt">FLT RTM · FPGA</span><span class="strip-award">Verilog / FPGA</span></div>
+          <h3>Rhythm Hero</h3>
+          <p class="sub">HARDWARE RHYTHM GAME · 2026</p>
+          <p>A complete rhythm game built in pure Verilog on a Nexys&nbsp;A7 (Artix-7) FPGA — no soft-core CPU, no OS, just custom digital logic. Full VGA pipeline plus a renderer handling note falloff, hit detection, and scoring.</p>
+          <p>Wrote a from-scratch SPI master to stream audio out of QSPI flash, decoupling reader and playback with a width-converting FIFO. Verified modules against Verilog testbenches, closed timing with clock constraints and critical-path fixes, and handled clock-domain crossing across the SPI, pixel, and system clocks.</p>
+          <div class="tech">Verilog<span>✦</span>Artix-7 FPGA<span>✦</span>VGA<span>✦</span>SPI<span>✦</span>FIFO &amp; CDC</div>
+        </div>
+      </div>
+
+      <div class="strip blu reveal" style="--d:.06s">
+        <div class="strip-edge"></div>
+        <div class="strip-thumb type"><span>C++</span></div>
+        <div class="strip-body">
+          <div class="strip-top"><span class="strip-flt">FLT CMP · SYSTEMS</span><span class="strip-award">Low-Level Systems</span></div>
+          <h3>Compiler &amp; Bytecode VM</h3>
+          <p class="sub">REGISTER ALLOCATION · C++ · 2026</p>
+          <p>An AOT compiler backend lowering a small imperative language to bytecode, mapping unbounded virtual registers onto 7 physical registers via linear-scan register allocation over live intervals.</p>
+          <p>Paired with a register-based bytecode virtual machine built on an explicit memory layout and low-level execution model — 26 polymorphic opcodes, a stack, and exception handling.</p>
+          <div class="tech">C++<span>✦</span>Compilers<span>✦</span>Register Allocation</div>
+        </div>
+      </div>
+
+      <div class="strip amb reveal">
+        <div class="strip-edge"></div>
+        <div class="strip-thumb type"><span>LiDAR</span></div>
+        <div class="strip-body">
+          <div class="strip-top"><span class="strip-flt">FLT SKT · EMBEDDED</span><span class="strip-award">USC Makers</span></div>
+          <h3>SkateMo</h3>
+          <p class="sub">AUTONOMOUS SKATEBOARD · FALL 2025</p>
+          <p>A self-driving skateboard that navigates a route on its own. GPS supplies coarse global position and waypoints; LiDAR supplies the fine local geometry the GPS can’t see. Fusing the two lets the board hold a commanded path to <b>under 10&nbsp;cm</b> of accuracy while detecting and steering around obstacles in its way.</p>
+          <p>The interesting constraint is that both sensors are wrong in different ways — GPS drifts and updates slowly, LiDAR is precise but only knows what’s directly in front of it. The fusion layer is what turns two unreliable signals into one trustworthy estimate.</p>
+          <div class="tech">LiDAR<span>✦</span>GPS<span>✦</span>Sensor Fusion<span>✦</span>C++<span>✦</span>Embedded</div>
+        </div>
+      </div>
+
+      <div class="strip amb reveal" style="--d:.06s">
+        <div class="strip-edge"></div>
+        <div class="strip-thumb"><img src="images/projects/ateball.jpg" alt="ATE Ball" loading="lazy"></div>
+        <div class="strip-body">
+          <div class="strip-top"><span class="strip-flt">FLT ATE · VISION</span><span class="strip-award">USC Makers</span></div>
+          <h3>ATE Ball</h3>
+          <p class="sub">COMPUTER VISION POOL TABLE · SPRING 2025</p>
+          <p>A pool table that watches itself. An OpenCV and C++ pipeline detects the balls on the felt, predicts where the cue ball will travel after the strike, and projects that trajectory back down onto the table so the player can see the shot before taking it.</p>
+          <p>Runs the full detect → predict → project loop at <b>30&nbsp;FPS</b> — a ~33&nbsp;ms budget per frame — while holding <b>over 90% accuracy</b> on predicted cue-ball paths.</p>
+          <div class="tech">OpenCV<span>✦</span>C++<span>✦</span>Computer Vision<span>✦</span>Projection Mapping</div>
+        </div>
+      </div>
+
+      <a class="strip reveal" href="https://devpost.com/software/brew-rojb0x" target="_blank" rel="noopener">
         <div class="strip-edge"></div>
         <div class="strip-thumb"><img src="images/projects/brew.jpg" alt="BREW" loading="lazy"></div>
         <div class="strip-body">
@@ -745,7 +818,7 @@ footer p b{color:var(--ink-soft)}
         </div>
       </a>
 
-      <a class="strip blu reveal" href="https://devpost.com/software/temporun-7sj6r3" target="_blank" rel="noopener">
+      <a class="strip blu reveal" style="--d:.06s" href="https://devpost.com/software/temporun-7sj6r3" target="_blank" rel="noopener">
         <div class="strip-edge"></div>
         <div class="strip-thumb contain"><img src="images/projects/temporun.jpg" alt="TempoRun" loading="lazy"></div>
         <div class="strip-body">
@@ -758,7 +831,7 @@ footer p b{color:var(--ink-soft)}
         </div>
       </a>
 
-      <a class="strip blu reveal" style="--d:.06s" href="https://www.youtube.com/playlist?list=PLvAO_Wm_nd9988h7dCTqAu7IBqUft2WCj" target="_blank" rel="noopener">
+      <a class="strip blu reveal" href="https://www.youtube.com/playlist?list=PLvAO_Wm_nd9988h7dCTqAu7IBqUft2WCj" target="_blank" rel="noopener">
         <div class="strip-edge"></div>
         <div class="strip-thumb"><img src="images/projects/theclick.jpg" alt="The Click" loading="lazy"></div>
         <div class="strip-body">
@@ -771,19 +844,7 @@ footer p b{color:var(--ink-soft)}
         </div>
       </a>
 
-      <div class="strip amb reveal">
-        <div class="strip-edge"></div>
-        <div class="strip-thumb"><img src="images/projects/ateball.jpg" alt="ATE Ball" loading="lazy"></div>
-        <div class="strip-body">
-          <div class="strip-top"><span class="strip-flt">FLT ATE · VISION</span><span class="strip-award">Computer Vision</span></div>
-          <h3>ATE Ball</h3>
-          <p class="sub">PROJECTION MAPPING</p>
-          <p>Pool table that detects balls with <b>computer vision</b> and projects each shot's predicted trajectory onto the felt.</p>
-          <div class="tech">Computer Vision<span>✦</span>Projection Mapping</div>
-        </div>
-      </div>
-
-      <a class="strip blu reveal" style="--d:.06s" href="https://github.com/justinjiang37/open-source-analyzer" target="_blank" rel="noopener">
+      <a class="strip blu reveal" style="--d:.06s" href="https://open-source-analyzer.vercel.app/explore" target="_blank" rel="noopener">
         <div class="strip-edge"></div>
         <div class="strip-thumb"><img src="images/projects/ossa.jpg" alt="OSSA" loading="lazy"></div>
         <div class="strip-body">
@@ -791,7 +852,7 @@ footer p b{color:var(--ink-soft)}
           <h3>OSSA</h3>
           <p class="sub">OPEN SOURCE SOFTWARE ANALYZER</p>
           <p>Full-stack app that helps aspiring <b>open-source contributors</b> find the right project to work on.</p>
-          <span class="go">GitHub ↗</span>
+          <span class="go">Live site ↗</span>
         </div>
       </a>
 
@@ -808,15 +869,15 @@ footer p b{color:var(--ink-soft)}
     <div class="kit">
       <div class="kit-card reveal">
         <h4>Languages</h4>
-        <div class="kit-tags"><span>Python</span><span>TypeScript</span><span>C++</span><span>Java</span><span>JavaScript</span><span>SQL</span></div>
+        <div class="kit-tags"><span>Python</span><span>C++</span><span>C</span><span>Verilog</span><span>TypeScript</span><span>Java</span><span>SQL</span></div>
       </div>
       <div class="kit-card reveal" style="--d:.08s">
         <h4>Frameworks</h4>
-        <div class="kit-tags"><span>React</span><span>Next.js</span><span>Node.js</span><span>React Native</span><span>Tailwind CSS</span></div>
+        <div class="kit-tags"><span>React</span><span>Next.js</span><span>Node.js</span><span>React Native</span><span>OpenCV</span><span>Tailwind CSS</span></div>
       </div>
       <div class="kit-card reveal" style="--d:.16s">
         <h4>Infra &amp; Tools</h4>
-        <div class="kit-tags"><span>AWS</span><span>Docker</span><span>PostgreSQL</span><span>Supabase</span><span>Linux</span><span>Git</span><span>REST APIs</span></div>
+        <div class="kit-tags"><span>FPGA / RTL</span><span>AWS</span><span>Docker</span><span>PostgreSQL</span><span>Linux</span><span>Git</span><span>REST APIs</span><span>GraphQL</span></div>
       </div>
     </div>
   </section>
@@ -836,7 +897,22 @@ footer p b{color:var(--ink-soft)}
       <div class="honors">
         <span>USC Presidential Scholar</span><span>Viterbi Dean's List</span><span>LA Hacks 1st Place</span><span>HackSC 1st Place</span>
       </div>
-      <p class="course"><b>Coursework:</b> Data Structures &amp; Algorithms · Algorithm Analysis · Machine Learning · Professional C++ · Object-Oriented Design · Software Engineering · Distributed Systems · Probability Theory · Trading &amp; Exchanges</p>
+      <p class="course"><b>Coursework:</b> Data Structures &amp; Algorithms · Algorithm Analysis · Machine Learning · Professional C++ · Object-Oriented Design · Software Engineering · Distributed Systems · Digital Circuits &amp; Design · Embedded Systems · Probability Theory · Trading &amp; Exchanges</p>
+    </div>
+  </section>
+
+  <!-- ============ WRITING ============ -->
+  <section id="writing" class="wrap">
+    <div class="sec-head">
+      <span class="sec-tag">§ 07 · Field Notes</span>
+      <h2 class="sec-title reveal">Writing</h2>
+      <span class="sec-rule"></span>
+    </div>
+    <div class="edu reveal">
+      <h3><a href="https://justinjiang37.github.io/2026/10/25/i-slept-9-hours-last-night.html" target="_blank" rel="noopener">I Slept 9 Hours Last Night</a></h3>
+      <p class="deg">On sleep, hustle culture, and finding a direction worth losing sleep over.</p>
+      <p class="meta">OCT 2026</p>
+      <p class="course"><a href="https://justinjiang37.github.io" target="_blank" rel="noopener">All posts →</a></p>
     </div>
   </section>
 
@@ -844,7 +920,7 @@ footer p b{color:var(--ink-soft)}
   <section id="offline">
     <div class="wrap">
       <div class="sec-head">
-        <span class="sec-tag">§ 07 · Off-Field</span>
+        <span class="sec-tag">§ 08 · Off-Field</span>
         <h2 class="sec-title reveal">Offline</h2>
         <span class="sec-rule"></span>
       </div>
@@ -867,7 +943,7 @@ footer p b{color:var(--ink-soft)}
 
   <!-- ============ CONTACT ============ -->
   <section id="contact" class="contact wrap">
-    <p class="kicker">§ 08 · Clearance to contact</p>
+    <p class="kicker">§ 09 · Clearance to contact</p>
     <h2>Let's talk.</h2>
     <p class="sub">Open to internships, collaborations, or a little hangar talk about flying. Radio me.</p>
     <div class="contact-cta">
@@ -877,6 +953,7 @@ footer p b{color:var(--ink-soft)}
     <div class="contact-links">
       <a href="https://github.com/justinjiang37" target="_blank" rel="noopener">GitHub ↗</a>
       <a href="https://linkedin.com/in/justinjiang37" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a href="https://x.com/Jjiang37" target="_blank" rel="noopener">X ↗</a>
       <a href="tel:+12139941612">(213) 994-1612</a>
     </div>
   </section>

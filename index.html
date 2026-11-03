@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Justin Jiang — Software Engineer</title>
-<meta name="description" content="Justin Jiang — software engineer studying CS & Computer Engineering at USC. Currently at Shopify; previously Hemut (YC X25), Deloitte, and Yale Astrophysics.">
+<meta name="description" content="Justin Jiang — software engineer studying CS & Computer Engineering at USC. Most recently at Shopify; previously Hemut (YC X25), Deloitte, and Yale Astrophysics.">
 <meta property="og:title" content="Justin Jiang — Software Engineer">
-<meta property="og:description" content="USC engineer shipping at Shopify. Previously Hemut (YC X25), Deloitte, Yale Astrophysics.">
+<meta property="og:description" content="USC engineer. Most recently Shopify; previously Hemut (YC X25), Deloitte, Yale Astrophysics.">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#ffffff">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='88' font-family='Georgia,serif' font-weight='700' fill='%23111'>J</text></svg>">
@@ -36,7 +36,7 @@ body{
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
 }
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 64px}
 a{color:var(--accent);text-decoration:none}
 a:hover{text-decoration:underline;text-underline-offset:2px}
 
@@ -46,6 +46,7 @@ a:hover{text-decoration:underline;text-underline-offset:2px}
   padding:64px 0 56px;align-items:start;
 }
 @media (max-width:880px){
+  .wrap{padding:0 32px}
   .layout{grid-template-columns:1fr;gap:36px;padding:44px 0 40px}
 }
 
@@ -207,7 +208,7 @@ body.lb-open{overflow:hidden}
     <p class="role">Software Engineer</p>
     <p class="lede">
       CS &amp; Computer Engineering at <strong>USC</strong> — Presidential Scholar,
-      class of 2028. Building channel-platform infrastructure at <strong>Shopify</strong>;
+      class of 2028. Most recently built channel-platform infrastructure at <strong>Shopify</strong>;
       previously <strong>Hemut&nbsp;(YC&nbsp;X25)</strong>, <strong>Deloitte</strong>,
       and <strong>Yale Astrophysics</strong>.
     </p>
@@ -243,9 +244,9 @@ body.lb-open{overflow:hidden}
     <div class="entry">
       <div class="meta">Jun&nbsp;–&nbsp;Aug 2026<br>New York, NY</div>
       <div>
-        <h3>Shopify <span class="tag">Current</span></h3>
+        <h3>Shopify</h3>
         <p class="sub">Software Engineering Intern · Channel Platforms</p>
-        <p>Building infrastructure that powers Shopify’s merchant presence across external
+        <p>Built infrastructure that powers Shopify’s merchant presence across external
         sales channels and the broader commerce ecosystem.</p>
       </div>
     </div>
@@ -309,6 +310,21 @@ body.lb-open{overflow:hidden}
       </div>
 
       <div class="card">
+        <p class="when">2026 – Present · In Progress</p>
+        <h3>SO-101 Robot Arm <a href="https://x.com/Jjiang37/status/2113508758899068984" target="_blank" rel="noopener">↗</a></h3>
+        <p class="sub">Robot Learning · Hardware Build</p>
+        <p>A 6-DOF desktop robot arm I'm building to learn robot foundation models end to
+        end. 3D printed and assembled a leader and follower arm with 12 serial bus servos and
+        two cameras, then calibrated both and got teleoperation running at a steady
+        <b>60&nbsp;Hz</b>.</p>
+        <p>Along the way, fixed an encoder wraparound bug caused by a bad calibration pose,
+        and camera frame drops from two uncompressed video streams saturating USB, solved by
+        switching to MJPG. Next up: collecting demonstrations and fine-tuning a
+        vision-language-action model.</p>
+        <p class="stack">Python · LeRobot · Feetech Servos · OpenCV · 3D Printing</p>
+      </div>
+
+      <div class="card">
         <p class="when">2026 · Verilog / FPGA</p>
         <h3>Rhythm Hero</h3>
         <p class="sub">Hardware Rhythm Game</p>
@@ -336,7 +352,7 @@ body.lb-open{overflow:hidden}
       </div>
 
       <div class="card">
-        <p class="when">2024 – Present · USC Makers</p>
+        <p class="when">Fall 2025 · USC Makers</p>
         <h3>SkateMo</h3>
         <p class="sub">Autonomous Skateboard</p>
         <p>A self-driving skateboard that navigates a route on its own. GPS supplies coarse
@@ -352,7 +368,7 @@ body.lb-open{overflow:hidden}
       </div>
 
       <div class="card">
-        <p class="when">2024 – Present · USC Makers</p>
+        <p class="when">Spring 2025 · USC Makers</p>
         <h3>ATE Ball</h3>
         <p class="sub">Computer Vision Pool Table</p>
         <p>A pool table that watches itself. An OpenCV and C++ pipeline detects the balls on
